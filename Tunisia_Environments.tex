@@ -2,12 +2,13 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[applsci,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+\documentclass[technologies,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
 
 %=================================================================
 %----------
 % journal
 %----------
+% Choose between the following MDPI journals:
 
 % MDPI internal commands
 \firstpage{1} 
@@ -20,8 +21,8 @@
 \pubyear{2023}
 \copyrightyear{2023}
 %\externaleditor{Academic Editor: Firstname Lastname}
-\datereceived{1 May 2023} 
-\daterevised{} 
+\datereceived{23 July 2023} 
+%\daterevised{} % Only for the journal Acoustics
 \dateaccepted{} 
 \datepublished{} 
 \hreflink{https://doi.org/} % If needed use \linebreak
@@ -39,25 +40,24 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Multispectral Images for Monitoring Sub-Saharan Saline Lake Sebkhet en Noual, Tunisia}
+\Title{Monitoring Seasonal Fluctuations in Sabkhas of Tunisia by Multispectral Image Analysis Using GRASS GIS}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Multispectral Images for Monitoring Sub-Saharan Saline Lake Sebkhet en Noual, Tunisia}
+\TitleCitation{Monitoring Seasonal Fluctuations in Sabkhas of Tunisia by Multispectral Image Analysis Using GRASS GIS}
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
-\newcommand{\orcidauthorB}{0000-0002-6461-1551} % Olivier Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Polina Lemenkova $^{1}$*\orcidA{} and Olivier Debeir $^{1}$\orcidB{}}
+\Author{Polina Lemenkova $^{1}$*\orcidA{}}
 
 %\longauthorlist{yes}
 
 % MDPI internal command: Authors, for metadata in PDF
-\AuthorNames{Polina Lemenkova and Olivier Debeir}
+\AuthorNames{Polina Lemenkova}
 
 % MDPI internal command: Authors, for citation in the left column
-\AuthorCitation{Lemenkova, P.; Debeir, O.}
+\AuthorCitation{Lemenkova, P.}
 % If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
@@ -72,7 +72,7 @@ $^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechn
 %\firstnote{Current address: Affiliation 3.} 
 
 % Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{A single paragraph of about 200 words maximum. }
+\abstract{This study documents the variations of the saline lakes (a.k.a. sebkhet or sabkha) in Tunisia due to the climate effects. Located in arid environment of north Africa, salt lakes experience changes in volume and extent due to extreme temperatures: during summer heat period, lakes dry out almost entirely and become a crust of salt and minerals due to the evaporated moisture. Lakes in Tunisia are important components of the environment playing a crucial role as biodiversity maintenance, habitats for rare species in nearby oases, rare sources of water, flood and fishery, regulators of temperature, hydrology, and carbon fixation. Remote sensing data are valuable data source to monitoring lakes since variations in the extent of lakes are visible from space. In this study, changes in salinisation and water extent of the salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with GRASS GIS software. The study area included four salt lakes of north Tunisia: 1) Sebkhet de Sidi el Hani (Sousse Governorate), 2) Sebkha de Moknine (Mahdia Governorate), 3) Sebkhet El Rharra and 4) Sebkhet en Noual (Sfax). The scenes were analysed for a periods 2013--2023. Spatio-temporal changes and their climate-environmental driving forces were analysed. The results were interpreted and the highest changes detected by accuracy assessment, computing the kappa confusion matrices, evaluating the confidence intervals, and plotting the reject probability maps. Multi-temporal changes in land cover classes are reported for each image. The results demonstrated changes in salt lakes were determined for winter/spring/summer months as detected changes in water/land/salt/sand/vegetation areas. This paper contributes to the environmental monitoring of Tunisian landscapes and analysis of climate effects on landscapes of north Africa.}
 
 % Keywords
 \keyword{keyword 1; keyword 2; keyword 3; keyword 4; keyword 5; keyword 6; keyword 7; keyword 8; keyword 9; keyword 10} 
@@ -86,15 +86,21 @@ $^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechn
 
 %----------- section ----------->
 \section{Introduction}
+Lakes in Tunisia are important components of the environment playing a crucial role as biodiversity maintenance as habitats for rare African species and birds in nearby oases. Moreover, lakes in Sahara are rare sources of water, flood and fishery, they serve as regulators of temperature, hydrology, and carbon fixation for environmental sustainability. 
 
 %----------- section ----------->
 \section{Materials and Methods}
 
 %----------- subsection ----------->
-\subsection{Subsection}
+\subsection{Data}
+
+In this study, changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with GRASS GIS software. Tested images included spectral bands in visible, SWIR1, SWIR2 and NIR channels obtained from the OLI sensor. 
 
 %----------- subsection ----------->
-\subsection{Subsection}
+\subsection{Methods}
+High-resolution satellite images were first processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. 
+
+The detection of the saline lakes is possible using spectral properties of images that enable to distinct highly reflective cyan-coloured areas of lakes discriminated against beige-coloured sands and bare land. Thus, spectral properties of the remote sensing data were evaluated by various GRASS GIS modules and scripting techniques with regards to the water/land/salt discrimination, and demonstrated robust approach to image analysis. 
 
 %----------- subsection ----------->
 \subsection{Subsection}
@@ -102,16 +108,27 @@ $^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechn
 %----------- section ----------->
 \section{Results}
 
+Changes in salt lakes were determined at different years during recent decade by integrating Landsat images taken in winter/spring/summer months for comparison of periods when water inflow into Saharan lakes is high and low, respectively.  
+
+A time series analysis of the satellite images characterises gradual changes in lakes over calendar periods and provides a robust view in environmental changes. 
+
+Changes in water level in salt lakes detected using remote sensing data can serve for environmental monitoring of Tunisian landscapes and analysis of environmental consequences of climate effects in north Africa.
+
 %----------- section ----------->
 \section{Discussion}
 
 %----------- section ----------->
 \section{Conclusions}
+We evaluated the proposed framework on remote sensing data analysis using GRASS GIS software and a series of the satellite images from the USGS repository. 
+
+Correlations between the increase in heat in various years and high salinisation of sabkhas were detected. 
+
+The results demonstrated variations in water level in several sabkha and show technical effectiveness of the GRASS GIS in cartographic processing of the remote sensing data for environmental tasks. 
 
 %----------- section ----------->
-\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, O.D.; writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L. All authors have read and agreed to the published version of the manuscript.}
+\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L.}
 
-\funding{The publication was funded by the Editorial Office of XXXX, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript. This project was supported by the Federal Public Planning Service Science Policy or Belgian Science Policy Office, Federal Science Policy - BELSPO (B2/202/P2/SEISMOSTORM).}
+\funding{The publication was funded by the Editorial Office of XXXX, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
 
 \institutionalreview{Not applicable.}
 
@@ -151,12 +168,13 @@ All appendix sections must be cited in the main text. In the appendices, Figures
 %\printendnotes[custom] % Un-comment to print a list of endnotes
 
 \reftitle{References}
-\nocite{*}
+%\nocite{*}
 
 %=====================================
 % References, variant A: external bibliography
 %=====================================
 \bibliography{Tunisia.bib}
+\nocite{*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{adjustwidth}
