@@ -78,9 +78,9 @@ $^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechn
 \keyword{Remote sensing; image processing; Africa; Sahara; salt lakes; desert environment; arid climate; Tunisia; image analysis; Landsat} 
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
-%\PACS{J0101}
-%\MSC{}
-%\JEL{}
+\PACS{91.10.Da; 91.10.Jf; 91.10.Sp; 91.10.Xa; 96.25.Vt; 91.10.Fc; 95.40.+s; 95.75.Qr; 95.75.Rs; 42.68.Wt}
+\MSC{86A30; 86-08; 86A99; 86A04}
+\JEL{Y91; Q20; Q24; Q23; Q3; Q01; R11; O44; O13; Q5; Q51; Q55; N57; C6; C61}
 
 \begin{document}
 
@@ -89,11 +89,11 @@ $^{1}$ \quad Laboratory of Image Synthesis and Analysis (LISA), École polytechn
 
 \subsection{Background}
 
-Remote sensing data analysis is a fundamental issue in environmental studies and ecosystem monitoring. Processing remote sensing data is especially essential for multi-temporal analysis of land cover changes \cite{BOUSSETTA2022102564} and application of environmental geomorphology, which are subject to seasonal changes and shrinkage due to climate effects \cite{JonesMillington}. Climate effects can cause desertification \cite{Pontanier,info14040249} and threaten balance of biodiversity \cite{YAICHEACHOUR2023501}. Therefore, monitoring environmental properties of Saharan landscapes by remote sensing data plays an essential role in analysis and decision making on environmental sustainability, which results in many approaches to developing effective methods of image processing for environmental tasks \cite{Monget,Lemenkova202227,CAMPOS2018211}. The key factors in effective approaches to satellite image processing include the type of data and the functionality of software \cite{rs14236017}. Another important factor consists in the quality of image, coverage extent, cloudiness and haze. 
+Remote sensing data analysis is a fundamental issue in environmental studies and ecosystem monitoring. Processing remote sensing data is especially essential for multi-temporal analysis of land cover changes \cite{BOUSSETTA2022102564} and application of environmental geomorphology, which are subject to seasonal changes and shrinkage due to climate effects \cite{JonesMillington}. Climate effects can cause desertification \cite{Pontanier,info14040249} and threaten balance of biodiversity \cite{YAICHEACHOUR2023501}. Therefore, monitoring environmental properties of Saharan landscapes by remote sensing data plays an essential role in analysis and decision making on environmental sustainability, which results in many approaches to developing effective methods of image processing for environmental tasks \cite{Monget,Lemenkova202227,CAMPOS2018211}. 
 
-Major image types widely used for effective environmental monitoring and include Landsat \cite{BOUSSEMA2023185,SMIDA2022104643,jmse11040871}, AVHRR \cite{Bryant}, Google Earth \cite{LI2022252}, MODIS \cite{TOUHAMI2022103804,RHIF2022101596}, and the combinations thereof \cite{REBILLARD1984133}. Examples of very high resolution data include such images as Quickbird \cite{CHOUARI2021443}, SPOT and IKONOS \cite{VELA2008591}.
+The key factors in effective approaches to satellite image processing include the type of data and the functionality of software \cite{rs14236017}. Another important factor consists in the quality of image, coverage extent, cloudiness and haze. Major image types widely used for effective environmental monitoring and include Landsat \cite{BOUSSEMA2023185,SMIDA2022104643,jmse11040871}, AVHRR \cite{Bryant}, Google Earth \cite{LI2022252}, MODIS \cite{TOUHAMI2022103804,RHIF2022101596}, and the combinations thereof \cite{REBILLARD1984133}. Examples of very high resolution data include such images as Quickbird \cite{CHOUARI2021443}, SPOT and IKONOS \cite{VELA2008591}. Certainly, although diverse images can be used in various tasks as data sources for environmental monitoring and mapping, the general approach of image analysis relies on using imagery as Landsat or other existing sensor types to extract information through image processing \cite{LiangWang}. 
 
-Lakes in Tunisia are important components of the environment playing a crucial role as biodiversity maintenance as habitats for rare African species and birds in nearby oases. Moreover, lakes in Sahara are rare sources of water, flood and fishery, they serve as regulators of temperature, hydrology, and carbon fixation for environmental sustainability. 
+The effects of climate and seasonal meteorological fluctuations on soil and vegetation setting of the Saharan landscapes are explained by changes in temperature which triggers processes of evaporation, i.e., the transform of liquid water in lakes and ephemeral river flows into gaseous vapour. Such increase of temperature and reduced precipitation observed during heat of summer months lead to lack of surface water which is the primary factor of desertification and aridification of landscapes in Sahara \cite{OSWALD2023369,DODORICO2013326}. At the same time, lakes in Tunisia are important components of the dryland environment playing a crucial role as biodiversity maintenance as habitats for rare African species and birds in nearby oases. Moreover, lakes in Sahara are rare sources of water, flood and fishery, they serve as regulators of temperature, hydrology, and carbon fixation for environmental sustainability. 
 
 %----------- section ----------->
 \section{Materials and Methods}
@@ -102,6 +102,45 @@ Lakes in Tunisia are important components of the environment playing a crucial r
 \subsection{Data}
 
 In this study, changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with Geographic Resources Analysis Support System (GRASS) GIS software. Tested images included spectral bands in visible, Short-wave infrared (SWIR)-1, SWIR2 and Near-infrared (NIR) channels obtained from the OLI sensor. 
+
+\begin{figure}[H]
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_04a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_04b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_04c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_04d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_04e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_04f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}
+\caption{Landsat images showing increase of salt (bright cyan colour) from winter to summer months in the Tunisian sabkhas Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig04}
+\end{figure}
 
 %----------- subsection ----------->
 \subsection{Methods}
