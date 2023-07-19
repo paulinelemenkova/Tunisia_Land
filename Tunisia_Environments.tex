@@ -93,7 +93,36 @@ Remote sensing data analysis is a fundamental issue in environmental studies and
 
 The key factors in effective approaches to satellite image processing include the type of data and the functionality of software \cite{rs14236017}. Another important factor consists in the quality of image, coverage extent, cloudiness and haze. Major image types widely used for effective environmental monitoring and include Landsat \cite{BOUSSEMA2023185,SMIDA2022104643,jmse11040871}, AVHRR \cite{Bryant}, Google Earth \cite{LI2022252}, MODIS \cite{TOUHAMI2022103804,RHIF2022101596}, and the combinations thereof \cite{REBILLARD1984133}. Examples of very high resolution data include such images as Quickbird \cite{CHOUARI2021443}, SPOT and IKONOS \cite{VELA2008591}. Certainly, although diverse images can be used in various tasks as data sources for environmental monitoring and mapping, the general approach of image analysis relies on using imagery as Landsat or other existing sensor types to extract information through image processing \cite{LiangWang}. 
 
-The effects of climate and seasonal meteorological fluctuations on soil and vegetation setting of the Saharan landscapes are explained by changes in temperature which triggers processes of evaporation, i.e., the transform of liquid water in lakes and ephemeral river flows into gaseous vapour. Such increase of temperature and reduced precipitation observed during heat of summer months lead to lack of surface water which is the primary factor of desertification and aridification of landscapes in Sahara \cite{OSWALD2023369,DODORICO2013326}. At the same time, lakes in Tunisia are important components of the dryland environment playing a crucial role as biodiversity maintenance as habitats for rare African species and birds in nearby oases. Moreover, lakes in Sahara are rare sources of water, flood and fishery, they serve as regulators of temperature, hydrology, and carbon fixation for environmental sustainability. 
+The effects of climate and seasonal meteorological fluctuations on soil and vegetation setting of the Saharan landscapes are explained by changes in temperature which triggers processes of evaporation, i.e., the transform of liquid water in lakes and ephemeral river flows into gaseous vapour. The increase of temperature and reduced precipitation observed during heat of summer months lead to lack of surface water which is the primary factor of desertification and aridification of landscapes in Sahara \cite{OSWALD2023369,DODORICO2013326}. At the same time, lakes in Tunisia are important components of the dryland environment playing a crucial role as biodiversity maintenance as habitats for rare African species and birds in nearby oases. Moreover, lakes in Sahara are rare sources of water, flood and fishery, they serve as regulators of temperature, hydrology, and carbon fixation for environmental sustainability \cite{NIGAM2020201}. Such phenomena was used in experimental studies monitoring landscapes changes were evaluated with regard to temperature fluctuations and climatic data were added in order to model the reaction in landscapes, such as vegetation responses to droughts \cite{HANAFI2008557,PAUSATA2020235,Lemenkova202217}.
+
+Nevertheless, in order to reduce the uncertainty and increase the effectiveness of environmental monitoring, a lot of approaches to remote sensing data are proposed as an alternative to processing climate data, some of them using Landsat products \cite{Lemenkova202315} and their integration with Google Earth Engine platform \cite{rs15133257}, or mixed approaches with GIS-based mapping \cite{SAIDI20091683,ANANE201236,Lemenkova202313}, and some of them using hydrological datasets for evaluating physicochemical parameters of groundwater in inflow \cite{BENBRAHIM2021104224}. Other examples include evaluating the content of soil organic carbon stocks in topsoils using bioclimatic data \cite{BAHRI2022e00561} or monitoring agricultural and irrigated lands and their behaviour during drought periods \cite{MOHAMED2023e01766}. 
+
+Alternative approaches to environmental monitoring of north Sahara may be used as ways of optimised data modelling in various ecological tasks, to highlight correlations between climate and environmental responses in arid landscape \cite{BESSER2021104134} and to evaluate regional hydrogeological processes for a specific soil type in Sahara desert which affects the geochemical composition of groundwater that influences surface water quality and vegetation patterns in Tunisia \cite{HAMDI2021102974,RAFAATRIGUI2021104121}. 
+
+\section{Study Area}
+
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+	\hspace{130pt}\includegraphics[width=7.0 cm]{Fig_01a.jpg}
+\end{adjustwidth}
+\caption{Topographic map of Tunisia. Software: GMT v. 6.1.1. Data source: GEBCO. Rotated read square shows the study area: sabkhas of north Tunisia. Map source: author.
+\label{fig01}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}[b]{.5\textwidth}
+		\centering
+			\includegraphics[width=7.0 cm]{Fig_01a.jpg}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.5\textwidth}
+		\centering
+			\includegraphics[width=7.0 cm]{Fig_01a.jpg}
+		\caption{}
+	\end{subfigure}%
+\caption{Topographic map of Tunisia. Software: GMT v. 6.1.1. Data source: GEBCO. Rotated read square shows the study area: sabkhas of north Tunisia. Map source: author.}
+\end{figure}
+
 
 %----------- section ----------->
 \section{Materials and Methods}
@@ -142,9 +171,48 @@ In this study, changes in salinisation and water extent of the depressions of sa
 \caption{Landsat images showing increase of salt (bright cyan colour) from winter to summer months in the Tunisian sabkhas Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig04}
 \end{figure}
 
+\begin{figure}[H]
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_05d.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05e.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05f.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_05d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}
+\caption{Landsat images showing increase of salt (bright cyan colour) from winter to summer months in the Tunisian sabkha Sebkhet en Noual (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig05}
+\end{figure}
+
 %----------- subsection ----------->
 \subsection{Methods}
-The Landsat 8-9 OLI/TIRS satellite images were processed with Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) software. First, the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. 
+The Landsat 8-9 OLI/TIRS satellite images were processed with the Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) software. First, the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. 
 
 The detection of the saline lakes is possible using spectral properties of images that enable to distinct highly reflective cyan-coloured areas of lakes discriminated against beige-coloured sands and bare land. Thus, spectral properties of the remote sensing data were evaluated by various GRASS GIS modules and scripting techniques with regards to the water/land/salt discrimination, and demonstrated robust approach to image analysis. 
 
