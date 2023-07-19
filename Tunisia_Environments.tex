@@ -94,11 +94,11 @@ Lakes in Tunisia are important components of the environment playing a crucial r
 %----------- subsection ----------->
 \subsection{Data}
 
-In this study, changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with GRASS GIS software. Tested images included spectral bands in visible, SWIR1, SWIR2 and NIR channels obtained from the OLI sensor. 
+In this study, changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with Geographic Resources Analysis Support System (GRASS) GIS software. Tested images included spectral bands in visible, Short-wave infrared (SWIR)-1, SWIR2 and Near-infrared (NIR) channels obtained from the OLI sensor. 
 
 %----------- subsection ----------->
 \subsection{Methods}
-High-resolution satellite images were first processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. 
+The Landsat 8-9 OLI/TIRS satellite images were processed with Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) software. First, the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. 
 
 The detection of the saline lakes is possible using spectral properties of images that enable to distinct highly reflective cyan-coloured areas of lakes discriminated against beige-coloured sands and bare land. Thus, spectral properties of the remote sensing data were evaluated by various GRASS GIS modules and scripting techniques with regards to the water/land/salt discrimination, and demonstrated robust approach to image analysis. 
 
@@ -124,6 +124,21 @@ Changes in water level in salt lakes detected using remote sensing data can serv
 
 GRASS GIS software has been successfully applied to identify different stages in the landscape change in sabkhas of north Tunisia (with a special focus on several lakes -- Sebkhet de Sidi el Hani, Sebkha de Moknine, Sebkhet El Rharra and Sebkhet en Noual). The study also evaluated the effects of climate on seasonal changes in the lacustrine landscapes, as indicated by development of land cover types over the period of 2013 to 2023. Besides, the experiments served as a means of evaluating the climate effects as accelerators of salinisation development in sediments of lakes. The presented results confirm that GRASS GIS can be effectively used to processing and classification of remote sensing imagery using programming approach that ensures automation and precision and accuracy of data processing. The outputs shows the fluctuating behaviour of saline lakes in the north Sahara through the investigated periods as a result of the seasonal effects from temperature acting as triggers to salinisation. Moreover, the correlations between the extent of lakes and effects from heat enabled to detect the influence of climate on environment of north Sahara. 
 
+In this study, we have introduced an advanced scripting cartographic approach of GRASS GIS to evaluating lacustrine properties of soil around the sabkhas in north Tunisia using remote sensing data processing. The main idea was to apply in a single workflow framework both the multi-year and the multi-seasonal images in order to reveal the information on saline lakes behaviour with varying dats on image capture with regard to a sequence of different years and seasons within one year. In such a way, the images were analysed as multi-temporal time series on a double level of variation analysis. 
+
+The results of the image processing approach of the GRASS GIS demonstrated in this paper show that the summer period speeds up soil salinisation and mineralisation in sabkhas of Tunisia, as demonstrated through mapped series of images on several seasons with increased summer heat, and vice versa. Then, using the information received from spectral reflectance of the pixels on the images and heat development in Sahara during summer months we were able to find the highest degree of salinisation for each lake in various years. In such a way, the performed experiments on remote sensing data analysis supported monitoring of fluctuations in water level of salt lakes of Tunisia through the analysed time series analysis of satellite images.
+
+\subsection{Recommendations}
+
+For future similar works on remote sensing data analysis of salt lakes, we provide below the following recommendations and technical suggestions for mapping and image analysis:
+
+\begin{enumerate}
+	\item Make the initial study similar to the image processing workflow in this report, but also use other GRASS GIS modules applied for processing the target dates. For example, a useful approach is segmentation by 'i.segment'.
+	\item Cloudiness vary a lot in different images. It is necessary to use a cloud-free series of images as an input dataset. While in this study, 10\% of cloud coverage was applied, the modified parameters optimised with different cloud content can be tested and applied with decreased cloud coverage. In this way, the use of 'i.landsat.acca' module of the GRSAS GIS enables Automatic Cloud Cover Assessment (ACCA) for a quick evaluation of image quality and suitability.
+	\item Process other dataset in addition to the Landsat, e.g., Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) images. ASTER data can be proprocced using special modules of 'i.aster.toar', similar to the 'i.landsat.toar'. The main advantage of ASTER is a higher resolution--a pixel size of 15 m compared to the 30-m Landsat. 
+	\item 
+\end{enumerate}
+
 \subsection{Concluding remarks}
 
 This paper reports the results obtained from experimental investigations on satellite images Landsat 8-9 OLI/TIRS collected from the USGS. The tests on image processing were designed to evaluate the changes in several saline lakes of north Tunisia in various seasons in 2013 to 2023 and variations in water extent as indicators of salinisation. Specifically, we evaluated the proposed framework on remote sensing data analysis using GRASS GIS software and a series of the satellite images from the USGS repository. We also proposed future directions in similar works to develop robust scheme on remote sensing data processing tests in similar studies where cartographic approach to image analysis is applied in environmental monitoring projects aimed at evaluation of climate effects on landscape changes. In this work we also discussed the ways in which the scripting approach of cartographic data processing contrasts with traditional GIS methods of mapping that use Graphical User Interface (GUI), and complement to RS data processing for evaluating the connections between the climate effects and salinisation of sabkhas in Tunisia. 
@@ -137,9 +152,8 @@ Due to the effectiveness and applicability of the performed experiments on image
 As demonstrated in this study, the remote sensing data from the USGS EarthExplorer repository can be used to analyse the variations in salt lakes. It enables to derive information using data on spectral reflectance and brightness of pixels which strongly correlates with the distribution of various land cover types. In such a way, remote sensing data processing enables to detect patches in complex diversified lacustrine landscapes of north Sahara characterised with heterogeneous environment in contrasting climate of desert. This paper contributes to the environmental monitoring of Sahara, analysis of salt lake variations and regional studies of Tunisia, north Africa.
 
 %----------- section ----------->
-\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L.}
 
-\funding{The publication was funded by the Editorial Office of XXXX, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
+\funding{The publication was funded by the Editorial Office of \emph{Environments}, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
 
 \institutionalreview{Not applicable.}
 
@@ -156,9 +170,16 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute\\
-DOAJ & Directory of open access journals\\
-LD & Linear dichroism
+ACCA & Automatic Cloud Cover Assessment \\
+ASTER & Advanced Spaceborne Thermal Emission and Reflection Radiometer \\
+GMT & Generic Mapping Tools \\
+GIS & Geographic Information System \\
+GUI & Graphical User Interface \\
+GRASS & Geographic Resources Analysis Support System \\
+Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \\
+NIR & Near-infrared \\
+SWIR & Short-wave infrared (SWIR)-1 \\
+USGS & United States Geological Survey \\
 \end{tabular}
 }
 
