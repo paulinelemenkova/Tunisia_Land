@@ -244,11 +244,30 @@ Practically, the information on spectral reflectance is used for classification 
 The classification procedure was performed with different images (6 scenes for the study area-1 in the Gulf of Gabes, and 6 images for the study area-2 for the Gulf of Hammamet). The aim of the classification to identify cells in the classified image and to group then into classes according to the similarity of spectral reflectance in each given group (class) through estimated spectral reflectance value during automatic image analysis performed by the GRASS GIS algorithm. As for comparison of several images taken on various seasons and various years with 6 year interval, the main idea was to compare the effects of climate, the impact from the Sahara and seasonal meteorological fluctuations on the development of salinisation in sabkhas of Tunisia using comparative analysis. Therefore, the experiments with images were implemented with different calendar seasons and in different regions (central/southern) of Tunisia. 
 
 %----------- subsection ----------->
-\subsection{Mapping and accuracy analysis}
 
-After the classification the maps of the land cover types were visualised and accuracy assessment was determined by kappa statistical method. The measurement of precision in image processing is based on the nature of the maximum likelihood algorithm which assigns pixels into classes along with the increase of the similarity of the spectral reflectance in cells as estimating the probability distribution in the observed dataset of pixels. Thus, in statistical evaluation of the accuracy of this approach, the probability of the assignment of the pixels to a specific land cover class is reflected in the increasing closeness of the value of pixels indicating spectral reflectance of pixels detected through the complete image. Nevertheless, certain pixels might be misclassified due to the individual properties of objects that enable them to misclassify to the erroneous classes due to a very similar level of spectral reflectance. To this end, accuracy of the assigned pixels to a given class was calculated by the kappa method that estimates the specificity and sensitivity of pixels within the given land category as well as positive and negative predictive values.
+ \subsection{Accuracy analysis}
 
-The environmental properties of the landscapes were evaluated with cartographic methods after image processing using visualised maps. The aim is to analyse the seasonal effects of climate (increase of temperature and evaporation) on the behaviour of salt lakes. The images were evaluated for accuracy and pixels with high level of rejection were filtered out using 'r.mapcalc' module of GRASS GIS. The rejection probability values, i.e., the pixel classification confidence levels were computed and visualised and a series of maps. The error matrix and kappa parameter were measured using 'r.kappa' module for accuracy assessment of classification result. After that, the kappa classification performed by the r.kappa was exported as a Kappa matrix in CSV format for each images, and the results are reported in the tables in the Appendix of this study. Afterwards, the classified satellite scenes were verified against training areas using reference file in the 'r.kappa' module. The accuracy of the classification was measured and summarised in the tables. Such approach to analyse the accuracy of image processing provided enough data to evaluate the obtained values of land cover classes at each image of the processed time series.
+After the classification the maps of the land cover types were visualised and accuracy assessment was determined by kappa statistical method. The measurement of precision in image processing is based on the nature of the maximum likelihood algorithm which assigns pixels into classes along with the increase of the similarity of the spectral reflectance in cells as estimating the probability distribution in the observed dataset of pixels. Thus, in a statistical evaluation of the accuracy of this approach, the probability of the assignment of the pixels to a specific land cover class is reflected in the increasing closeness of the value of pixels indicating spectral reflectance of pixels detected through the complete image. Nevertheless, certain pixels might be misclassified due to the individual properties of objects that enable them to misclassify to the erroneous classes due to a very similar level of spectral reflectance. To this end, accuracy of the assigned pixels to a given class was calculated by the kappa method that estimates the specificity and sensitivity of pixels within the given land category as well as positive and negative predictive values.
+
+ The images were evaluated for accuracy and pixels with high level of rejection were filtered out using 'r.mapcalc' module of GRASS GIS. The rejection probability values, i.e., the pixel classification confidence levels were computed and visualised and a series of maps. The error matrix and kappa parameter were measured using 'r.kappa' module for accuracy assessment of classification result. After that, the kappa classification performed by the r.kappa was exported as a Kappa matrix in CSV format for each images, and the results are reported in the tables in the Appendix of this study. Afterwards, the classified satellite scenes were verified against training areas using reference file in the 'r.kappa' module. The accuracy of the classification was measured and summarised in the tables. Such approach to analyse the accuracy of image processing provided enough data to evaluate the obtained values of land cover classes at each image of the processed time series.
+ 
+ %----------- subsection ----------->
+ \subsection{Mapping}
+
+The environmental properties of the landscapes were evaluated with cartographic methods after image processing using visualised maps. The aim is to analyse the seasonal effects of climate (increase of temperature and evaporation) on the behaviour of salt lakes. The complete cartographic workflow used in this study included a sequence of the following modules of GRASS GIS:
+
+\begin{itemize}
+	\item 'r.import' using for data import via the embedded GDAL library; the extent and resolution were adjusted to the region of the Landsat scenes;
+	\item 'g.list' for listing imported raster data type by the search pattern of GRASS GIS; 
+	\item 'g.region' for defining the computational extent of the region to match the scenes; 
+	\item 'i.cluster' for clustering of the raster Landsat images using k-means algorithm; 
+	\item 'i.maxlik' for unsupervised image classification using maximum likelihood method; 
+	\item 'd.mon' for display visualisation and cartographic plotting; 
+	\item 'r.colors' for adjusting the colour palette according to the land cover types; 
+	\item 'd.rast' for mapping the image in the active graphics frame; 
+	\item 'd.legend' for adding the colour legend with textual notations; 
+	\item 'd.out.file' for data export to the conventional formats (JPG). 
+\end{itemize}
 
 %----------- section ----------->
 \section{Results}
@@ -322,6 +341,7 @@ The following abbreviations are used in this manuscript:\\
 ACCA & Automatic Cloud Cover Assessment \\
 ASTER & Advanced Spaceborne Thermal Emission and Reflection Radiometer \\
 FAO & Food and Agriculture Organization \\
+GDAL & Geospatial Data Abstraction Library \\
 GMT & Generic Mapping Tools \\
 GIS & Geographic Information System \\
 GUI & Graphical User Interface \\
