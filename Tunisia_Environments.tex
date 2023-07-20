@@ -109,17 +109,7 @@ The comparison of several images classified for various yers enabled to visualis
 
 It is well known that selected proprietary GIS and remote sensing software are especially expensive since their development is costly (e.g., ArcGIS or Erdas Imagine). Moreover, very high resolution satellite images are not always easily accessible since they are provided on the commercial basis (e.g., SPOT, IKONOS). Therefore, a special advantage of the present work is the use of the open source Landsat OLI/TIRS data and a free GRASS GIS software. This makes the present work repeatable, which can be continued in similar relevant studies in the future projects. Thus, in this study we present the open source solutions on the optimal selection of data and GIS tools, which can be supportive for environmental monitoring  of Tunisia. In view of the advantage of the GIS-based approach to analyse the environmental properties of the landscapes, this paper presents a times series analysis of the saline lakes of Tunisia along with the applications of the image processing methods.
 
-The cartographic experiments on image processing were performed on two selected study areas in north Tunisia in the coastal regions of the Gulf of Gabes (salt lake Sebkhet en Noual) and the Gulf of Hammamet (salt lakes Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra). Using a comparison of several images classified for various seasons and time periods, this study is evaluating the properties of the landscapes using maximum-likelihood discriminant analysis classifier of GRASS GIS. The advanced methods of evaluation of landscape properties are built on the growing demand for the time- and cost-effective approaches to environmental monitoring in changing climate of Tunisia, saving agricultural resources, and taking decisions of farmers and environmental planners to make use of the renewable resources in the salt lake surrounding considering regional and local climate and environmental settings of north Tunisia.
-
-\section{Study Area}
-
-\begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
-	\hspace{130pt}\includegraphics[width=7.0 cm]{Fig_01a.jpg}
-\end{adjustwidth}
-\caption{Topographic map of Tunisia. Software: GMT v. 6.1.1. Data source: GEBCO. Rotated read square shows the study area: sabkhas of north Tunisia. Map source: author.
-\label{fig01}}
-\end{figure}
+The cartographic experiments on image processing were performed on two selected study areas in north Tunisia in the coastal regions of the Gulf of Gabès (salt lake Sebkhet en Noual) and the Gulf of Hammamet (salt lakes Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra). Using a comparison of several images classified for various seasons and time periods, this study is evaluating the properties of the landscapes using maximum-likelihood discriminant analysis classifier of GRASS GIS. The advanced methods of evaluation of landscape properties are built on the growing demand for the time- and cost-effective approaches to environmental monitoring in changing climate of Tunisia, saving agricultural resources, and taking decisions of farmers and environmental planners to make use of the renewable resources in the salt lake surrounding considering regional and local climate and environmental settings of north Tunisia.
 
 \begin{figure}[H]
 \begin{subfigure}[b]{.5\textwidth}
@@ -268,6 +258,8 @@ The environmental properties of the landscapes were evaluated with cartographic 
 	\item 'd.legend' for adding the colour legend with textual notations; 
 	\item 'd.out.file' for data export to the conventional formats (JPG). 
 \end{itemize}
+
+These GRASS GIS modules have been incorporated to perform various steps of cartographic tasks and image processing workflow by using the GRASS GIS console. The land cover types were identified continuously across the images using a sequence of k-means clustering and maximum likelihood classification approaches, and converted to the maps which indicate variations in land cover types over Tunisia during a period of 2017 to 2023 for two image datasets covering the regions on the Gulf of Hammamet and the Gulf of Gabès. The data obtained from the GRASS GIS based image processing workflow were evaluated for environmental analysis.
 
 %----------- section ----------->
 \section{Results}
