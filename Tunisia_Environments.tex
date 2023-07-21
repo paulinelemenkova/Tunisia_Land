@@ -37,6 +37,8 @@
 \usepackage{xcolor}
 \usepackage{gensymb} % for \textdegree
 \usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
 
 %=================================================================
 % Full title of the paper (Capitalized)
@@ -131,7 +133,7 @@ Remote sensing methods emerge as a fundamental technique of Earth Observation in
 
 When applied to a series of images, processing RS data can effectively discover the environmental properties of  landscapes \cite{Toujani,Quarmby,Gelebo}. Moreover, RS data processing and satellite image analysis enables to quantify the landscape patches within the target landscape through the interpretation of classes indicating land categories and vegetation types \cite{Benedetti,Godinho} and to determine climate effects in lacustrine or coastal environments \cite{Souissi}. Finally, other advantages of the RS data processing is that it is a resource- and time-effective method indicating dynamics in landscapes through evaluation of changes with time visible on a time series of satellite images. 
 
-\subsection{Objectives and motivation}
+\subsection{Objectives and Motivation}
 
 Inspired by the existing examples of the RS data analysis in environmental monitoring \cite{f9020059,Lemenkova202229,Fathalli,Abbas,Henchiri}, this study integrated the advanced methods of the GRASS GIS with applied techniques of its image processing modules for assessment and mapping of changes in landscapes of saline lakes in northern Tunisia, Figure \ref{fig01}. The main purpose of the current paper is to provide an advanced RS and cartographic methods that can assess the nonlinear behaviour of salt lakes in response to seasonal fluctuations in temperature with time indicating the development of salinisation. Importantly, the study presented here is not intended to suggest that RS data replace the hydrological datasets. In contrast, these images can supplement the fieldwork survey in the sabkhas and environmental tests on the saline soil of Tunisia. 
 
@@ -145,15 +147,43 @@ The cartographic experiments on image processing were performed on two selected 
 %----------- subsection ----------->
 \subsection{Data}
 
-The materials include the 12 Landsat 8-9 OLI/TIRS images collected from the USGS Earth Explorer repository. Of these, 6 images cover the region of the Gulf of Hammametv (Figure \ref{fig02}), and 6 images cover the area of the Gulf of Gabes (Figure \ref{fig03}). All images are selected on the three key control periods: winter with the highest water level (February), spring with transitional period and rains (April) and summer with the peak heat (July). The metadata in the images are listed in the Tables in Appendix A. It is widely accepted that cloudiness and haze has a key impact on the image properties. Therefore, in this study we used the 10\% of cloud coverage for all images. Tested images included spectral bands in visible, Short-wave infrared (SWIR)-1, SWIR2 and Near-infrared (NIR) channels obtained from the OLI sensor. The topographic maps showing two study areas within the country and their enlarged fragments are performed witrg the Generic Mapping Tools software, Version 6 \cite{Wessel} using the existing scripting techniques reported earlier \cite{Lemenkova202212,Lemenkova202206}.
+The materials include the 12 Landsat 8-9 OLI/TIRS images collected from the USGS Earth Explorer repository. Of these, 6 images cover the region of the Gulf of Hammamet (Figure \ref{fig02}), and 6 images cover the area of the Gulf of Gabès (Figure \ref{fig03}). The USGS Identifier (ID) of the scenes of the satellite images are summarised in Table \ref{tab01}.
 
-%----------- subsection ----------->
-\subsection{Methods}
+\begin{table}[H]
+\caption{Identifiers (ID) of the 12 Landsat 8-9 OLI/TIRS images in the EarthExplorer USGS repository}.
+\label{tab01}
+\begin{adjustwidth}{-\extralength}{-2.5cm}
+\newcolumntype{L}{>{\centering\scriptsize\arraybackslash}l}
+\setlength\extrarowheight{-0.8cm}
+\footnotesize
+%\begin{tabularx}{\fulllength}{p{1.5cm}|p{6.5cm}|p{6.5cm}|p{1.9cm}}
+\begin{tabularx}{\fulllength}{p{1.4cm}|lll}
+			\toprule
+			\textbf{Date} & \textbf{Landsat Product Identifier L1} & \textbf{Landsat Product Identifier L2} & \textbf{Scene ID} \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{Gulf of Hammamet region}}\\
+			\midrule
+			2023/07/15 & \makecell{LC09\_L1TP\_191035\_20230715\_20230715\_02\_T1} & \makecell{LC09\_L2SP\_191035\_20230715\_20230717\_02\_T1} & LC91910352023196LGN00 \\	
+			2023/04/10 & \makecell{LC09\_L1TP\_191035\_20230410\_20230410\_02\_T1} & \makecell{LC09\_L2SP\_191035\_20230410\_20230412\_02\_T1} & LC91910352023100LGN00 \\	
+			2023/02/21 & \makecell{LC09\_L1TP\_191035\_20230221\_20230309\_02\_T1} & \makecell{LC09\_L2SP\_191035\_20230221\_20230309\_02\_T1} & LC91910352023052LGN01 \\	
+			2017/07/06 & \makecell{LC08\_L1TP\_191035\_20170706\_20200903\_02\_T1} & \makecell{LC08\_L2SP\_191035\_20170706\_20200903\_02\_T1} & LC81910352017187LGN00 \\	
+			2017/04/01 & \makecell{LC08\_L1TP\_191035\_20170401\_20200904\_02\_T1} & \makecell{LC08\_L2SP\_191035\_20170401\_20200904\_02\_T1} & LC81910352017091LGN00 \\	
+			2017/02/28 & \makecell{LC08\_L1TP\_191035\_20170228\_20200905\_02\_T1} & \makecell{LC08\_L2SP\_191035\_20170228\_20200905\_02\_T1} & LC81910352017059LGN00 \\	
+			\midrule
+			\multicolumn{4}{c}{\textbf{Gulf of Gabès region}}\\
+			\midrule
+			2023/07/15 & \makecell{LC09\_L1TP\_191036\_20230715\_20230715\_02\_T1} & \makecell{LC09\_L2SP\_191036\_20230715\_20230717\_02\_T1} & LC91910362023196LGN00 \\	
+			2023/04/10 & \makecell{LC09\_L1TP\_191036\_20230410\_20230410\_02\_T1} & \makecell{LC09\_L2SP\_191036\_20230410\_20230412\_02\_T1} & LC91910362023100LGN00 \\	
+			2023/02/21 & \makecell{LC09\_L1TP\_191036\_20230221\_20230309\_02\_T1} & \makecell{LC09\_L2SP\_191036\_20230221\_20230309\_02\_T1} & LC91910362023052LGN01 \\	
+			2017/07/22 & \makecell{LC08\_L1TP\_191036\_20170722\_20200903\_02\_T1} & \makecell{LC08\_L2SP\_191036\_20170722\_20200903\_02\_T1} & LC81910362017203LGN00 \\
+			2017/04/01 & \makecell{LC08\_L1TP\_191036\_20170401\_20200904\_02\_T1} & \makecell{LC08\_L2SP\_191036\_20170401\_20200904\_02\_T1} & LC81910362017091LGN00 \\
+			2017/02/28 & \makecell{LC08\_L1TP\_191036\_20170228\_20200905\_02\_T1} & \makecell{LC08\_L2SP\_191036\_20170228\_20200905\_02\_T1} & LC81910362017059LGN00 \\
+			\bottomrule
+		\end{tabularx}
+\end{adjustwidth}
+\end{table} 
 
-The Landsat 8-9 OLI/TIRS satellite images were processed with the Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) software. First, the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. The detection of the saline lakes is possible using spectral properties of images that enable to distinct highly reflective cyan-coloured areas of lakes discriminated against beige-coloured sands and bare land. Thus, spectral properties of the RS data were evaluated by various GRASS GIS modules and scripting techniques with regards to the water/land/salt discrimination, and demonstrated robust approach to image analysis. 
-
-\subsubsection{Data preprocessing}
-First, the images were preprocessed by the 'i.landsat.toar' module of GRASS GIS using properties of image and information on sun elevation level to evaluate the reflectance in pixels and calculation of top-of-atmosphere radiance and temperature for all the Landsat OLI scenes. Hence, the images were corrected and added into GRASS environment using 'r.import' module. After the import procedure, the images with all the multispectral bands were grouped in the working directory using 'i.group' module, which is used to select necessary bands, and their data were checked using 'g.list' module. Afterwards, they were clustered using the k-means algorithm embedded in the GRASS GIS which was implemented by the 'i.cluster' module. 
+All images are selected on the three key control periods: winter with the highest water level (February), spring with transitional period and rains (April) and summer with the peak heat (July). The metadata in the images are listed in the Tables in Appendix A. It is widely accepted that cloudiness and haze has a key impact on the image properties. Therefore, in this study we used the 10\% of cloud coverage for all images. Tested images included spectral bands in visible, Short-wave infrared (SWIR)-1, SWIR2 and Near-infrared (NIR) channels obtained from the OLI sensor. The topographic maps showing two study areas within the country and their enlarged fragments are performed witrg the Generic Mapping Tools software, Version 6 \cite{Wessel} using the existing scripting techniques reported earlier \cite{Lemenkova202212,Lemenkova202206}. 
 
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
@@ -195,14 +225,12 @@ First, the images were preprocessed by the 'i.landsat.toar' module of GRASS GIS 
 \end{figure}
 
 %----------- subsection ----------->
-\subsubsection{Data clustering}
+\subsection{Methods}
 
-During clustering, a 'signature file' was created which was used in the next step to sort pixels into the land cover classes using 'i.cluster' module of the GRASS GIS which creates cluster and covariance matrices. All classes contained pixels with approximately the same level of spectral reflectance, which was automatically evaluated by the machine based analysis of the GRASS GIS but different number of pixels within each class and thus different extent of landscape categories, which enabled us to evaluate the patches and their distribution within the scenes under the effects of various seasons on development of salinisation in sebhkas. Besides, the images located in the Gulf of Gabes contained more sandy desert areas compared to the northern segment of the study areas in the Gulf of Hammamet which allowed to compare the effects from geographic distribution of the saline lakes with higher coverage of mixed vegetation in the more temperate climate of north compared to the southern region which is more impacted by the arid climate of Sahara.
+The Landsat 8-9 OLI/TIRS satellite images were processed with the Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) software. First, the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for 10 recent years from 2013 to 2023 using the maximum-likelihood discriminant analysis classifier. Afterwards, the spatio-temporal changes of water level and salinisation in target salt lakes in Tunisia and its climate-environmental driving forces were analysed. The detection of the saline lakes is possible using spectral properties of images that enable to distinct highly reflective cyan-coloured areas of lakes discriminated against beige-coloured sands and bare land. Thus, spectral properties of the RS data were evaluated by various GRASS GIS modules and scripting techniques with regards to the water/land/salt discrimination, and demonstrated robust approach to image analysis. 
 
-%----------- subsection ----------->
-\subsubsection{Image classification}
-
-Theoretically, the essential  principle of the land cover type classification is based on the fundamental properties of RS which consists in measurement of spectral reflectance as a reflection of light from the Earth's surface. Spectral reflectance signatures of various land cover types (land, water, salt soils, vegetation, urban areas, etc) differs significantly. This is because of the different emitted radiation from these these objects which varies significantly. The Landsat 8-9 OLI/TIRS sensor continuously measures spectral reflectance of the objects on the Earth which are identified as various land cover types. Hence, the performed measurements indicate various different bodies and objects on the Earth using their spectral reflectance visible on the spaceborne satellite images in selected band combinations. Consequently, since measured land cover types varies, it enables to perform classification of the land cover types using RS data processing, following by cartographic visualization and interpretation. 
+\subsubsection{Data preprocessing}
+First, the images were preprocessed by the 'i.landsat.toar' module of GRASS GIS using properties of image and information on sun elevation level to evaluate the reflectance in pixels and calculation of top-of-atmosphere radiance and temperature for all the Landsat OLI scenes. Hence, the images were corrected and added into GRASS environment using 'r.import' module. After the import procedure, the images with all the multispectral bands were grouped in the working directory using 'i.group' module, which is used to select necessary bands, and their data were checked using 'g.list' module. Afterwards, they were clustered using the k-means algorithm embedded in the GRASS GIS which was implemented by the 'i.cluster' module. 
 
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
@@ -243,9 +271,19 @@ Theoretically, the essential  principle of the land cover type classification is
 \caption{Landsat images showing increase of salt (bright cyan colour) from winter to summer months in the Tunisian sabkha Sebkhet en Noual (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig03}
 \end{figure}
 
+%----------- subsection ----------->
+\subsubsection{Data clustering}
+
+During clustering, a 'signature file' was created which was used in the next step to sort pixels into the land cover classes using 'i.cluster' module of the GRASS GIS which creates cluster and covariance matrices. All classes contained pixels with approximately the same level of spectral reflectance, which was automatically evaluated by the machine based analysis of the GRASS GIS but different number of pixels within each class and thus different extent of landscape categories, which enabled us to evaluate the patches and their distribution within the scenes under the effects of various seasons on development of salinisation in sebhkas. Besides, the images located in the Gulf of Gabès contained more sandy desert areas compared to the northern segment of the study areas in the Gulf of Hammamet which allowed to compare the effects from geographic distribution of the saline lakes with higher coverage of mixed vegetation in the more temperate climate of north compared to the southern region which is more impacted by the arid climate of Sahara.
+
+%----------- subsection ----------->
+\subsubsection{Image classification}
+
+Theoretically, the essential  principle of the land cover type classification is based on the fundamental properties of RS which consists in measurement of spectral reflectance as a reflection of light from the Earth's surface. Spectral reflectance signatures of various land cover types (land, water, salt soils, vegetation, urban areas, etc) differs significantly. This is because of the different emitted radiation from these these objects which varies significantly. The Landsat 8-9 OLI/TIRS sensor continuously measures spectral reflectance of the objects on the Earth which are identified as various land cover types. Hence, the performed measurements indicate various different bodies and objects on the Earth using their spectral reflectance visible on the spaceborne satellite images in selected band combinations. Consequently, since measured land cover types varies, it enables to perform classification of the land cover types using RS data processing, following by cartographic visualization and interpretation. 
+
 Practically, the information on spectral reflectance is used for classification procedure. Thus, after clustering, the images were processed using special module of the GRASS GIS which performs unsupervised automatic classification of the satellite images. The advanced methods of GRASS GIS present effective instruments for classification -- the 'i.maxlik', developed by M. Shapiro and T. Wen, and supported with additional module by M. Nartiss. The use of the 'i.maxlik' only required to specify the parameters of signature file and related information on groups and subgroups of spectral bands during data partition, and to assign pixels into each land cover class according to the records of the spectral reflectance in binary format. The spectral reflectance of wavelengths which develops proportionally with internal gain in strength in brightness of land cover types identified from space by the sensor. The technical characteristics of this module include two steps: the preceding clustering and following classification. The module is designed to be used for the multispectral images, such as Landsat, using spectral signatures of the pixels. 
 
-The classification procedure was performed with different images (6 scenes for the study area-1 in the Gulf of Gabes, and 6 images for the study area-2 for the Gulf of Hammamet). The aim of the classification to identify cells in the classified image and to group then into classes according to the similarity of spectral reflectance in each given group (class) through estimated spectral reflectance value during automatic image analysis performed by the GRASS GIS algorithm. As for comparison of several images taken on various seasons and various years with 6 year interval, the main idea was to compare the effects of climate, the impact from the Sahara and seasonal meteorological fluctuations on the development of salinisation in sabkhas of Tunisia using comparative analysis. Therefore, the experiments with images were implemented with different calendar seasons and in different regions (central/southern) of Tunisia. 
+The classification procedure was performed with different images (6 scenes for the study area-1 in the Gulf of Gabès, and 6 images for the study area-2 for the Gulf of Hammamet). The aim of the classification to identify cells in the classified image and to group then into classes according to the similarity of spectral reflectance in each given group (class) through estimated spectral reflectance value during automatic image analysis performed by the GRASS GIS algorithm. As for comparison of several images taken on various seasons and various years with 6 year interval, the main idea was to compare the effects of climate, the impact from the Sahara and seasonal meteorological fluctuations on the development of salinisation in sabkhas of Tunisia using comparative analysis. Therefore, the experiments with images were implemented with different calendar seasons and in different regions (central/southern) of Tunisia. 
 
 %----------- subsection ----------->
 
@@ -278,7 +316,9 @@ These GRASS GIS modules have been incorporated to perform various steps of carto
 %----------- section ----------->
 \section{Results}
 
-Figure \ref{fig05} and Figure \ref{fig06} demonstrate the results of the image classification showing the behaviour of saline lakes over seasonal between 2017 and 2023 in the region of Gulf of Hammamet (Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra) in Figure \ref{fig05} and in the Gulf of Gabes (Sebkhet en Noual). Changed seasons enabled to monitor and interpret how the salinisation process activate the accumulation of minerals in the salt lakes with changed colour of sabkhas. Thus, during the summer period, the structure of the crystals in the soil sediments in sabkhas was solidified by the increased evaporation as a result of the increased temperatures. In turn, the seasonal effects of rised temperature and lack of precipitation in the southern region (Figure \ref{fig06}) are reflected in the increased areas of sand and declined vegetation, as shown in the maps of Figure \ref{fig06}. 
+The results of the image processing approach of the GRASS GIS demonstrated in this paper show that the summer period speeds up soil salinisation and mineralisation in sabkhas of Tunisia, as demonstrated through mapped series of images on several seasons with increased summer heat, and vice versa. Then, using the information received from spectral reflectance of the pixels on the images and heat development in Sahara during summer months we were able to find the highest degree of salinisation for each lake in various years. In such a way, the performed experiments on RS data analysis supported monitoring of fluctuations in water level of salt lakes of Tunisia through the analysed time series analysis of satellite images.
+
+Figure \ref{fig04} and Figure \ref{fig05} demonstrate the results of the image classification showing the behaviour of saline lakes over seasonal between 2017 and 2023 in the region of Gulf of Hammamet (Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra) in Figure \ref{fig04} and in the Gulf of Gabès (Sebkhet en Noual), Figure \ref{fig05}. Changed seasons enabled to monitor and interpret how the salinisation process activate the accumulation of minerals in the salt lakes with changed colour of sabkhas. Thus, during the summer period, the structure of the crystals in the soil sediments in sabkhas was solidified by the increased evaporation as a result of the increased temperatures. In turn, the seasonal effects of increased temperature and lack of precipitation in the southern region (Figure \ref{fig05}) are reflected in the increased areas of sand and declined vegetation, as shown in the maps. Changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with GRASS GIS. 
 
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
@@ -319,6 +359,12 @@ Figure \ref{fig05} and Figure \ref{fig06} demonstrate the results of the image c
 \caption{Classification results showing land cover classes based on the processed Landsat images showing northern study area (Gulf of Hammamet): Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig04}
 \end{figure}
 
+The land cover types were identified on the images using information adopted from and modified using the existing classification scheme on land cover types in Tunisia \cite{plants10102031} and data from Food and Agriculture Organization (FAO) \cite{FAO}. The existing land cover types for the country-level scale were modified according to the extent of the images covering study area and included the following types: 1) forest; 2) grasslands and rangelands; 3) sand and desert; 4) cultivated agriculture plantations and arable lands (olive tree, orchards, vine, palm groves); 5) urban areas and artificial land; 6) wasteland; 7) wetlands and water; 8) bare land and soil; 9) mixed vegetation; 10) saline soil.
+
+Changes in salt lakes were determined at different years during recent decade by integrating Landsat images taken in winter/spring/summer months for comparison of periods when water inflow into Saharan lakes is high and low, respectively. Note that the decline in vegetation areas is especially clear on the images of 2017 from April to July showing sabkhas Sebkhet de Sidi el Hani, Sebkha de Moknine  and Sebkhet El Rharra, Figure \ref{fig05}. Compared to the difference between the February and April months, the decline in vegetation and increase in salinisation is more prominent, because it indicates the increase in summer heat temperatures which was contrasting compared to the spring months. 
+
+In Figure \ref{fig06}, it is seen that the results are quite different for visualised series of maps for various seasons, because salt lakes contain different amounts of water with regard to salt, i.e., the classified images revealed various water/salt ratio in the sabkhas along with the development of heat during summer months and effects from Sahara desert in the southern study region. 
+
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
@@ -355,12 +401,15 @@ Figure \ref{fig05} and Figure \ref{fig06} demonstrate the results of the image c
 		\caption{15 July 2023}
 	\end{subfigure}%
 }
-\caption{Classification of pixel confidence levels with rejection probability values for the northern study area (Gulf of Hammamet): Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig05}
+\caption{Classification results showing land cover classes based on the processed Landsat images showing southern study area (Gulf of Gabès), Sebkhet en Noual (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig05}
 \end{figure}
 
-Changes in salinisation and water extent of the depressions of salt pans of Tunisia were evaluated using a series of Landsat 8-9 OLI/TIRS images processed with GRASS GIS. The land cover types were identified on the images using information adopted from and modified using the existing classification scheme on land cover types in Tunisia \cite{plants10102031} and data from Food and Agriculture Organization (FAO) \cite{FAO}. The existing land cover types for the country-level scale were modified according to the extent of the images covering study area and included the following types: 1) forest; 2) grasslands and rangelands; 3) sand and desert; 4) cultivated agriculture plantations and arable lands (olive tree, orchards, vine, palm groves); 5) urban areas and artificial land; 6) wasteland; 7) wetlands and water; 8) bare land and soil; 9) mixed vegetation; 10) saline soil.
+%----------- section ----------->
 
-Changes in salt lakes were determined at different years during recent decade by integrating Landsat images taken in winter/spring/summer months for comparison of periods when water inflow into Saharan lakes is high and low, respectively. Note that the decline in vegetation areas is especially clear on the images of 2017 from April to July showing sabkhas Sebkhet de Sidi el Hani, Sebkha de Moknine  and Sebkhet El Rharra, Figure \ref{fig05}. Compared to the difference between the February and April months, the decline in vegetation and increase in salinisation is more prominent, because it indicates the increase in summer heat temperatures which was contrasting compared to the spring months. In Figure \ref{fig06}, it is seen that the results are quite different for visualised series of maps for various seasons, because salt lakes contain different amounts of water with regard to salt, i.e., the classified images revealed various water/salt ratio in the sabkhas along with the development of heat during summer months and effects from Sahara desert in the southern study region. 
+\section{Discussion}
+
+A time series analysis of the satellite images demonstrated in this paper characterises gradual changes in lakes over calendar periods and provides a robust view in environmental changes. Changes in water level in salt lakes were detected using RS data. The presented results can serve for environmental monitoring of Tunisian landscapes and analysis of environmental consequences of climate effects in central and north Tunisia. Although the results of image processing that analyse the environmental landscape properties and changes in the land cover types have been described earlier in various works on Tunisia \cite{Touhami,Khelifa,Hammami,Bounouh} providing a general pattern of land cover change by various GIS, the results proposed here are obtained using recent Landsat OLI/TIRS images processed by the GRASS GIS scripts. For instance, earlier works use the Landsat MSS/4 and SPOT HRV/3 images \cite{Park}, Landsat and SRTM processed by ArcGIS and ENVI commercial software \cite{Souissi,Afrasinei} or a combination of ETM+ and OLI 8 sensors of the Landsat products \cite{Mezned}. 
+
 
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
@@ -398,8 +447,10 @@ Changes in salt lakes were determined at different years during recent decade by
 		\caption{15 July 2023}
 	\end{subfigure}%
 }
-\caption{Classification results showing land cover classes based on the processed Landsat images showing southern study area (Gulf of Gabès), Sebkhet en Noual (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig06}
+\caption{Classification of pixel confidence levels with rejection probability values for the northern study area (Gulf of Hammamet): Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig06}
 \end{figure}
+
+The comparison of several images classified for various yers enabled to visualise the changes in the land cover types and increased salinisation of lanes in summer months. Thus, it enabled to estimate the relationship between climate (via evaporation and raised temperature) and hydrological response of lacustrine environment reflected in salinisation of land and depleted nearby vegetation as indicated on the maps. The difference in behaviour of various salt lakes suggests that the development of salinisation along with seasonal variations of temperature and precipitation (as quantified by the clustering and classification of the images) is primarily determined by the properties of the soil in the individual salt lakes (the content of minerals). This in turn well correlates with the location (southern lakes are almost completely covered by salt during summer), climate setting a particular calendar year depending on the globe weather and integrated heat from the Sahara desert. Furthermore, the times series analysis indicates gain in salinisation of sabkhas and increase of saline soil during summer and can support the selection of the optimised methods of agriculture lands adopted for such seasonal climate-environmental fluctuations, allowing the identification of the best methods of supporting agriculture and plantation activities in the surrounding areas and enabling to success in land management. 
 
 \begin{figure}[H]
 \hspace{50pt}\makebox[0.90\linewidth][r]{%
@@ -440,13 +491,6 @@ Changes in salt lakes were determined at different years during recent decade by
 \caption{Classification of pixel confidence levels with rejection probability values for the southern study area (Gulf of Gabès): Sebkhet en Noual (Sfax Governorate: \textbf{(a)}: 28 February 2017; \textbf{(b)}: 1 April 2017; \textbf{(c)}: 6 July 2017; \textbf{(d)}: 21 February 2023; \textbf{(e)}: 10 April 2023; \textbf{(f)}: 15 July 2023.}\label{fig07}
 \end{figure}
 
-%----------- section ----------->
-\section{Discussion}
-
-In this paper, we demonstrated that a time series analysis of the satellite images characterises gradual changes in lakes over calendar periods and provides a robust view in environmental changes. Changes in water level in salt lakes were detected using RS data. The presented results can serve for environmental monitoring of Tunisian landscapes and analysis of environmental consequences of climate effects in central and north Tunisia. Although the results of image processing that analyse the environmental landscape properties and changes in the land cover types have been described earlier in various works on Tunisia \cite{Touhami,Khelifa,Hammami,Bounouh} providing a general pattern of land cover change by various GIS, the results proposed here are obtained using recent Landsat OLI/TIRS images processed by the GRASS GIS scripts. For instance, earlier works use the Landsat MSS/4 and SPOT HRV/3 images \cite{Park}, Landsat and SRTM processed by ArcGIS and ENVI commercial software \cite{Souissi,Afrasinei} or a combination of ETM+ and OLI 8 sensors of the Landsat products \cite{Mezned}. 
-
-The comparison of several images classified for various yers enabled to visualise the changes in the land cover types and increased salinisation of lanes in summer months. Thus, it enabled to estimate the relationship between climate (via evaporation and raised temperature) and hydrological response of lacustrine environment reflected in salinisation of land and depleted nearby vegetation as indicated on the maps. The difference in behaviour of various salt lakes suggests that the development of salinisation along with seasonal variations of temperature and precipitation (as quantified by the clustering and classification of the images) is primarily determined by the properties of the soil in the individual salt lakes (the content of minerals), and in turn, well correlates with the location (southern lakes are almost completely covered by salt during summer), climate setting a particular calendar year depending on the globe weather and integrated heat from the Sahara desert. The times series analysis indicates gain in salinisation of sabkhas and increase of saline soil during summer and can support the selection of the optimised methods of agriculture lands adopted for such seasonal climate-environmental fluctuations, allowing the identification of the best methods of supporting agriculture and plantation activities in the surrounding areas and enabling to success in land management. 
-
 The advanced scripting cartographic approach of GRASS GIS was introduced to evaluate the lacustrine properties of soil around the sabkhas in north Tunisia using RS data processing. It is well known that proprietary GIS and RS software are expensive since their development is costly (e.g., ArcGIS or Erdas Imagine). Moreover, very high resolution satellite images are not always easily accessible since they are provided on the commercial basis (e.g., SPOT, IKONOS). Therefore, a special advantage of this work is the use of the open source Landsat OLI/TIRS data and a free GRASS GIS software. This makes the present work repeatable, which can be continued in similar relevant studies in the future projects. Thus, we presented the open source solutions on the optimal selection of data and tools, which can be supportive for environmental monitoring  of Tunisia. To this end, a series of the satellite images were processed with various combination of GRASS GIS modules and compared with the images covering identical areas on earlier periods, which was experimentally used for environmental monitoring of sabkhas in Tunisia. 
 
 %----------- section ----------->
@@ -454,11 +498,7 @@ The advanced scripting cartographic approach of GRASS GIS was introduced to eval
 
 \subsection{Summary}
 
-GRASS GIS software has been successfully applied to identify different stages in the landscape change in sabkhas of north Tunisia (with a special focus on several lakes -- Sebkhet de Sidi el Hani, Sebkha de Moknine, Sebkhet El Rharra and Sebkhet en Noual). The study also evaluated the effects of climate on seasonal changes in the lacustrine landscapes, as indicated by development of land cover types over the period of 2013 to 2023. Besides, the experiments served as a means of evaluating the climate effects as accelerators of salinisation development in sediments of lakes. The presented results confirm that GRASS GIS can be effectively used to processing and classification of RS imagery using programming approach that ensures automation and precision and accuracy of data processing. The outputs shows the fluctuating behaviour of saline lakes in the north Sahara through the investigated periods as a result of the seasonal effects from temperature acting as triggers to salinisation. Moreover, the correlations between the extent of lakes and effects from heat enabled to detect the influence of climate on environment of north Sahara. 
-
-In view of the advantage of the GIS-based approach to analyse the environmental properties of the landscapes, this paper presents a times series analysis of the saline lakes of Tunisia along with the applications of the image processing methods. The main idea of this study was to apply in a single workflow framework using open source data and software. The study evaluated both the multi-year and the multi-seasonal images in order to reveal the information on saline lakes behaviour with varying datas with regard to a sequence of different years and seasons within one year. In such a way, the images were analysed as multi-temporal time series on a double level of variation analysis. 
-
-The results of the image processing approach of the GRASS GIS demonstrated in this paper show that the summer period speeds up soil salinisation and mineralisation in sabkhas of Tunisia, as demonstrated through mapped series of images on several seasons with increased summer heat, and vice versa. Then, using the information received from spectral reflectance of the pixels on the images and heat development in Sahara during summer months we were able to find the highest degree of salinisation for each lake in various years. In such a way, the performed experiments on RS data analysis supported monitoring of fluctuations in water level of salt lakes of Tunisia through the analysed time series analysis of satellite images.
+GRASS GIS software has been successfully applied to identify different stages in the landscape change in sabkhas of north Tunisia (with a special focus on several lakes -- Sebkhet de Sidi el Hani, Sebkha de Moknine, Sebkhet El Rharra and Sebkhet en Noual). The study also evaluated the effects of climate on seasonal changes in the lacustrine landscapes, as indicated by development of land cover types over the period of 2013 to 2023. Besides, the experiments served as a means of evaluating the climate effects as accelerators of salinisation development in sediments of lakes. The presented results confirm that GRASS GIS can be effectively used to processing and classification of RS imagery using programming approach that ensures automation and precision and accuracy of data processing. The outputs shows the fluctuating behaviour of saline lakes in the north Sahara through the investigated periods as a result of the seasonal effects from temperature acting as triggers to salinisation. Moreover, the correlations between the extent of lakes and effects from heat enabled to detect the influence of climate on environment of north Sahara. In view of the advantage of the GIS-based approach to analyse the environmental properties of the landscapes, this paper presents a times series analysis of the saline lakes of Tunisia along with the applications of the image processing methods. The main idea of this study was to apply in a single workflow framework using open source data and software. The study evaluated both the multi-year and the multi-seasonal images in order to reveal the information on saline lakes behaviour with varying datas with regard to a sequence of different years and seasons within one year. In such a way, the images were analysed as multi-temporal time series on a double level of variation analysis. 
 
 \subsection{Recommendations}
 
@@ -499,7 +539,6 @@ As demonstrated in this study, the RS data from the USGS EarthExplorer repositor
 
 \abbreviations{Abbreviations}{
 The following abbreviations are used in this manuscript:\\
-
 \noindent 
 \begin{tabular}{@{}ll}
 ACCA & Automatic Cloud Cover Assessment \\
@@ -520,17 +559,283 @@ USGS & United States Geological Survey \\
 \end{tabular}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Optional
-\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixtitles{no} 
 \appendixstart
 \appendix
-\section[\appendixname~\thesection]{}
-\subsection[\appendixname~\thesubsection]{}
-The appendix 
+\section[\appendixname~\thesection]{Metadata}
+\subsection[\appendixname~\thesubsection]{Gulf of Hammamet area}
 
-\section[\appendixname~\thesection]{}
-All appendix sections must be cited in the main text. In the appendices, Figures, Tables, etc. should be labeled, starting with ``A''---e.g., Figure A1, Figure A2, etc.
+\begin{table}[H]
+\scriptsize
+\caption{Metadata of Landsat OLI/TIRS satellite images for the Gulf of Hammamet area (year 2023).\label{tabApp}}
+\begin{adjustwidth}{-\extralength}{0.5cm}
+\centering
+\begin{tabularx}{\fulllength}{|l|l|l|l}
+    \toprule
+        Data Set Attribute & Attribute Value & Attribute Value & Attribute Value \\ \hline
+        Landsat Scene Identifier & LC91910352023196LGN00 & LC91910352023100LGN00 & LC91910352023052LGN01 \\ \hline
+        Date Acquired & 2023/07/15 & 2023/04/10 & 2023/02/21 \\ \hline
+        Collection Category & T1 & T1 & T1 \\ \hline
+        Collection Number & 2 & 2 & 2 \\ \hline
+        WRS Path & 191 & 191 & 191 \\ \hline
+        WRS Row & 35 & 35 & 35 \\ \hline
+        Target WRS Path & 191 & 191 & 191 \\ \hline
+        Target WRS Row & 35 & 35 & 35 \\ \hline
+        Nadir/Off Nadir & NADIR & NADIR & NADIR \\ \hline
+        Roll Angle & 0.000 & 0.000 & 0.000 \\ \hline
+        Date Product Generated L2 & 2023/07/17 & 2023/04/12 & 2023/03/09 \\ \hline
+        Date Product Generated L1 & 2023/07/15 & 2023/04/10 & 2023/03/09 \\ \hline
+        Start Time & 2023-07-15 09:54:18 & 2023-04-10 09:54:36 & 2023-02-21 09:55:02 \\ \hline
+        Stop Time & 2023-07-15 09:54:50 & 2023-04-10 09:55:08 & 2023-02-21 09:55:33 \\ \hline
+        Station Identifier & LGN & LGN & LGN \\ \hline
+        Day/Night Indicator & DAY & DAY & DAY \\ \hline
+        Land Cloud Cover & 0.01 & 0.59 & 1.20 \\ \hline
+        Scene Cloud Cover L1 & 4.54 & 0.44 & 1.11 \\ \hline
+        Ground Control Points Model & 1151 & 1119 & 1100 \\ \hline
+        Ground Control Points Version & 5 & 5 & 5 \\ \hline
+        Geometric RMSE Model & 5.646 & 5.848 & 6.402 \\ \hline
+        Geometric RMSE Model X & 3.860 & 4.125 & 4.479 \\ \hline
+        Geometric RMSE Model Y & 4.120 & 4.145 & 4.575 \\ \hline
+        Processing Software Version & LPGS\_16.3.0 & LPGS\_16.2.0 & LPGS\_16.2.0 \\ \hline
+        Sun Elevation L0RA & 65.60184606 & 55.81133510 & 38.05813927 \\ \hline
+        Sun Azimuth L0RA & 120.36949136 & 140.16952296 & 149.12922810 \\ \hline
+        TIRS SSM Model & N/A & N/A & N/A \\ \hline
+        Data Type L2 & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP \\ \hline
+        Sensor Identifier & OLI\_TIRS & OLI\_TIRS & OLI\_TIRS \\ \hline
+        Satellite & 9 & 9 & 9 \\ \hline
+        Product Map Projection L1 & UTM & UTM & UTM \\ \hline
+        UTM Zone & 32 & 32 & 32 \\ \hline
+        Datum & WGS84 & WGS84 & WGS84 \\ \hline
+        Ellipsoid & WGS84 & WGS84 & WGS84 \\ \hline
+        Scene Center Lat DMS & "36°02'35.30""N" & "36°02'35.20""N" & "36°02'35.77""N" \\ \hline
+        Scene Center Long DMS & "10°19'26.26""E" & "10°19'06.35""E" & "10°18'25.78""E" \\ \hline
+        Corner Upper Left Lat DMS & "37°05'44.84""N" & "37°05'44.84""N" & "37°05'44.88""N" \\ \hline
+        Corner Upper Left Long DMS & "9°03'06.34""E" & "9°02'54.20""E" & "9°02'05.57""E" \\ \hline
+        Corner Upper Right Lat DMS & "37°03'59.90""N" & "37°04'00.44""N" & "37°04'01.24""N" \\ \hline
+        Corner Upper Right Long DMS & "11°37'46.99""E" & "11°37'22.69""E" & "11°36'46.30""E" \\ \hline
+        Corner Lower Left Lat DMS & "34°59'48.84""N" & "34°59'48.84""N" & "34°59'48.84""N" \\ \hline
+        Corner Lower Left Long DMS & "9°03'01.48""E" & "9°02'49.63""E" & "9°02'02.29""E" \\ \hline
+        Corner Lower Right Lat DMS & "34°58'11.60""N" & "34°58'12.11""N" & "34°58'12.86""N" \\ \hline
+        Corner Lower Right Long DMS & "11°33'39.28""E" & "11°33'15.66""E" & "11°32'40.20""E" \\ \hline
+        Scene Center Latitude & 36.04314 & 36.04311 & 36.04327 \\ \hline
+        Scene Center Longitude & 10.32396 & 10.31843 & 10.30716 \\ \hline
+        Corner Upper Left Latitude & 37.09579 & 37.09579 & 37.09580 \\ \hline
+        Corner Upper Left Longitude & 9.05176 & 9.04839 & 9.03488 \\ \hline
+        Corner Upper Right Latitude & 37.06664 & 37.06679 & 37.06701 \\ \hline
+        Corner Upper Right Longitude & 11.62972 & 11.62297 & 11.61286 \\ \hline
+        Corner Lower Left Latitude & 34.99690 & 34.99690 & 34.99690 \\ \hline
+        Corner Lower Left Longitude & 9.05041 & 9.04712 & 9.03397 \\ \hline
+        Corner Lower Right Latitude & 34.96989 & 34.97003 & 34.97024 \\ \hline
+        Corner Lower Right Longitude & 11.56091 & 11.55435 & 11.54450 \\ 
+        \bottomrule
+ \end{tabularx}
+ \end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+\scriptsize
+\caption{Metadata of Landsat OLI/TIRS satellite images for the Gulf of Hammamet area (year 2017).\label{tabApp}}
+\begin{adjustwidth}{-\extralength}{0.5cm}
+\centering
+\begin{tabularx}{\fulllength}{|l|l|l|l}
+    \toprule
+      Data Set Attribute & Attribute Value & Attribute Value & Attribute Value \\ \hline
+        Landsat Scene Identifier & LC81910352017187LGN00 & LC81910352017091LGN00 & LC81910352017059LGN00 \\ \hline
+        Date Acquired & 2017/07/06 & 2017/04/01 & 2017/02/28 \\ \hline
+        Collection Category & T1 & T1 & T1 \\ \hline
+        Collection Number & 2 & 2 & 2 \\ \hline
+        WRS Path & 191 & 191 & 191 \\ \hline
+        WRS Row & 35 & 35 & 35 \\ \hline
+        Target WRS Path & 191 & 191 & 191 \\ \hline
+        Target WRS Row & 35 & 35 & 35 \\ \hline
+        Nadir/Off Nadir & NADIR & NADIR & NADIR \\ \hline
+        Roll Angle & 0.000 & 0.000 & 0.000 \\ \hline
+        Date Product Generated L2 & 2020/09/03 & 2020/09/04 & 2020/09/05 \\ \hline
+        Date Product Generated L1 & 2020/09/03 & 2020/09/04 & 2020/09/05 \\ \hline
+        Start Time & 2017-07-06 09:54:30.064594 & 2017-04-01 09:54:16.946987 & 2017-02-28 09:54:34.167045 \\ \hline
+        Stop Time & 2017-07-06 09:55:01.834592 & 2017-04-01 09:54:48.716984 & 2017-02-28 09:55:05.937042 \\ \hline
+        Station Identifier & LGN & LGN & LGN \\ \hline
+        Day/Night Indicator & DAY & DAY & DAY \\ \hline
+        Land Cloud Cover & 0.02 & 0.49 & 0.58 \\ \hline
+        Scene Cloud Cover L1 & 3.34 & 0.36 & 0.45 \\ \hline
+        Ground Control Points Model & 1168 & 1112 & 1111 \\ \hline
+        Ground Control Points Version & 5 & 5 & 5 \\ \hline
+        Geometric RMSE Model & 5.176 & 5.628 & 5.933 \\ \hline
+        Geometric RMSE Model X & 3.614 & 3.874 & 4.125 \\ \hline
+        Geometric RMSE Model Y & 3.705 & 4.082 & 4.264 \\ \hline
+        Processing Software Version & LPGS\_15.3.1c & LPGS\_15.3.1c & LPGS\_15.3.1c \\ \hline
+        Sun Elevation L0RA & 66.59843288 & 52.68839245 & 40.64086896 \\ \hline
+        Sun Azimuth L0RA & 118.86194381 & 142.00904413 & 147.81922946 \\ \hline
+        TIRS SSM Model & FINAL & FINAL & FINAL \\ \hline
+        Data Type L2 & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP \\ \hline
+        Sensor Identifier & OLI\_TIRS & OLI\_TIRS & OLI\_TIRS \\ \hline
+        Satellite & 8 & 8 & 8 \\ \hline
+        Product Map Projection L1 & UTM & UTM & UTM \\ \hline
+        UTM Zone & 32 & 32 & 32 \\ \hline
+        Datum & WGS84 & WGS84 & WGS84 \\ \hline
+        Ellipsoid & WGS84 & WGS84 & WGS84 \\ \hline
+        Scene Center Lat DMS & "36°02'36.53""N" & "36°02'36.49""N" & "36°02'35.63""N" \\ \hline
+        Scene Center Long DMS & "10°21'44.68""E" & "10°20'01.54""E" & "10°20'13.45""E" \\ \hline
+        Corner Upper Left Lat DMS & "37°05'54.49""N" & "37°05'44.84""N" & "37°05'44.81""N" \\ \hline
+        Corner Upper Left Long DMS & "9°05'32.21""E" & "9°03'42.80""E" & "9°03'54.97""E" \\ \hline
+        Corner Upper Right Lat DMS & "37°04'06.64""N" & "37°03'59.08""N" & "37°03'58.82""N" \\ \hline
+        Corner Upper Right Long DMS & "11°40'00.80""E" & "11°38'23.39""E" & "11°38'35.52""E" \\ \hline
+        Corner Lower Left Lat DMS & "34°59'48.73""N" & "34°59'39.08""N" & "34°59'39.05""N" \\ \hline
+        Corner Lower Left Long DMS & "9°05'23.50""E" & "9°03'36.97""E" & "9°03'48.82""E" \\ \hline
+        Corner Lower Right Lat DMS & "34°58'08.83""N" & "34°58'01.13""N" & "34°58'00.88""N" \\ \hline
+        Corner Lower Right Long DMS & "11°35'49.31""E" & "11°34'14.45""E" & "11°34'26.26""E" \\ \hline
+        Scene Center Latitude & 36.04348 & 36.04347 & 36.04323 \\ \hline
+        Scene Center Longitude & 10.36241 & 10.33376 & 10.33707 \\ \hline
+        Corner Upper Left Latitude & 37.09847 & 37.09579 & 37.09578 \\ \hline
+        Corner Upper Left Longitude & 9.09228 & 9.06189 & 9.06527 \\ \hline
+        Corner Upper Right Latitude & 37.06851 & 37.06641 & 37.06634 \\ \hline
+        Corner Upper Right Longitude & 11.66689 & 11.63983 & 11.64320 \\ \hline
+        Corner Lower Left Latitude & 34.99687 & 34.99419 & 34.99418 \\ \hline
+        Corner Lower Left Longitude & 9.08986 & 9.06027 & 9.06356 \\ \hline
+        Corner Lower Right Latitude & 34.96912 & 34.96698 & 34.96691 \\ \hline
+        Corner Lower Right Longitude & 11.59703 & 11.57068 & 11.57396 \\ 
+        \bottomrule 
+ \end{tabularx}
+ \end{adjustwidth}
+\end{table}
+
+\subsection[\appendixname~\thesubsection]{Gulf of Gabès area}
+
+\begin{table}[H]
+\scriptsize
+\caption{Metadata of Landsat OLI/TIRS satellite images for the Gulf of Gabès area (year 2023).\label{tabApp}}
+\begin{adjustwidth}{-\extralength}{0.5cm}
+\centering
+\begin{tabularx}{\fulllength}{|l|l|l|l}
+    \toprule
+      Data Set Attribute & Attribute Value & Attribute Value & Attribute Value \\ \hline
+        Landsat Scene Identifier & LC91910362023196LGN00 & LC91910362023100LGN00 & LC91910362023052LGN01 \\ \hline
+        Date Acquired & 2023/07/15 & 2023/04/10 & 2023/02/21 \\ \hline
+        Collection Category & T1 & T1 & T1 \\ \hline
+        Collection Number & 2 & 2 & 2 \\ \hline
+        WRS Path & 191 & 191 & 191 \\ \hline
+        WRS Row & 36 & 36 & 36 \\ \hline
+        Target WRS Path & 191 & 191 & 191 \\ \hline
+        Target WRS Row & 36 & 36 & 36 \\ \hline
+        Nadir/Off Nadir & NADIR & NADIR & NADIR \\ \hline
+        Roll Angle & 0.001 & 0.000 & -0.001 \\ \hline
+        Date Product Generated L2 & 2023/07/17 & 2023/04/12 & 2023/03/09 \\ \hline
+        Date Product Generated L1 & 2023/07/15 & 2023/04/10 & 2023/03/09 \\ \hline
+        Start Time & 2023-07-15 09:54:42 & 2023-04-10 09:55:00 & 2023-02-21 09:55:26 \\ \hline
+        Stop Time & 2023-07-15 09:55:14 & 2023-04-10 09:55:32 & 2023-02-21 09:55:57 \\ \hline
+        Station Identifier & LGN & LGN & LGN \\ \hline
+        Day/Night Indicator & DAY & DAY & DAY \\ \hline
+        Land Cloud Cover & 0.00 & 0.14 & 0.11 \\ \hline
+        Scene Cloud Cover L1 & 1.04 & 0.17 & 0.13 \\ \hline
+        Ground Control Points Model & 1131 & 1140 & 1147 \\ \hline
+        Ground Control Points Version & 5 & 5 & 5 \\ \hline
+        Geometric RMSE Model & 5.456 & 5.149 & 5.735 \\ \hline
+        Geometric RMSE Model X & 3.725 & 3.659 & 4.178 \\ \hline
+        Geometric RMSE Model Y & 3.986 & 3.624 & 3.929 \\ \hline
+        Processing Software Version & LPGS\_16.3.0 & LPGS\_16.2.0 & LPGS\_16.2.0 \\ \hline
+        Sun Elevation L0RA & 66.06839265 & 56.73154182 & 39.15035895 \\ \hline
+        Sun Azimuth L0RA & 117.11855615 & 138.30347738 & 148.18246509 \\ \hline
+        TIRS SSM Model & N/A & N/A & N/A \\ \hline
+        Data Type L2 & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP \\ \hline
+        Sensor Identifier & OLI\_TIRS & OLI\_TIRS & OLI\_TIRS \\ \hline
+        Satellite & 9 & 9 & 9 \\ \hline
+        Product Map Projection L1 & UTM & UTM & UTM \\ \hline
+        UTM Zone & 32 & 32 & 32 \\ \hline
+        Datum & WGS84 & WGS84 & WGS84 \\ \hline
+        Ellipsoid & WGS84 & WGS84 & WGS84 \\ \hline
+        Scene Center Lat DMS & "34°36'39.31""N" & "34°36'39.49""N" & "34°36'38.20""N" \\ \hline
+        Scene Center Long DMS & "9°54'48.85""E" & "9°54'34.67""E" & "9°53'51.79""E" \\ \hline
+        Corner Upper Left Lat DMS & "35°39'42.73""N" & "35°39'32.94""N" & "35°39'32.83""N" \\ \hline
+        Corner Upper Left Long DMS & "8°39'23.04""E" & "8°39'11.12""E" & "8°38'35.34""E" \\ \hline
+        Corner Upper Right Lat DMS & "35°38'32.71""N" & "35°38'23.21""N" & "35°38'24.07""N" \\ \hline
+        Corner Upper Right Long DMS & "11°11'28.68""E" & "11°11'16.48""E" & "11°10'28.81""E" \\ \hline
+        Corner Lower Left Lat DMS & "33°33'25.56""N" & "33°33'25.52""N" & "33°33'25.42""N" \\ \hline
+        Corner Lower Left Long DMS & "8°39'53.86""E" & "8°39'42.23""E" & "8°39'07.31""E" \\ \hline
+        Corner Lower Right Lat DMS & "33°32'20.80""N" & "33°32'21.01""N" & "33°32'21.80""N" \\ \hline
+        Corner Lower Right Long DMS & "11°08'12.23""E" & "11°08'00.60""E" & "11°07'14.12""E" \\ \hline
+        Scene Center Latitude & 34.61092 & 34.61097 & 34.61061 \\ \hline
+        Scene Center Longitude & 9.91357 & 9.90963 & 9.89772 \\ \hline
+        Corner Upper Left Latitude & 35.66187 & 35.65915 & 35.65912 \\ \hline
+        Corner Upper Left Longitude & 8.65640 & 8.65309 & 8.64315 \\ \hline
+        Corner Upper Right Latitude & 35.64242 & 35.63978 & 35.64002 \\ \hline
+        Corner Upper Right Longitude & 11.19130 & 11.18791 & 11.17467 \\ \hline
+        Corner Lower Left Latitude & 33.55710 & 33.55709 & 33.55706 \\ \hline
+        Corner Lower Left Longitude & 8.66496 & 8.66173 & 8.65203 \\ \hline
+        Corner Lower Right Latitude & 33.53911 & 33.53917 & 33.53939 \\ \hline
+        Corner Lower Right Longitude & 11.13673 & 11.13350 & 11.12059 \\ \hline
+     \bottomrule
+ \end{tabularx}
+ \end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+\scriptsize
+\caption{Metadata of Landsat OLI/TIRS satellite images for the Gulf of Gabès area (year 2017).\label{tabApp}}
+\begin{adjustwidth}{-\extralength}{0.5cm}
+\centering
+\begin{tabularx}{\fulllength}{|l|l|l|l}
+    \toprule
+     Data Set Attribute & Attribute Value & Attribute Value & Attribute Value \\ \hline
+        Landsat Scene Identifier & LC81910362017203LGN00 & LC81910362017091LGN00 & LC81910362017059LGN00 \\ \hline
+        Date Acquired & 2017/07/22 & 2017/04/01 & 2017/02/28 \\ \hline
+        Collection Category & T1 & T1 & T1 \\ \hline
+        Collection Number & 2 & 2 & 2 \\ \hline
+        WRS Path & 191 & 191 & 191 \\ \hline
+        WRS Row & 36 & 36 & 36 \\ \hline
+        Target WRS Path & 191 & 191 & 191 \\ \hline
+        Target WRS Row & 36 & 36 & 36 \\ \hline
+        Nadir/Off Nadir & NADIR & NADIR & NADIR \\ \hline
+        Roll Angle & 0.000 & 0.000 & 0.000 \\ \hline
+        Date Product Generated L2 & 2020/09/03 & 2020/09/04 & 2020/09/05 \\ \hline
+        Date Product Generated L1 & 2020/09/03 & 2020/09/04 & 2020/09/05 \\ \hline
+        Start Time & 2017-07-22 09:54:59.645678 & 2017-04-01 09:54:40.842261 & 2017-02-28 09:54:58.053847 \\ \hline
+        Stop Time & 2017-07-22 09:55:31.415676 & 2017-04-01 09:55:12.612258 & 2017-02-28 09:55:29.823844 \\ \hline
+        Station Identifier & LGN & LGN & LGN \\ \hline
+        Day/Night Indicator & DAY & DAY & DAY \\ \hline
+        Land Cloud Cover & 2.48 & 1.62 & 0.00 \\ \hline
+        Scene Cloud Cover L1 & 3.07 & 1.39 & 0.00 \\ \hline
+        Ground Control Points Model & 1108 & 1146 & 1153 \\ \hline
+        Ground Control Points Version & 5 & 5 & 5 \\ \hline
+        Geometric RMSE Model & 4.771 & 4.844 & 5.169 \\ \hline
+        Geometric RMSE Model X & 3.282 & 3.393 & 3.675 \\ \hline
+        Geometric RMSE Model Y & 3.462 & 3.458 & 3.635 \\ \hline
+        Processing Software Version & LPGS\_15.3.1c & LPGS\_15.3.1c & LPGS\_15.3.1c \\ \hline
+        Sun Elevation L0RA & 65.21568136 & 53.64685927 & 41.70987822 \\ \hline
+        Sun Azimuth L0RA & 119.62146872 & 140.36767543 & 146.77696078 \\ \hline
+        TIRS SSM Model & FINAL & FINAL & FINAL \\ \hline
+        Data Type L2 & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP & OLI\_TIRS\_L2SP \\ \hline
+        Sensor Identifier & OLI\_TIRS & OLI\_TIRS & OLI\_TIRS \\ \hline
+        Satellite & 8 & 8 & 8 \\ \hline
+        Product Map Projection L1 & UTM & UTM & UTM \\ \hline
+        UTM Zone & 32 & 32 & 32 \\ \hline
+        Datum & WGS84 & WGS84 & WGS84 \\ \hline
+        Ellipsoid & WGS84 & WGS84 & WGS84 \\ \hline
+        Scene Center Lat DMS & "34°36'37.94""N" & "34°36'37.76""N" & "34°36'38.84""N" \\ \hline
+        Scene Center Long DMS & "9°57'06.12""E" & "9°55'28.24""E" & "9°55'39.86""E" \\ \hline
+        Corner Upper Left Lat DMS & "35°39'43.09""N" & "35°39'42.84""N" & "35°39'42.88""N" \\ \hline
+        Corner Upper Left Long DMS & "8°41'46.21""E" & "8°40'10.74""E" & "8°40'22.69""E" \\ \hline
+        Corner Upper Right Lat DMS & "35°38'30.30""N" & "35°38'32.06""N" & "35°38'31.85""N" \\ \hline
+        Corner Upper Right Long DMS & "11°13'39.79""E" & "11°12'04.43""E" & "11°12'16.34""E" \\ \hline
+        Corner Lower Left Lat DMS & "33°33'25.92""N" & "33°33'25.67""N" & "33°33'25.70""N" \\ \hline
+        Corner Lower Left Long DMS & "8°42'13.46""E" & "8°40'40.40""E" & "8°40'52.03""E" \\ \hline
+        Corner Lower Right Lat DMS & "33°32'18.56""N" & "33°32'20.18""N" & "33°32'20""N" \\ \hline
+        Corner Lower Right Long DMS & "11°10'20.10""E" & "11°08'47.11""E" & "11°08'58.74""E" \\ \hline
+        Scene Center Latitude & 34.61054 & 34.61049 & 34.61079 \\ \hline
+        Scene Center Longitude & 9.95170 & 9.92451 & 9.92774 \\ \hline
+        Corner Upper Left Latitude & 35.66197 & 35.66190 & 35.66191 \\ \hline
+        Corner Upper Left Longitude & 8.69617 & 8.66965 & 8.67297 \\ \hline
+        Corner Upper Right Latitude & 35.64175 & 35.64224 & 35.64218 \\ \hline
+        Corner Upper Right Longitude & 11.22772 & 11.20123 & 11.20454 \\ \hline
+        Corner Lower Left Latitude & 33.55720 & 33.55713 & 33.55714 \\ \hline
+        Corner Lower Left Longitude & 8.70374 & 8.67789 & 8.68112 \\ \hline
+        Corner Lower Right Latitude & 33.53849 & 33.53894 & 33.53889 \\ \hline
+        Corner Lower Right Longitude & 11.17225 & 11.14642 & 11.14965 \\ \hline 
+     \bottomrule
+ \end{tabularx}
+ \end{adjustwidth}
+\end{table}
+
+\let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{adjustwidth}{-\extralength}{0cm}
