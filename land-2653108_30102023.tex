@@ -1,0 +1,1515 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[land,article,accept,pdftex,moreauthors]{Definitions/mdpi} 
+
+%=================================================================
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2023}
+\copyrightyear{2023}
+\externaleditor{Academic Editor: Karel Charvat}
+\datereceived{22 September 2023} 
+\daterevised{29 October 2023} 
+\dateaccepted{30 October 2023} 
+\datepublished{} 
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+\graphicspath{{figures/}} % path to folder with figures
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{\alph{subfigure}}
+\DeclareCaptionLabelFormat{subcaptionlabel}{\normalfont(\textbf{#2}\normalfont)}
+\captionsetup[subfigure]{labelformat=subcaptionlabel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{gensymb} % for \textdegree
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{verbatim}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Monitoring Seasonal Fluctuations in Saline Lakes of Tunisia Using Earth Observation Data Processed by GRASS GIS}
+%Monitoring Seasonal Fluctuations in Sabkhas of Tunisia by Multispectral Image Analysis Using GRASS GIS
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Monitoring Seasonal Fluctuations in Saline Lakes of Tunisia Using Earth Observation Data Processed by GRASS GIS}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{\hl{Polina} %MDPI: Please carefully check the names and affiliations.
+ Lemenkova \orcidA{}}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Polina Lemenkova}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Lemenkova, P.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address[1]{%
+ Department of Geoinformatics, {Faculty of Digital and Analytical Sciences}, Universität Salzburg, Schillerstraße 30, A-5020 Salzburg, Austria; polina.lemenkova@plus.ac.at; Tel.: +43-677-6173-2772}
+
+% Contact information of the corresponding author
+ 
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{This study documents the changes in the Land Use/Land Cover (LULC) in the region of saline lakes in north Tunisia, Sahara Desert. {Remote} sensing data are a valuable data source in monitoring LULC in lacustrine landscapes, because variations in the extent of lakes are visible from space and can be detected on the images. In this study, changes in LULC of the salt pans of Tunisia {were} evaluated using a series of 12 Landsat 8-9 OLI/TIRS. The images were processed with the GRASS GIS software. The study area included four salt lakes of north Tunisia in the two regions of the Gulf of Hammamet and Gulf of Gabès: (1) Sebkhet de Sidi el Hani (Sousse Governorate), (2) Sebkha de Moknine (Mahdia Governorate), (3) Sebkhet El Rharra and (4) Sebkhet en Noual (Sfax). {A quantitative estimate of the areal extent analysed in this study is 182 km \highlighting{$\times$}%MDPI: We changed the x into Multiplication sign, please check and confirm.
+ 185 km for each Landsat scene in two study areas: Gulf of Hammamet and Gulf of Gabès.} The images were analysed for {the period} 2017--2023 on months February, April and July for each year. Spatio-temporal changes in LULC and their climate--environmental driving forces were analysed. The results were interpreted and the highest changes were detected by accuracy assessment, computing the class separability matrices, evaluating the means and standard deviation for each band and plotting the reject probability maps. Multi-temporal changes in LULC classes are reported for each image. The results demonstrated that changes in salt lakes were determined for winter/spring/summer months as detected changes in water/land/salt/sand/vegetation areas. {The accuracy of the classified images was evaluated using pixel rejection probability values, which were filtered out using the 'r.mapcalc' module of GRASS GIS. The confidence levels were computed and visualised with a series of maps along with the error matrix and measured convergence level of classified pixels. }This paper contributes to the environmental monitoring of Tunisian landscapes and analysis of climate effects on LULC in landscapes of north~Africa.}
+
+% Keywords
+\keyword{remote sensing; image processing; Africa; {Sahara; image analysis}; Landsat} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+\PACS{\hl{91.10.Da;} %MDPI: Please check if these parts are necessary.
+ 91.10.Jf; 91.10.Sp; 91.10.Xa; 96.25.Vt; 91.10.Fc; 95.40.+s; 95.75.Qr; 95.75.Rs; 42.68.Wt}
+\MSC{\hl{86A30;} 86-08; 86A99; 86A04}
+\JEL{\hl{Y91;} Q20; Q24; Q23; Q3; Q01; R11; O44; O13; Q5; Q51; Q55; N57; C6; C61}
+
+
+%Dear Authors,
+%(1) Please proofread the article format according to the comments left and pay attention to the highlighted parts.
+%(2) Please do not delete the comments during your proofreading, since we need to check point by point after receiving your proofed version.
+%(3) Please just modify or confirm or give feedback with track change Function. 
+%(4) English editing and layout have been complete, please do not revert the changes.
+
+
+
+\begin{document}
+
+%----------- section ----------->
+\section{Introduction}
+
+\subsection{Background}
+
+Remote sensing (RS) data analysis is a fundamental issue in environmental studies and ecosystem monitoring. Processing RS data is especially essential for multi-temporal analysis of land cover changes \cite{BOUSSETTA2022102564} and application of environmental geomorphology, which are subject to seasonal changes and shrinkage due to climate effects \cite{JonesMillington}. Climate effects can cause desertification \cite{Pontanier,info14040249} and threaten the balance of biodiversity \cite{YAICHEACHOUR2023501}. Therefore, monitoring environmental properties of Saharan landscapes by RS data plays an essential role in analysis and decision making on environmental sustainability, which results in many approaches to the effective methods of image processing for environmental tasks \cite{Monget,Lemenkova202227,CAMPOS2018211}. 
+
+The key factors in effective approaches to satellite image processing include the {resolution of data (e.g., 5--30 m/pixel for USGS/NASA Landsat  or high resolution with 1--5 m/pixel for Planet Labs Rapid Eye Satellite) }and the functionality of the software \cite{rs14236017}. Another important factor consists in the quality of image, coverage extent, cloudiness and haze. Major image types {are} widely used for effective environmental monitoring and include Landsat \cite{BOUSSEMA2023185,SMIDA2022104643,jmse11040871}, Advanced Very High Resolution Radiometer (AVHRR) \cite{Bryant}, Google Earth \cite{LI2022252}, Moderate Resolution Imaging Spectroradiometer (MODIS) \cite{TOUHAMI2022103804,RHIF2022101596} and the combinations thereof \cite{REBILLARD1984133}. Examples of very high resolution data include such images as Quickbird \cite{CHOUARI2021443}, Satellite Pour l’Observation de la Terre (SPOT) {with spatial resolution ranging from 2.5 to 5 m in panchromatic mode, 10 m in multispectral mode and 20 m on short wave infrared mode, }{Sentinel-2 mission with spatial resolution of 10 m in four bands, \mbox{20 m} in six bands and 60 m in three bands, and a swath width of 290 km)}, and IKONOS {imagery with spatial resolution of 0.80 m in panchromatic and 3.2 m in multispectral bands}\cite{VELA2008591}. Certainly, although diverse images can be used {as }data sources for environmental monitoring and mapping, the general approach of image analysis relies on using imagery as Landsat or other existing sensor types to extract information through image processing \cite{LiangWang}. 
+
+Selecting a suitable GIS is important for {satellite image processing}, since its functionality is necessary for data {capture and information retrieval from the images}. A comprehensive survey is available on the existing free {Geographic Information System (GIS)} \cite{LEIDIG201549,CHEN2010253}, recent trends in the development of cartography \cite{WangWu} and new directions and perspectives in GIS \cite{Lietal2022}, while this section covers the most relevant GIS applications for environmental mapping. The efficient solutions for satellite image processing are presented by Earth Resources Data Analysis System (ERDAS) Imagine with applications of environmental monitoring \cite{FALAKI2020363} with many existing cases due to the functionality and availability of diverse modules aimed at raster data processing. The Global Mapper GIS, developed by the United States Geological Survey (USGS), includes a variety of tools including Light Detection and Ranging (LiDAR) handling, 3D rendering, and watershed delineation to process geological and environmental data. Probably the most well-known and widely distributed commercial GIS is the ArcGIS, which processes well both vector and raster data \cite{AlDjazouli}, supports satellite images processing \cite{SESNIE20082145}, and enables hydrological catchment and basin analysis \cite{Nkiaka}, terrain DEM modelling for geospatial data analysis \cite{Kay} and spatial data visualisation. 
+
+Nevertheless, in order to reduce the uncertainty and increase the effectiveness of environmental monitoring, a lot of approaches to RS data are proposed as an alternative to processing climate data, some of them using Landsat products \cite{Lemenkova202315} and their integration with the Google Earth Engine platform \cite{rs15133257}, or mixed approaches with GIS-based mapping~\cite{SAIDI20091683,ANANE201236,Lemenkova202217}, and some of them using hydrological datasets for evaluating physicochemical parameters of groundwater in inflow \cite{BENBRAHIM2021104224}. Other examples include evaluating the content of soil organic carbon stocks in topsoils using bioclimatic data \cite{BAHRI2022e00561} or monitoring agricultural and irrigated lands and their behaviour during drought periods \cite{MOHAMED2023e01766}. 
+
+{The focus of the present study is salinisation issues in Tunisia, Figure} \ref{fig01}. {Thus,} approaches to environmental monitoring {of saline lakes consist in} optimised data modelling {for} ecological {assessment of the lacustrine environment in an arid landscape. The primary aim is} to highlight correlations between climate and environmental responses \cite{BESSER2021104134} and to evaluate regional hydrogeological processes{. Specific soil types in the arid climate of} Sahara desert {affect} the geochemical composition of groundwater, which, {in turn, }influences surface water quality and vegetation patterns in Tunisia \cite{HAMDI2021102974,RAFAATRIGUI2021104121}. At the same time, various landscapes have different mechanisms of ecosystem functionality controlling the rates of vegetation response to droughts and reaction in soil materials and phases of dissolution–precipitation during salinisation \cite{NAVARROTORRE2023105397}. Therefore, {understanding the possible causes and environmental implications, most particularly in Tunisia, relies on proper data analysis. The aim of data modelling is to derive information regarding }the parameters of these processes, {to evaluate }the effects of seasonal rise in temperature and soil performance as a sediment background in saline lakes of Tunisia during heat periods, {which }is of great importance for environmental monitoring of Tunisian sector of Sahara. {In this regard, remote sensing techniques present useful tools to monitor at large scale the phenomenon of environment--climate interactions.}
+
+{Recent years have seen an enormous trend to employ new technologies for satellite image processing and analysis. Advanced GIS software specially designed to process, model and interpret satellite images enable the display of the landscapes of the Earth and the mapping the thematic maps on the basis of image classification. At the same time, a rising pool of the space data obtained from Earth Observation create a demand for cutting-edge technologies. Up until now, processing satellite images was a task performed by GIS that employs specialised functions to capture, handle and analysis remote sensing data. Selected commercial software programs that operate with images are expensive and complicated to operate. Such restricted access has prevented the spread of such technologies and thus limited  the use of proprietary software. As a response to these needs, the novelty of this study presents the use of an advanced scripting approach of the open-source GRASS GIS tool for processing remote sensing data.}
+
+{In this study,} we explore the advanced cartographic approaches to map changes in saline lakes of Tunisia using satellite images to better evaluate the effects from climate and seasonal fluctuations in temperature on salinisation of sabkhas in north Sahara. The success in satellite image processing can be evaluated through classified and mapped difference in land cover types showing {the }environmental characteristics {of soil types} and land {cover }categories, which indicate land cover changes \cite{Shoshany}. The traditional methods of {such }evaluation include {fieldwork} and topographic measurements{. The data obtained from such surveys can then be overlaid on} the existing vector layers using GIS. However, such methods have{ drawbacks: }the organisation {of} fieldwork measurements is required for the whole process of land monitoring, surveying and topographic mapping \cite{JENDOUBI2020100507}. This might be a hard and costly {process }to implement in {such} remote areas {as} the Sahara desert. Moreover, {the }traditional geographic fieldwork measurements provide information of land categories as discrete values measured by  {technical} surveyors without {sufficient }data on complex patterns of the landscapes. 
+
+An alternative approach is presented by {the remote sensing (RS)} data {processing}, which can be used as descriptors of land cover types and partial replacement of the traditional topographic fieldwork methods. {The }use of the RS integral assessment of land cover patterns are possible using satellite images {covering} a large extent of the {study} area \cite{ELGHOUL2023106733}. {The} satellite images provide direct information on land categories due to the relationship between spectral reflectance and the environmental properties of land categories, {which can be derived from the} spaceborne images {and interpreted using GIS tools} \cite{Allouche,Ruiz,Ray}. As a general rule, vegetation and water areas can be identified using a combination of Red/NIR channels since the reflectance in NIR {increases} for vegetation along with the absorbed signal in Red bands{. This enables} discrimination between water and vegetation areas {during} image analysis. Such RS properties are widely used for calculation of vegetation indices. 
+
+{Generally speaking, the RS} approach is based on measuring {spectral} reflectance of the pixels on the satellite image{. }Spectral reflectance of {pixels} in various wavebands of the multispectral {image }indicates spectral characteristics of different objects on the Earth {and thus represents diverse land cover types}. This fundamental characteristics enable the use of {spaceborne }images for detecting land cover types. {Moreover, compensating and correcting the image from atmospheric and air--water effects enable }image interpretation {for thematic mapping}. Therefore, evaluating land cover {changes using} satellite images{ can} be performed using the times series approach{. This solution is based on the} interpretation of several satellite images taken on the same target area in different seasons of year or a sequence of several years. 
+
+{In this regard, the RS method} emerges as a fundamental technique of Earth Observation in a wide variety of geospatial and environmental applications. {The case studies include }landscape mosaics \cite{BIARNES2021103281}, monitoring sedimentation processes \cite{TOWNSHEND1989177}, dynamics of sandy dunes in the Sahara \cite{Afrasinei}, geomorphological modelling \cite{Desprats} and monitoring coastal regions \cite{AMROUNI201973,Jaquet}. The generic approach of {RS and advantages of the use of spaceborne data have} been noted earlier \cite{RAMPHERI2023103359}{. These} include the {high} sensitivity of satellite images, which enables the detection of small-size patches of landscapes, regularity of survey by various space sensors and flexibility of data coverage{. The latter enables images to be} finely adjusted for practically any study area using search criteria in {data} selection and threshold parameters, {such as }cloudiness, {or} image source. 
+
+When applied to a series of images, processing RS data can effectively discover the environmental properties of  landscapes \cite{Toujani,Quarmby,Gelebo}. Moreover, RS data processing and satellite image analysis {enable }the quantification of {landscape} patches within the target {area} through the interpretation of classes {that indicate} land categories and vegetation types \cite{Benedetti,Godinho}. {Furthermore, this approach enables the} determination of climate effects in lacustrine or coastal environments \cite{Souissi}. Finally, other advantages of the RS data processing {consist in} a resource- and time-effective {approach} indicating {the }dynamics in landscapes through the evaluation of changes {over} time{.} 
+
+Inspired by the existing examples of the RS data analysis in environmental monitoring \cite{f9020059,Lemenkova202229,Fathalli,Abbas,Henchiri}, this study integrated the advanced methods of the GRASS GIS with applied techniques of its image processing modules for assessment and mapping of changes in landscapes of saline lakes in northern Tunisia, Figure \ref{fig01}. {The main purpose of this study is to evaluate} the response {of land cover types around salt lakes of Tunisia }to seasonal fluctuations in temperature {and} the {increase} in salinisation. The {methodological approach aims at providing} advanced RS and cartographic methods. Importantly, the study presented here is not intended to suggest that RS data replace the hydrological datasets. In contrast, these images can supplement the fieldwork survey in the sabkhas and environmental tests on the saline soil of Tunisia. 
+
+In this paper, the integration of an image processing workflow with cartographic and geologic maps provides {an} effective {approach} by which the analysis of environmental changes {can} be performed {with regard to inter-year and multi-decade meteorological variations}. The goal of using the RS data is to qualitatively evaluate and {visualise} changes in land cover types{. These changes are }caused by seasonal fluctuations in temperature during winter/spring/summer months and the process of evaporation. In this way, {RS data} processing {presents} an effective means by which the time series of the multispectral images {can} be analysed for landscape monitoring. Data obtained from {clustering} of the {Landsat OLI/TIRS }satellite images {were} used for modelling land cover types using classification. 
+
+The cartographic experiments {were} performed on two {study} areas in north Tunisia: {(1)} the coastal regions of the Gulf of Gabès (salt lake Sebkhet en Noual) and {(2) }the Gulf of Hammamet (salt lakes Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra). Using a comparison of several images classified for various seasons and time periods, this study {evaluated} the properties of the landscapes using the maximum-likelihood discriminant analysis classifier of GRASS GIS. The advanced methods of evaluation of landscape properties are built on the growing demand for time- and cost-effective approaches to environmental monitoring in the changing climate of Tunisia. {This contributes to }saving agricultural resources {and} making decisions of farmers and environmental planners. {In turn, the effective landscape management enables} making use of the renewable resources in the {regions of salt lakes considering} the regional and local {environmental} settings of {Tunisia.}
+
+\subsection{Study Area}
+
+This study focuses on the salt lakes located in the north Sahara, Tunisia, Figure \ref{fig01}. {Saline lakes in Tunisia are important components of the environment, playing a crucial role in biodiversity maintenance, habitats for rare species in nearby oases, rare sources of water, flood and fishery, regulators of temperature, hydrology, and carbon fixation. }The salt lakes, or sabkhas, of Tunisia present a series of saline depressions that are characterised by the variability of water: during the winter, sebkhas receive rare water inflow from occasional rains, while, during summer months, the lakes dry out almost completely and become saline crystallised surfaces \cite{berthon1970saumures,m2001valorisation,Gautier}. 
+
+\begin{figure}[H]
+	 
+		\includegraphics[width=11.0 cm]{Fig_01a.jpg}
+\caption{\hl{Two} %MDPI: Please check if the different colored boxes need  explanation.
+ segments of the study area on a topographic map of Tunisia: the Gulf of Hammamet (northern part) and the Gulf of Gabès (southern part). {Yellow dots indicate the locations of the annotated major cities. Two specific locations studied in this research are contoured by a purple-coloured rotated square (Gulf of Hammamet) and magenta-coloured rotated square (Gulf of Gab\'es). Mapping software: Generic Mapping Tools (GMT).}}\label{fig01}
+\end{figure}
+
+{The physiographic data on Tunisia present moderate hilly terrain with the slope geomorphology ranging from zero m in the coastal areas at water level to the maximum at 3781 m and mean at 432 m, according to the GEBCO DEM grid. }The geographical location of these sebkhas is related to the environmental historical development of north Sahara with related aeolian and fluvial processes \cite{ALI20231,MWIRICHIA2023269}. {Located in the arid environment of north Africa, saline lakes and surrounding landscapes experience changes in volume and extent due to the extreme temperatures: during the summer heat period, lakes dry out almost entirely and become a crust of salt and minerals due to the evaporated moisture. }Gradual deflation and geomorphic erosion lead to the formation of low individual basins and pans where current salt lakes are located {on specific soil types typical for an arid environment }\cite{Blackwelder140}. {Soil classification in Tunisia include the following types of soil according to the French system: podzols, vertisol, red Mediterranean, calcium-magnesium, brown, saline and hydromorphic very acidic soil, and poorly evolved soils. Of these, the dominant type is the calcium-magnesium soils due to the influence of the arid environment and the Sahara desert.}
+
+The sabkhas are mostly located in topographic depressions which remain as geomorphic landforms from the earlier palaeolacustrine basins, palaeodrainages, interdunes and coastal plains \cite{GOUDIE19951}. The formation of these depressions is strongly connected to the tectonic movements in Quaternary, which shaped the present morphology of sebkhas \cite{Abbes,Louhaichi,Ballais}. The lagoon facies of the selected lakes evidence the stratigraphic distribution of gypsum clays and laminated gypsum lithofacies from the Neogene period (Mio--Pliocene and Quaternary evaporites) and Cretaceous sediments \cite{BARBIERI2006726,SWEZEY1996335}. This supports the hypothesis of the earlier existence of the Sahara Sea with endorheic basins that nowadays become a series of depressions of the saline lakes in north Africa \cite{Coque}. 
+
+The effects of climate and seasonal meteorological fluctuations on the soil and vegetation setting of the Saharan landscapes are explained by changes in temperature that trigger processes of evaporation, i.e., the transform of liquid water in lakes and ephemeral river flows into gaseous vapour \cite{HAMMI2003215}. {Although data on rainfall vary significantly by regions of Tunisia, the average annual rainfall estimates at 158 mm/yr at the country level, with less than 100 mm/yr close to the Sahara desert and over 700 mm/yr in the coastal areas. }Natural factors are augmented by the anthropogenic activities that increase the intensity of land cover changes \cite{RODRIGUEZCABALLERO2017146}. {Moreover, the existing studies show the gradual increase in agricultural intensity in Tunisian ecosystems, which have affected the ecology of the lakes in Tunisia through the increased sedimentation and changes in land and vegetation patterns}~\cite{STEVENSON1991275}. {The combination of natural climate and anthropogenic factors results in diversified land cover types classification in Tunisia. Thus, major land cover types include rangelands, riparian vegetation, wastelands, water areas, wetlands and lacustrine areas, artificial and urban areas, and cultivated lands and plantations. }High evaporation during the summer months results in a total desiccation of these ephemeral lakes and lead to a formation of the thick layer of minerals and salt on the bottom of the lake basins \cite{BRYANT1994269}. 
+
+Lakes in Tunisia are important components of the dryland environment of the Sahara{ with high climatic, hydraulic and biogeochemical features. Tunisian lakes present diverse habitats for productive ecosystems and bio-resources such as waterbirds and water plants}~\cite{SAHBANI2022102288}. {At the same time, the balance of the ecosystems in the Tunisian lakes strongly depend on climate factors such as  temperature fluctuations. The annual temperature average in Tunisia reaches its peak between June and September, when it exceeds} 40 \degree C{ in southern regions of the country, and it has low values at 11.5} \degree {C during the coldest period in January. Hence, salt lakes} are rare sources of water, flood and fishery, they serve as regulators of temperature and hydrology, and they support carbon fixation for environmental sustainability~\cite{NIGAM2020201}. Moreover, they play a crucial role in maintaining biodiversity \cite{Neji}, serving as habitats for rare African species and birds in nearby oases \cite{Baduel,RADDADI2022104806,Kamel} and habitats for halophilic species \cite{NEIFAR20191802}. Such phenomena were revealed in studies on environmental monitoring that evaluated landscape changes in Tunisia. For instance, the reaction of landscapes and vegetation responses to droughts were modelled with regard to the temperature fluctuations and climatic effects in the Sahara \cite{HANAFI2008557,PAUSATA2020235,Lemenkova202313}. At the same time, the increase in temperature and reduced precipitation observed during the heat of the summer months lead to a lack of surface water, which is the primary factor of desertification and aridification of landscapes in the Sahara \cite{OSWALD2023369,DODORICO2013326}. 
+
+%----------- section ----------->
+\section{Materials and Methods}
+
+%----------- subsection ----------->
+\subsection{Data}
+
+The materials include the 12 Landsat 8-9 OLI/TIRS images collected from the USGS Earth Explorer repository. The USGS Identifier (ID) of the scenes of the satellite images are summarised in Table \ref{tab01}. Within the dataset, 6 images cover the region of the Gulf of Hammamet (\hl{Figure} %MDPI: The first citation of figures are in the wrong order, figures 3 and 4 are cited before figure 2, please check and modify.
+ \ref{fig03}), and 6 images cover the area of the Gulf of Gabès (\hl{Figure} \ref{fig04}). {The two segments of study area were chosen to illustrate the difference in the northern and southern environmental setting of the regions surrounding salt lakes in different geographic regions: the northern segment was selected for the Gulf of Hammamet, and the southern segment was selected for the Gulf of Gab\'es. Both study areas are reasonably representative for the illustration of the Tunisian geographic setting. The two segments cover the area where potential environmental and climate impacts are most likely from the effects of the Sahara (in southern segment) and the milder climate of the coastal area (in the northern segment). The northern segment is also the region with high intensity of agricultural uses, which contrasts with the southern area which is located closer to the Sahara desert. The comparative analysis of two diverse segments of Tunisia represents the environmental processes related to the coastal zone in the north and the arid climate of the Sahara in the south. The images were captured from the United States Geological Survey (USGS) repository, EarthExplorer.}
+
+\begin{table}[H]
+\tablesize{\small}
+\caption{{Scene IDs} of the 12 Landsat 8-9 OLI/TIRS images in the EarthExplorer USGS repository.}
+\label{tab01}
+%\begin{adjustwidth}{-\extralength}{-2.5cm}
+%\newcolumntype{L}{>{\centering\scriptsize\arraybackslash}l}
+%\setlength\extrarowheight{-0.8cm}
+
+%\begin{tabularx}{\fulllength}{p{1.5cm}|p{6.5cm}|p{6.5cm}|p{1.9cm}}
+\begin{tabularx}{\textwidth}{CC}
+
+			\toprule
+			\textbf{Date} & \textbf{Scene ID} \\
+			\midrule
+			\multicolumn{2}{c}{\textbf{\hl{Gulf of Hammamet region} %MDPI: Please confirm if the bold should be retained.
+}}\\
+			\midrule
+			\hl{2023/07/15} %MDPI: Please check whether the date format needs to be changed to (Date Month Year), e.g., 1 January 2020.
+ & LC91910352023196LGN00 \\	
+			2023/04/10 & LC91910352023100LGN00 \\	
+			2023/02/21 & LC91910352023052LGN01 \\	
+			2017/07/06 & LC81910352017187LGN00 \\	
+			2017/04/01 & LC81910352017091LGN00 \\	
+			2017/02/28 & LC81910352017059LGN00 \\	
+			\midrule
+			\multicolumn{2}{c}{\textbf{\highlighting{Gulf of Gabès region}}}\\
+			\midrule
+			2023/07/15 & LC91910362023196LGN00 \\	
+			2023/04/10 & LC91910362023100LGN00 \\	
+			2023/02/21 & LC91910362023052LGN01 \\	
+			2017/07/22 & LC81910362017203LGN00 \\
+			2017/04/01 & LC81910362017091LGN00 \\
+			2017/02/28 & LC81910362017059LGN00 \\
+			\bottomrule
+		\end{tabularx}
+%\end{adjustwidth}
+\end{table} 
+
+All images were selected on the three key control periods: winter with the highest water level (February), spring with the transitional period and rains (April), and summer with the peak heat (July). The metadata in the images are listed in the tables in the {submitted auxiliary data}. It is widely accepted that cloudiness and haze have a key impact on the image properties. Therefore, in this study, we used 10\% cloud coverage for all images. The tested images included spectral bands in visible, Short-wave infrared (SWIR)-1, SWIR2 and Near-infrared (NIR) channels obtained from the OLI sensor. The topographic maps showing the two study areas within the country and their enlarged fragments were generated with the Generic Mapping Tools (GMT) software, version  6.1.1 \cite{Wessel} using the existing scripting techniques reported earlier \cite{Lemenkova202212,Lemenkova202206,Lemenkova202203}. 
+
+%----------- subsection ----------->
+\subsection{Methods}
+
+The general scheme of the data and methods applied in this study is presented schematically in a flowchart in Figure \ref{fig02}. The Landsat 8-9 OLI/TIRS satellite images were processed with the Geographic Resources Analysis Support System (GRASS) {GIS} software. Compared to the existing GIS{, }GRASS GIS presents a {more} advanced method of geographic visualisation {through the use of} scripts {which }optimise {computer} memory and computation resources{. Moreover}, the increase in the open spatial data raises the question of the effective tools for their processing. Since GIS has restricted functionality, the modern approach {of} GRASS GIS {presents} a powerful alternative through scripting, which {is} a principally new paradigm for cartographic data processing and satellite image analysis. Motivated by {such }powerful functionality of GRASS GIS and its modules for image processing, this study presents a case of {the }processing remote sensing data by {the GRASS GIS }scripts. 
+
+{Firstly,} the images were processed by scripts using clustering using 'i.cluster' module and continued with classification by the 'i.maxlik' module. The scenes were analysed for {five} recent years from 2017 to 2023 using the maximum-likelihood discriminant analysis classifier. {The classification approach is based on the automatic data clustering, which partitions the image at pixel level. The pixels are equally distributed throughout space and are grouped into clusters based on the similarity of their spectral reflectance values. Using such approach, spatio-temporal} changes {in} water level and salinisation {were analysed}  {over the }target {area of }salt lakes in Tunisia{. }
+
+\begin{figure}[H]
+\hspace{25pt}\makebox[0.90\linewidth][r]{%
+	\centering
+		\includegraphics[width=13.5 cm]{Fig_02.jpg}
+}
+\caption{Flowchart summarising the workflow. Software: R. Diagram source: author.}\label{fig02}
+\end{figure}
+
+The detection of the saline lakes is possible using spectral properties of the images that enable the distinction of the highly reflective cyan-coloured areas of the lakes against the beige-coloured sands and bare land. {The images were uploaded as RGB triplets with varying intensities of components of the selected colors, which enabled the visualisation of these aspects. }Thus, spectral properties of the RS data were evaluated by various GRASS GIS modules and scripting techniques with regard to the water/land/salt discrimination, and this demonstrated the robust approach to image analysis. 
+
+\subsubsection{Data Preprocessing}
+{Firstly}, the images were preprocessed by the 'i.landsat.toar' module of GRASS GIS using properties of {the }image and information on sun elevation level to evaluate the reflectance in pixels and calculation of {the }top-of-atmosphere radiance and temperature for all the Landsat OLI scenes, Figure \ref{fig03}. The snippets of GRASS GIS code are concatenated into longer scripts which perform the complete task of mapping. Such{ }partition of the workflow enables the machine to perform selected tasks of image processing in a distributed way. This decreases the possibility of errors and misclassification of the pixels and supports the processing {of the }large datasets due to a significant level of automation. 
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.9\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.85\textwidth]{Fig_03a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.85\textwidth]{Fig_03b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.85\textwidth]{Fig_03c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.9\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.85\textwidth]{Fig_03d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.85\textwidth]{Fig_03e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.85\textwidth]{Fig_03f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+	
+}\vspace{6pt}
+\caption{\hl{Landsat images} %MDPI: Figure 3 is not after the first citation, please check and modify.
+ of the Gulf of Hammamet region (northern segment) showing the increase in salt (bright cyan colour) from the winter to summer months in sabkhas Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}):~15 July 2023. {The images are shown in natural colour composite of Landsat 8 OLI/TIRS based on a band combination of Red (4), Green (3) and Blue (2). Such composite shows healthy vegetation in green, salt lakes in cyan, while soils and bare land in brown.}}\label{fig03}
+\end{figure}
+
+Hence, the images were corrected and added into the GRASS environment using {the }'r.import' module. After the import procedure, the images with all the multispectral bands were grouped in the working directory using 'i.group' module, which was used to select the necessary bands, and their data were checked using 'g.list' module. The 'i.group' module of the GRASS GIS was used for processing the structures of the spatial data and grouping them into classes using the k-means algorithm. {The new contributions of such scripting algorithms of GRASS GIS to image processing are as follows: }
+\begin{itemize}
+	\item {Inherent modules for image processing, analysis, spatial modelling, and visualization, graphical plotting and maps production; }
+	\item {Streamlining and automating a series of duplicated tasks through scripts for iterated processing of different images as a time series of Landsat 8-9 OLI/TIRS data; }
+	\item {Diversified process of segmented data handling through a programming approach that enables the breakdown of the workflow into a set of individual commands and the catching and cleaning of data errors before mapping.}
+\end{itemize}
+
+{ In this way, the advantages of the automation achieved through the implemented algorithms of GRASS GIS save time when processing a series of Landsat images, reduce data mistake and upscale or downscale the tasks to various regions, accordingly.}
+
+The metadata of the images were checked using relevant modules of the GRASS GIS. In particular, the techniques of image processing in GRASS GIS include the auxiliary functions of 'g.list rast' and 'r.info' acting on imported raster bands and showing the identified parameters of images as attributes and a given set of identifiers of {the }technical specifications of the multispectral images: resolution, minimal and maximal values, and the coordinate system. After {the }image preprocessing, the 'i.group' module was used to group the bands before the classification of the Landsat {8-9 OLI-TIRS }images. This approach partitions the image using the embedded algorithm of discriminating the pixels on the images that represent various land cover types in the target area using their spectral reflectances. Afterwards, they were clustered using the k-means algorithm embedded in the GRASS GIS, which was implemented by the 'i.cluster' module. {Such sequential use of modules is beneficial for creating an automated workflow of image processing, whereas the straightforward traditional method would take more time and effort, which is a fail in the automation aspect. }
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.83\textwidth]{Fig_04a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.83\textwidth]{Fig_04b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.83\textwidth]{Fig_04c.jpg}
+		\caption{22 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.83\textwidth]{Fig_04d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.83\textwidth]{Fig_04e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.83\textwidth]{Fig_04f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}\vspace{6pt}
+\caption{\hl{Landsat} %MDPI: Figure 4 is not after the first citation, please check and modify.
+ images of the Gulf of Gabès region (southern segment) showing the increase in salt (bright cyan colour) from the winter to summer months in sabkhas Sebkhet en Noual (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}):~15 July 2023.}\label{fig04}
+\end{figure}
+
+%----------- subsection ----------->
+\subsubsection{Data Clustering}
+
+During clustering, {the} 'signature file' was created {and} used in the next step to sort pixels into {land} cover classes using {the }'i.cluster' module of the GRASS GIS, which creates cluster and covariance matrices. {This classification algorithm partitions the image into clusters and assigns pixels into each land cover category. }All {these }classes contained pixels with approximately the same level of spectral reflectance, which {were} automatically evaluated by the {machine-based} analysis of the GRASS GIS{. Such technique differentiates the} number of pixels within each class and thus {assigns the} extent of {the }landscape categories {in each case. This enables us} to evaluate the {landscape }patches and their distribution within the scenes under the effects of various seasons on development of salinisation in sabkhas. Moreover, the images located in the Gulf of Gabès contained more sandy desert areas compared to the northern segment of the study areas in the Gulf of Hammamet, which allowed for the comparison of the effects from the geographic distribution of the saline lakes with higher coverage of mixed vegetation in the more temperate climate of north compared with the southern region, which is more impacted by the arid climate of the Sahara.
+
+%----------- subsection ----------->
+\subsubsection{Image Classification}
+
+Theoretically, the essential  principle of the land cover type classification is based on the fundamental properties of RS, which consist in the measurement of spectral reflectance as a reflection of light from the Earth's surface, as can be visible on the scenes in Figure \ref{fig04}. Spectral reflectance signatures of various land cover types (land, water, salt soils, vegetation, urban areas, etc) differ significantly. This is because of the different emitted radiation from these these objects, which {notably} varies. The Landsat 8-9 OLI/TIRS sensor continuously measures {the }spectral reflectance of the objects on the Earth, which are identified as various land cover types. Hence, the performed measurements indicate {different} bodies and objects on the Earth using their spectral reflectance visible on the spaceborne satellite images in selected band combinations. Consequently, since measured land cover types {vary}, it enables the classification of the land cover types using the RS data processing {method}, followed by cartographic visualisation and interpretation. 
+
+Practically, the information on spectral reflectance is used for the classification procedure. {In this study, the method included a machine learning technique that is based on a fully automated approach that is independent from human-based sampling. In this case, the partition of the image relied on computer vision algorithms, which determined the sampling categories and assigned pixels to classes automatically using programmed 'i.cluster' module of GRASS GIS. This approach differs significantly from the traditional supervised classification, which is based on training samples. }Thus, after clustering, the images were processed using a special module of the GRASS GIS which performs unsupervised automatic classification of the satellite images. The advanced methods of GRASS GIS present effective instruments for classification---the 'i.maxlik', {originally }developed by M. Shapiro and T. Wen, and supported with the additional module by M. Nartiss. The use of the 'i.maxlik' only required to specify the parameters of the signature file and related information on groups and subgroups of spectral bands during data partition, and to assign pixels into each land cover class according to the records of the spectral reflectance in binary format. 
+
+{After the number of the defined classes was set up, the Landsat images were prepared for classification. The program identified land cover classes based on the cluster analysis that separated areas of contrast in a colour composite of image scenes and recognised the pixels that belong to this particular class. As a result, land cover classes were identified for which the appropriate pixels were assigned. }The spectral reflectance of wavelengths which develops proportionally with internal gain in strength in brightness of land cover types were identified from space by the sensor. The technical characteristics of this module included two steps: the preceding clustering and following classification. The module was designed {for} the multispectral images, such as Landsat, using the spectral signatures of the pixels. 
+
+The classification procedure was performed with different images (6 scenes for the study area {1} in the Gulf of Gabès, and 6 images for the study area {2} for the Gulf of Hammamet). The aim of the classification {was }to identify cells in the classified image and to group {them} into classes according to the similarity of spectral reflectance in each given group (class){. This was achieved using the }estimated spectral reflectance {values by means of the } automatic {algorithm of }image analysis{. }As for comparison of {the }several images taken on various seasons and{ }years with {the six}-year {time span}, the main {objective} was to compare the effects of climate, the impact from the Sahara {desert }and the seasonal meteorological fluctuations on the {increase} in salinisation in the sabkhas of Tunisia{. }Therefore, the experiments with images were implemented with different calendar seasons and in {spatially distinct} regions (central/southern) of Tunisia. 
+
+%----------- subsection ----------->
+
+ \subsubsection{Accuracy Analysis}
+
+The images were evaluated for accuracy and pixels with high level of rejection were filtered out using 'r.mapcalc' module of GRASS GIS. The rejection probability values, i.e., the pixel classification confidence levels were computed and visualised with a series of maps. The error matrix and {the }convergence level of classified pixels were measured using {the }'i.cluster' module that included accuracy assessment of classification results in tabular format. After that, the classification was performed {and} the results of the clustering were exported as a series of matrices in CSV format for each images, and the results are reported in the tables in the {auxiliary materials supporting }this study. {The separability indicating was based on the spectral reflectance properties of a pixel's characteristics. The pixels on the image were assigned to categories of land cover types using threshold values which belong to this particular class and all other pixels assigned to other classes for the automated detection of landscape patches. }
+
+{Because the GRASS GIS classifies remote sensing data based on their spectral characteristics and separability of land cover classes according to their categories, the quality of original images may affect the automatic recognition and interpretation of land and vegetation classes. Therefore, images were selected based on low cloudiness and being free of atmosphere influence. }The classified satellite scenes were verified and the class separability matrix was computed for each of the 12 images. The accuracy of the classification was measured and is summarised in the tables with a convergence level of classified pixels above 98\% of points stable. Such approach to analyse the accuracy of image processing provided data to evaluate the obtained values of land cover classes at each image of the processed time series.
+ 
+ %----------- subsection ----------->
+ \subsubsection{Mapping}
+
+The environmental properties of the landscapes were evaluated {using} cartographic methods {and} image processing{ and} were then visualised {on the thematic }maps. The aim was to analyse the seasonal effects of climate{, that is, the }increase in temperature and evaporation{ }on the behaviour of salt lakes. The complete cartographic workflow used in this study included a sequence of the following modules of GRASS GIS:
+
+\begin{itemize}
+	\item 'r.import' used for data import via the embedded GDAL library; the extent and resolution were adjusted to the region of the Landsat scenes;
+	\item 'g.list' for listing imported raster data type by the search pattern of GRASS GIS; 
+	\item 'g.region' for defining the computational extent of the region to match the scenes; 
+	\item 'i.cluster' for clustering the raster Landsat images using k-means algorithm; 
+	\item 'i.maxlik' for unsupervised image classification using maximum likelihood method; 
+	\item 'd.mon' for displaying visualisation and cartographic plotting; 
+	\item 'r.colors' for adjusting the colour palette according to the land cover types; 
+	\item 'd.rast' for mapping the image in the active graphics frame; 
+	\item 'd.legend' for adding the colour legend with textual notations; 
+	\item 'd.out.file' for data export to the conventional formats (JPG). 
+\end{itemize}
+
+These GRASS GIS modules have been incorporated to perform various steps of cartographic tasks and the image processing workflow {using the} console. The land cover types were identified continuously across the images using a sequence of k-means clustering and maximum likelihood classification approaches, and they were then converted to the maps{. The thematic maps indicate }the variations in land cover types over Tunisia during a period of 2017 to 2023 for two image datasets covering the regions on the Gulf of Hammamet and the Gulf of Gabès. The data obtained from the GRASS GIS-based image processing workflow were evaluated for environmental analysis.
+
+%----------- section ----------->
+\section{Results and Discussion}
+
+{The results present maps obtained from the GRASS GIS algorithms applied to a time series of satellite images of Tunisia and a comparison of changes in land cover types. }The results of the image processing approach of the GRASS GIS demonstrated in this paper show that the summer period {intensifies} soil salinisation and mineralisation in the sabkhas of Tunisia{. This is } demonstrated through {the presented }series of {maps based on the images taken} on several seasons{. Using} the information received from spectral reflectance of the pixels on the images and heat development in the Sahara during the summer months{, the potential opportunity for the increase in} salinisation for each lake in various years {was evaluated}. Figure \ref{fig05} demonstrates the results of the image classification showing the behaviour of saline lakes over the seasons between 2017 and 2023 in the region of the Gulf of Hammamet (Sebkhet de Sidi el Hani, Sebkha de Moknine and Sebkhet El Rharra). 
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_05a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_05b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_05c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_05d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_05e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_05f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}\vspace{6pt}
+\caption{Classification results showing land cover classes based on the processed Landsat images showing the northern study area (Gulf of Hammamet): Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}): 15 July 2023.}\label{fig05}
+\end{figure}
+
+Figure \ref{fig06} demonstrates the outputs of the image classification, {which show} variations in land cover types and saline lakes over the seasons between 2017 and 2023 in the region of Gulf of Gabès (Sebkhet en Noual). The land cover types were identified on the images using information{ }modified {from} the existing classification scheme on land cover types in Tunisia \cite{plants10102031} and data from the Food and Agriculture Organization (FAO) \cite{FAO}. The existing land cover types for the country-level scale were {adopted} according to the extent of the images covering the study area and included the following types: (1) forest; (2) grasslands and rangelands; (3) sand and desert; (4) cultivated agriculture plantations and arable lands (olive tree, orchards, vine, palm groves); (5) urban areas and artificial land; (6) wasteland; (7) wetlands and water; (8) bare land and soil; (9) mixed vegetation; and (10) saline soil. 
+
+{The variability of} seasons enabled the monitoring and interpretation of how the salinisation process {activates} the accumulation of minerals in the salt lakes with the changed colour of the sabkhas. {During }the summer period, the structure of the crystals in the soil sediments in the sabkhas was solidified by the increased evaporation as a result of the increased temperatures. In turn, the seasonal effects of increased temperature and lack of precipitation in the southern region (Figure \ref{fig06}) are reflected in the increased areas of sand and declined vegetation, as shown in the maps. The changes in the salt lakes were determined at different years during the recent decade{. This resulted from the comparative analysis of the }Landsat images taken in winter/spring/summer months. {The difference illustrates the} periods {of low and high }water inflow into the Saharan lakes{. The} decline in vegetation areas is clearly {visible on} the images of 2017 from April to July, showing sabkhas Sebkhet de Sidi el Hani, Sebkha de Moknine  and Sebkhet El Rharra, Figure \ref{fig06}. 
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_06a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_06b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_06c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_06d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_06e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_06f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}\vspace{6pt}
+\caption{Classification results showing land cover classes based on the processed Landsat images showing the southern study area (Gulf of Gabès), Sebkhet en Noual (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}): 15 July 2023.}\label{fig06}
+\end{figure} 
+
+Compared to the difference between February and April{, }the decline in vegetation and {the }increase in salinisation {are} more prominent{. This can be explained by the }increase in summer heat temperatures, which {is} in contrast to to the spring months. In Figure \ref{fig06}, it is seen that the results {are }different for {the }visualised series of maps for various seasons{. This is }because salt lakes contain different amounts of water with regard to salt, i.e., the classified images revealed various water/salt ratios in the sabkhas along with the development of heat during the summer months and effects from the Sahara desert in the southern study region. {Correction of pixels in a classified image was performed using the pixel confidence level calculation mode of GRASS GIS. The identified pixels were examined automatically and automatically adjusted for accuracy and correctness. }The classification of pixel confidence levels with rejection probability values indicating the accuracy of classification are presented in Figure \ref{fig07} for the northern region of the Gulf of Hammamet, and in Figure \ref{fig08} for the southern region of the Gulf of Gabès, respectively.  
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_07a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_07b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_07c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_07d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_07e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_07f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}\vspace{6pt}
+\caption{Classification of pixel confidence levels with rejection probability values for the northern study area (Gulf of Hammamet): Sebkhet de Sidi el Hani (Sousse Governorate), Sebkha de Moknine (Mahdia Governorate) and Sebkhet El Rharra (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}): 15 July 2023.}\label{fig07}
+\end{figure}
+
+The varied temperature in seasonal climate periods has effects on the {land cover type changes around} lakes and {the level of }salinisation of sabkhas{. }This {is }also {an} indirect indicator of {the }groundwater inflow and {the }impacts of {the }coastal climate on the eastern sabkhas{. For instance, this is typical }for {Sebkha} de Moknine, which is located near the Bekalta coastal town. This lake {demonstrates} the least difference in the {level of }salinisation{ because it} was filled with water during the {whole year of }2017{. In contrast, }in 2023, it experienced salinisation only during summer. {If compared with} Sebkhet El Rharra{, the latter} experiences clear {and regular }fluctuations in salinisation during each year, being regularly filled with water in winter and covered by salt crust in July. Such changes were detected both for year 2017 and for year 2023.
+
+The {extent of the }agricultural areas {is }more similar in Figure \ref{fig06} for the Gulf of Gabès area, {which indicates} that the plantation areas in southern regions are{ }similar for different landscape spots compared to the northern segment (Figure \ref{fig05}). This is also seen in \mbox{Figure \ref{fig06}} for 2017 and 2023 in the month of April. The{ }comparative analysis of several images showing {the }dynamics of land cover types as descriptors {demonstrated the effective and straightforward approach of RS data processing }to reveal the development of {the }aridification and desertification in southern regions closer to the Sahara in the study areas. {In particular, the use of GRASS GIS presents an} efficacious strategy to extract contextual information {from the satellite images. This information can be used in environmental monitoring for the analysis of }land cover properties{. }{Although the} RS data cannot directly detect landscape dynamics{, }processing of {the }RS data enables the approximation of the extent of {the }landscape patches from {the }classified {and analysed }images{. It, furthermore, enables} the evaluation of water content in salt lakes as indirect indicators of salinisation during {the }summer heat {period}.
+
+\vspace{4pt}
+\begin{figure}[H]
+\centering
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_08a.jpg}
+		\caption{28 February 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_08b.jpg}
+		\caption{1 April 2017}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_08c.jpg}
+		\caption{6 July 2017}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\hspace{50pt}\makebox[0.90\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.95\textwidth]{Fig_08d.jpg}
+		\caption{21 February 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_08e.jpg}
+		\caption{10 April 2023}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Fig_08f.jpg}
+		\caption{15 July 2023}
+	\end{subfigure}%
+}\vspace{6pt}
+\caption{Classification of pixel confidence levels with rejection probability values for the southern study area (Gulf of Gabès): Sebkhet en Noual (Sfax Governorate: (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}): 15 July 2023.}\label{fig08}
+\end{figure}
+
+{The }analysis of the satellite images{ shows }gradual changes in {salt }lakes over {the }calendar periods{ } and provides a robust view of {the }environmental changes. {The }presented{ }time series of {the }processed{ }images{ }shows that the increase in salt lakes and desertification of surrounding areas is more distinct in the southern segment, which shows that the Sebkhet en Noual is prone to salinisation even during the winter months{. In contrast, }the northern sabkhas Sebkhet de Sidi el Hani , Sebkha de Moknine and Sebkhet El Rharra show water-filled basins during the winter {period}. Furthermore, {the results} demonstrate that the regions of Sfax are more prone to aridification compared to the areas of Mahdia \mbox{and Sousse. }
+
+{The }changes in water level in salt lakes{ }detected using {the }RS data{ }can serve for environmental monitoring of Tunisian landscapes and analysis of environmental consequences of climate effects in central and north Tunisia. {The applications} of image processing {for} environmental landscape {analysis were} described earlier { based on various GIS~}\cite{Touhami,Khelifa,Hammami,Bounouh}. {Earlier} works use the Landsat MSS/4 and SPOT HRV/3 images \cite{Park}, Landsat and SRTM processed by ArcGIS and ENVI commercial software \cite{Souissi,Afrasinei}, or a combination of ETM+ and OLI 8 sensors of the Landsat products \cite{Mezned}. {In contrast, our} results{ }are obtained using{ recent }Landsat OLI/TIRS images processed by the GRASS GIS scripts. 
+
+The reaction of {minerals during }sand salinisation processes {under effects of} high evaporation{ }results in {the }changed structure of pores in the soil{. This} significantly {reduces} the water content in soil{ }during periodic occurrences of a deep brine layer on the bottom of the lakes. Such behaviour of soil as lacustrine sediment layer demonstrates the response to climate and meteorological processes so that the considerable fluctuations in water level alter the soil structure{. This }is reflected as {the }increased salinity and decreased water level, as evaluated during {the images taken on }winter/spring/summer periods{. }Moreover, the degree of salinisation of sabkhas well correlates with the location of each lake{. For instance, } southern lakes {are} almost completely covered by salt even during summer, while northern lakes demonstrate {higher fluctuations}. Similar to {the }existing studies \cite{BAYATI2021126032,SHENG2016129,SCHRODER20221710} {in which} the salinisation of lacustrine soil {was }evaluated using {the }RS data, this study showed the highest level of changes {in }July{. Moreover, }the most contrasting behaviour of brine accumulation {is found }in the lake of Sebkhet de Sidi el Hani (Sousse region){. This can be explained by the fact that this lake} has two {interconnected} sub-basins with different morphology, {which} might have effects on {the level of }salinisation of the lake. 
+
+{A }special advantage of this work is the use of the open-source Landsat OLI/TIRS data and a free GRASS GIS software {for  environmental monitoring of sabkhas in Tunisia}. {The advanced scripting cartographic approach of GRASS GIS} was introduced to evaluate the lacustrine properties of soil around the sabkhas in north Tunisia using RS data processing. It is well known that proprietary GIS and RS software are expensive, since their development is costly (e.g., ArcGIS or Erdas Imagine). Moreover, very-high-resolution satellite images are not always easily accessible since they are provided on a commercial basis (e.g., SPOT, IKONOS). This makes the present work repeatable, which can be continued in similar relevant studies in future projects. The presented open-source solutions on the optimal selection of data and tools can be supportive for the environmental monitoring  of Tunisia. {A }series of the satellite images were processed with various combinations of GRASS GIS modules and compared with the images covering identical areas in earlier periods{. }The performed experiments on RS data supported the monitoring of fluctuations in water level of salt lakes of Tunisia through the time series analysis of {the }satellite images. 
+
+%----------- section ----------->
+\section{Conclusions}
+
+\subsection{Summary}
+
+{The }GRASS GIS software has been successfully applied to identify different stages {in }landscape change in sabkhas of north Tunisia {with} a special focus on several lakes: Sebkhet de Sidi el Hani, Sebkha de Moknine, Sebkhet El Rharra and Sebkhet en Noual{. }This study also evaluated the effects of climate on seasonal changes in the lacustrine landscapes, as indicated by {the }development of land cover types over the period of {2017 to 2023}. Moreover, the experiments served as a means of evaluating {climate} effects as accelerators of salinisation{ in }sediments of lakes. The presented results confirm that GRASS GIS can be effectively used in the processing and classification of {the }RS imagery using programming {methods} that ensure the automation{, }precision and accuracy of data {analysis}. 
+
+\subsection{Recommendations}
+
+For future similar works on RS data analysis of salt lakes, {the} following recommendations and technical suggestions {are provided }for mapping and image analysis:
+
+\begin{enumerate}
+	\item Make the initial study similar to the image processing workflow in this report, but also use other GRASS GIS modules applied for processing the target dates. For example, a useful approach is segmentation by 'i.segment'.
+	\item Due to the dynamics of plant phenology in different months, the period of image capture should be identical to evaluate the changes for each image. For example, {correct} comparison can be performed using images taken for a specific month{, e.g.,} January, in a sequence of several years{. Alternatively, use} several identical months for two years, as presented in this study.
+	\item Cloudiness varies a lot in different images. It is necessary to use a cloud-free series of images as{ a reliable input} dataset. While, in this study, 10\% cloud coverage was applied, the modified parameters optimised with different cloud content can be tested and applied with decreased cloud coverage. The use of the 'i.landsat.acca' module of the {GRASS} GIS enables Automatic Cloud Cover Assessment (ACCA) for a quick evaluation of image quality and suitability.
+	\item Process other datasets in addition to the Landsat, e.g., Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) images. ASTER data can be {processed} using special modules of 'i.aster.toar', similar to the 'i.landsat.toar'. The main advantage of ASTER is a higher resolution {with }a pixel size of 15 m compared to the \mbox{30 m Landsat. }
+	\item For mapping, take satellite images from the USGS on diverse dates to evaluate spatio-temporal dynamics and perform mapping {based }on images captured on different seasonal periods to compare the difference in salinisation between the lakes.
+	\item The commercial GIS currently available on the market typically have license. Therefore, one can take open-source GIS software such as QGIS or GRASS GIS, which have effective tools and extended functionality which are used for for RS and cartographic~workload.
+	\item Evaluate the integral effects from various factors that {might cause land cover} changes, i.e., the heat from the increased temperature, decreased precipitation and high evaporation lead to desertification of landscapes. 
+	\item The access to groundwater and the geographic location of the landscapes affect the {response of} vegetation. For instance, closeness to the desert or coastal areas affect differently{ the patterns of plants in the} landscapes. 
+	\item For analysis of vegetation health and vigour, the computation of the NDVI or other vegetation indices is a useful means of environmental assessment. In GRASS GIS, vegetation indices can be automatically calculated {using} the embedded formulae adjusted to the bands of the {image}. For example, NIR and Red channels correspond to bands 5 and 4 for the Landsat 8-9 OLI/TIRS, and to bands 4 and 3 for older Landsat 7 ETM+ images.
+	\item Changes in land cover types within certain limits indicate {landscape} dynamics as a response to the environmental and climate effects and processes. Moreover, it may indicate the cumulative effects of several factors on soil-vegetation conditions, including both climate--environmental processes and anthropogenic activities.
+\end{enumerate}
+
+\subsection{Concluding Remarks}
+
+This paper reports the results obtained {of the} experimental investigations on satellite images Landsat 8-9 OLI/TIRS collected from the USGS {repository}. The tests on image processing were designed to evaluate{ changes in land cover types} in several saline lakes of north Tunisia in various seasons from {2017} to 2023{, as well as the }variations in water extent as indicators of salinisation. Specifically, we evaluated the proposed framework on RS data analysis using GRASS GIS software and {Landsat} series. We also proposed future directions in similar works to develop a robust scheme on RS data processing{ in} similar studies where a cartographic approach to image analysis is applied in environmental monitoring projects aimed at the evaluation of climate effects on landscape changes. In this work{, }we also discussed the ways in which the{ scripting} approach of cartographic data processing contrasts with traditional GIS methods of mapping that use Graphical User Interface (GUI), and complement it to RS data processing to evaluate the connections between the climate effects and salinisation of sabkhas in Tunisia. 
+
+{The} advantages of the GRASS GIS {were demonstrated }as a quantitative, robust and advanced cartographic tool for evaluating environmental properties based on image analysis. A workflow has been developed {for} a series of high-resolution Landsat 8-9 OLI/TIRS images with various combinations of GRASS GIS modules{. The data were }evaluated to analyse the properties of lacustrine landscapes of north Tunisia as a function of summer heat in the Sahara and increase in evaporation during the period of {five} years ({2017}--2023). The approach of GRASS GIS demonstrated {a }more advanced way of image processing compared to traditional GIS software due to scripts that enable the automation of workflow repeatability of the process. {The} use of several modules of GRASS GIS ensures multifold manipulations of images; {the} 'i.segment', 'i.maxlik' and other sub-tests{ were} applied for various steps of multispectral image analysis. 
+
+A scripting approach of the GRASS GIS {supported the mapping and analysis of the} rate of salinisation in sabkhas of Tunisia {in} various seasons from {2017} to 2023 and to obtain the information from the processed images representing the land cover types in the surroundings. In turn, {the }RS datasets enabled modelling the behaviour of landscapes in spring, summer and winter periods in north Tunisia, which was used to compare the climate effects from the rise in temperature on the evaporation of water in salt lakes, as directly related to the heat increase during {the }summer period in the Sahara. The results demonstrated variations in water level in several sabkhas and showed technical effectiveness of the GRASS GIS in cartographic processing of the RS data for environmental tasks. {The }correlations between the increase in heat in {different} years and high salinisation of sabkhas were detected. The {presented }image processing {has} investigated the salinisation behaviour in saline lakes with thermal variations using {the }analysis of Landsat bands in multispectral channels. 
+
+Due to the effectiveness and applicability of the performed experiments on image analysis by GRASS GIS---namely, the flexibility of the scripting approach and a wide variety of modules tuned for diverse tasks of image processing using its modular approach---we expect the proposed method to be able to deal with other satellite imagery{. This can be used to study} diverse regions of north Africa {and analyse the }development of lacustrine landscapes with effects from climate and fluctuations in temperature on Saharan ecosystems. Various sabkhas of north Tunisia with diverse surrounding soil types and salinisation {or} mineralisation degree were evaluated to generalise the proposed workflow of salt lake monitoring to a higher dimensional workload in the larger lakes and different{ }ecosystems with similar salt lakes. 
+
+As demonstrated in this study, the RS data from the USGS EarthExplorer repository can be used to analyse the variations in salt lakes. It enables the determination of information using data on spectral reflectance and brightness of pixels which strongly correlate with the distribution of various land cover types. In such a way, remote sensing data processing enables the detection of patches in complex diversified lacustrine landscapes of north Sahara characterised with heterogeneous environment in {a} contrasting climate of desert. This paper contributes to the environmental monitoring of the Sahara, analysis of salt lake variations and regional studies of Tunisia, north Africa.
+\vspace{6pt}
+%----------- section ----------->
+
+\funding{The publication was funded by the Editorial Office of \emph{Land}, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{Not applicable} 
+
+\acknowledgments{The author thanks the reviewers for the reading and review of this manuscript.}
+
+\conflictsofinterest{The author declares no conflicts of interest.} 
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:\\
+\noindent 
+\begin{tabular}{@{}ll}
+ACCA & Automatic Cloud Cover Assessment \\
+ASTER & Advanced Spaceborne Thermal Emission and Reflection Radiometer \\
+FAO & Food and Agriculture Organization \\
+GDAL & Geospatial Data Abstraction Library \\
+GMT & Generic Mapping Tools \\
+GIS & Geographic Information System \\
+GUI & Graphical User Interface \\
+GRASS & Geographic Resources Analysis Support System \\
+Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \\
+MODIS & Moderate Resolution Imaging Spectroradiometer \\ 
+NIR & Near-infrared \\
+RS & Remote Sensing \\
+SPOT & Satellite Pour l’Observation de la Terre \\
+SWIR & Short-wave infrared (SWIR)-1 \\
+USGS & United States Geological Survey \\
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+ \begin{thebibliography}{999}
+
+\bibitem[Boussetta et~al.(2022)Boussetta, Niculescu, Bengoufa, and
+  Zagrarni]{BOUSSETTA2022102564}
+Boussetta, A.; Niculescu, S.; Bengoufa, S.; Zagrarni, M.F.
+\newblock Spatio-temporal analysis of shoreline changes and erosion risk
+  assessment along Jerba island (Tunisia) based on remote-sensing data and
+  geospatial tools.
+\newblock {\em Reg. Stud. Mar. Sci.} {\bf 2022}, {\em
+  55},~102564.
+\newblock {\url{https://doi.org/10.1016/j.rsma.2022.102564}}.
+
+\bibitem[Jones and Millington(1986)]{JonesMillington}
+Jones, A.R.; Millington, A.
+\newblock Spring mound and aioun mapping from Landsat TM imagery in
+  south-central Tunisia.
+\newblock {\em Remote Sens. Resour. Dev. Environ. Manag.} {\bf 1986}, {\em 2},~607--613.
+
+\bibitem[Pontanier et~al.(1986)Pontanier, Le~Floc'h, and Floret]{Pontanier}
+Pontanier, R.; Le~Floc'h, E.; Floret, C.
+\newblock La désertisation en Tunisie présaharienne.
+\newblock {\em Rev. Des. Mondes Musulmans  Méditerranée} {\bf 1986},
+  {\em 41},~291--326.
+\newblock \highlighting{Included in a thematic issue : Désert et montagne au Maghreb.} %MDPI: Please check if this part is necessary, can it be deleted?
+  {\url{https://doi.org/10.3406/remmm.1986.2464}}.
+
+\bibitem[Lemenkova and Debeir(2023)]{info14040249}
+Lemenkova, P.; Debeir, O.
+\newblock Recognizing the Wadi Fluvial Structure and Stream Network in the Qena
+  Bend of the Nile River, Egypt, on Landsat 8-9 OLI Images.
+\newblock {\em Information} {\bf 2023}, {\em 14}, \hl{249.} %MDPI: Please add page number.
+ {\url{https://doi.org/10.3390/info14040249}}.
+
+\bibitem[{Yaiche Achour} and Saadi(2023)]{YAICHEACHOUR2023501}
+{Yaiche Achour}, H.; Saadi, S.A.
+\newblock Chapter 18 - African salt lakes: Distribution, microbial
+  biodiversity, and biotechnological potential. In {\em Lakes of Africa};
+  El-Sheekh, M.; Elsaied, H.E., Eds.; Elsevier:  \hl{Amsterdam, The Netherlands,} % MDPI: Newly added information, please confirm.
+ 2023; pp. 501--525.
+\newblock {\url{https://doi.org/10.1016/B978-0-323-95527-0.00009-9}}.
+
+\bibitem[Monget et~al.(1985)Monget, Cano, B\'{e}nard, and Bardinet]{Monget}
+Monget, J.M.; Cano, D.; B\'{e}nard, M.; Bardinet, C.
+\newblock T\'{e}l\'{e}d\'{e}tection par M\'{e}t\'{e}osat des paysages
+  d'Alg\'{e}rie et de Tunisie : Contours et classification des unit\'{e}s
+  physiques dans l'alb\'{e}do moyen de Mai 1979.
+\newblock {\em Méditerranée} {\bf 1985}, {\em 54},~95--105.
+\newblock \highlighting{Included in a thematic issue : Télédéctection III.}  %MDPI: Please check if this part is necessary, can it be deleted?
+  {\url{https://doi.org/10.3406/medit.1985.2305}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202227}
+Lemenkova, P.; Debeir, O.
+\newblock {Satellite Image Processing by Python and R Using Landsat 9 OLI/TIRS
+  and SRTM DEM Data on Côte d’Ivoire, West Africa}.
+\newblock {\em J. Imaging} {\bf 2022}, {\em 8},~317.
+\newblock {\url{https://doi.org/10.3390/jimaging8120317}}.
+
+\bibitem[Campos and Brito(2018)]{CAMPOS2018211}
+Campos, J.C.; Brito, J.C.
+\newblock Mapping underrepresented land cover heterogeneity in arid regions:
+  The Sahara-Sahel example.
+\newblock {\em ISPRS J. Photogramm. Remote Sens.} {\bf 2018},
+  {\em 146},~211--220.
+\newblock {\url{https://doi.org/10.1016/j.isprsjprs.2018.09.012}}.
+
+\bibitem[Savelonas et~al.(2022)Savelonas, Veinidis, and Bartsokas]{rs14236017}
+Savelonas, M.A.; Veinidis, C.N.; Bartsokas, T.K.
+\newblock Computer Vision and Pattern Recognition for the Analysis of 2D/3D
+  Remote Sensing Data in Geoscience: A Survey.
+\newblock {\em Remote Sens.} {\bf 2022}, {\em 14}.
+\newblock {\url{https://doi.org/10.3390/rs14236017}}.
+
+\bibitem[Boussema et~al.(2023)Boussema, Allouche, Ajmi, Chaabane, and
+  Gad]{BOUSSEMA2023185}
+Boussema, S.B.F.; Allouche, F.K.; Ajmi, R.; Chaabane, B.; Gad, A.A.
+\newblock Assessing and monitoring the effects of land cover changes in
+  biodiversity. Case study: Mediterranean coastal region, Sousse, Tunisia.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2023}, {\em 26},~185--196.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2023.01.002}}.
+
+\bibitem[Smida et~al.(2022)Smida, Dassi, Boukhachem, and
+  Masrouhi]{SMIDA2022104643}
+Smida, H.; Dassi, L.; Boukhachem, K.; Masrouhi, A.
+\newblock Satellite remote sensing and GIS-based multi-criteria analysis for
+  the assessment of groundwater potentiality in fractured limestone aquifer:
+  Case study of Maknassy Basin, central Tunisia.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2022}, {\em
+  195},~104643.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2022.104643}}.
+
+\bibitem[Lemenkova and Debeir(2023)]{jmse11040871}
+Lemenkova, P.; Debeir, O.
+\newblock Computing Vegetation Indices from the Satellite Images Using GRASS
+  GIS Scripts for Monitoring Mangrove Forests in the Coastal Landscapes of
+  Niger Delta, Nigeria.
+\newblock {\em J. Mar. Sci. Eng.} {\bf 2023}, {\em 11}.
+\newblock {\url{https://doi.org/10.3390/jmse11040871}}.
+
+\bibitem[Bryant(1999)]{Bryant}
+Bryant, R.G.
+\newblock Application of AVHRR to monitoring a climatically sensitive playa.
+  case study: Chott El Djerid, Southern Tunisia.
+\newblock {\em Earth Surf. Process. Landforms} {\bf 1999}, {\em
+  24},~283--302.
+\newblock
+  {\url{https://doi.org/10.1002/(SICI)1096-9837(199904)24:4<283::AID-ESP950>3.0.CO;2-9}}.
+
+\bibitem[Li et~al.(2022)Li, Song, Chen, Mu, Xu, and Zeng]{LI2022252}
+Li, A.; Song, K.; Chen, S.; Mu, Y.; Xu, Z.; Zeng, Q.
+\newblock Mapping African wetlands for 2020 using multiple spectral,
+  geo-ecological features and Google Earth Engine.
+\newblock {\em ISPRS J. Photogramm. Remote Sens.} {\bf 2022},
+  {\em 193},~252--268.
+\newblock {\url{https://doi.org/10.1016/j.isprsjprs.2022.09.009}}.
+
+\bibitem[Touhami et~al.(2022)Touhami, Moutahir, Assoul, Bergaoui, Aouinti,
+  Bellot, and Andreu]{TOUHAMI2022103804}
+Touhami, I.; Moutahir, H.; Assoul, D.; Bergaoui, K.; Aouinti, H.; Bellot, J.;
+  Andreu, J.M.
+\newblock Multi-year monitoring land surface phenology in relation to climatic
+  variables using MODIS-NDVI time-series in Mediterranean forest, Northeast
+  Tunisia.
+\newblock {\em Acta Oecologica} {\bf 2022}, {\em 114},~103804.
+\newblock {\url{https://doi.org/10.1016/j.actao.2021.103804}}.
+
+\bibitem[Rhif et~al.(2022)Rhif, Abbes, Martinez, {de Jong}, Sang, and
+  Farah]{RHIF2022101596}
+Rhif, M.; Abbes, A.B.; Martinez, B.; {de Jong}, R.; Sang, Y.; Farah, I.R.
+\newblock Detection of trend and seasonal changes in non-stationary remote
+  sensing data: Case study of Tunisia vegetation dynamics.
+\newblock {\em Ecol. Inform.} {\bf 2022}, {\em 69},~101596.
+\newblock {\url{https://doi.org/10.1016/j.ecoinf.2022.101596}}.
+
+\bibitem[Rebillard et~al.(1984)Rebillard, Pascaud, and
+  Sarrat]{REBILLARD1984133}
+Rebillard, P.; Pascaud, P.; Sarrat, D.
+\newblock Merging Landsat and spaceborne radar data over Tunisia.
+\newblock {\em Adv. Space Res.} {\bf 1984}, {\em 4},~133--138.
+\newblock {\url{https://doi.org/10.1016/0273-1177(84)90401-0}}.
+
+\bibitem[Chouari(2021)]{CHOUARI2021443}
+Chouari, W.
+\newblock Contributions of multispectral images to the study of land cover in
+  wet depressions of eastern Tunisia.
+\newblock {\em  Egypt J. Remote Sens. Space Sci.} {\bf
+  2021}, {\em 24},~443--451.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2020.11.003}}.
+
+\bibitem[Vela et~al.(2008)Vela, Pasqualini, Leoni, Djelouli, Langar, Pergent,
+  Pergent-Martini, Ferrat, Ridha, and Djabou]{VELA2008591}
+Vela, A.; Pasqualini, V.; Leoni, V.; Djelouli, A.; Langar, H.; Pergent, G.;
+  Pergent-Martini, C.; Ferrat, L.; Ridha, M.; Djabou, H.
+\newblock Use of SPOT 5 and IKONOS imagery for mapping biocenoses in a Tunisian
+  Coastal Lagoon (Mediterranean Sea).
+\newblock {\em Estuar. Coast. Shelf Sci.} {\bf 2008}, {\em
+  79},~591--598.
+\newblock {\url{https://doi.org/10.1016/j.ecss.2008.05.014}}.
+
+\bibitem[Liang and Wang(2019)]{LiangWang}
+Liang, S.; Wang, J.
+\newblock {\em Advanced Remote Sensing. Terrestrial Information Extraction and
+  Applications}, 2 ed.; Academic Press:  \hl{Cambridge, MA, USA,} %MDPI: We added the location of publisher. Please confirm.
+ 2019;
+\newblock 1010p.
+
+\bibitem[Leidig and Teeuw(2015)]{LEIDIG201549}
+Leidig, M.; Teeuw, R.
+\newblock Free software: A review, in the context of disaster management.
+\newblock {\em Int. J. Appl. Earth Obs. Geoinf.} {\bf 2015}, {\em 42},~49--56.
+\newblock {\url{https://doi.org/10.1016/j.jag.2015.05.012}}.
+
+\bibitem[Chen et~al.(2010)Chen, Shams, Carmona-Moreno, and Leone]{CHEN2010253}
+Chen, D.; Shams, S.; Carmona-Moreno, C.; Leone, A.
+\newblock Assessment of open source GIS software for water resources management
+  in developing countries.
+\newblock {\em J. -Hydro-Environ. Res.} {\bf 2010}, {\em
+  4},~253--264.
+\newblock {\url{https://doi.org/10.1016/j.jher.2010.04.017}}.
+
+\bibitem[Wang and Wu(2021)]{WangWu}
+Wang, J.; Wu, F.
+\newblock {\em {Advances in Cartography and Geographic Information
+  Engineering}}, 1 ed.; Springer: Singapore,  2021.
+\newblock 638p. {\url{https://doi.org/10.1007/978-981-16-0614-4}}.
+
+\bibitem[Li et~al.(2022)Li, Shi, Zhu, Wang, and Lin]{Lietal2022}
+Li, B.; Shi, X.; Zhu, A.; Wang, C.; Lin, H.
+\newblock {\em {New Thinking in GIScience}}, 1 ed.; Springer: Cham, Switzerland, 2022.
+
+\bibitem[Falaki et~al.(2020)Falaki, Ahmed, and Akpu]{FALAKI2020363}
+Falaki, M.A.; Ahmed, H.T.; Akpu, B.
+\newblock Predictive modeling of desertification in Jibia Local Government Area
+  of Katsina State, Nigeria.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2020}, {\em 23},~363--370.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2020.04.001}}.
+
+\bibitem[Al-Djazouli et~al.(2021)Al-Djazouli, Elmorabiti, Rahimi, Amellah, and
+  Fadil]{AlDjazouli}
+Al-Djazouli, M.O.; Elmorabiti, K.; Rahimi, A.; Amellah, O.; Fadil, O.A.M.
+\newblock {Delineating of groundwater potential zones based on remote sensing,
+  GIS and analytical hierarchical process: A case of Waddai, eastern Chad}.
+\newblock {\em GeoJournal} {\bf 2021}, {\em 86},~1881--1894.
+\newblock {\url{https://doi.org/10.1007/s10708-020-10160-0}}.
+
+\bibitem[Sesnie et~al.(2008)Sesnie, Gessler, Finegan, and
+  Thessler]{SESNIE20082145}
+Sesnie, S.E.; Gessler, P.E.; Finegan, B.; Thessler, S.
+\newblock Integrating Landsat TM and SRTM-DEM derived variables with decision
+  trees for habitat classification and change detection in complex neotropical
+  environments.
+\newblock {\em Remote Sens. Environ.} {\bf 2008}, {\em
+  112},~2145--2159.
+\newblock \hl{Earth Observations for Terrestrial Biodiversity and Ecosystems
+  Special Issue.} %MDPI: Please check if this part is necessary, can it be deleted?
+ {\url{https://doi.org/10.1016/j.rse.2007.08.025}}.
+
+\bibitem[Nkiaka et~al.(2018)Nkiaka, Nawaz, and Lovett]{Nkiaka}
+Nkiaka, E.; Nawaz, N.R.; Lovett, J.C.
+\newblock {Effect of single and multi-site calibration techniques on
+  hydrological model performance, parameter estimation and predictive
+  uncertainty: A case study in the Logone catchment, Lake Chad basin}.
+\newblock {\em Stoch. Environ. Res. Risk Assess.} {\bf
+  2018}, {\em 32},~1665--1682.
+\newblock {\url{https://doi.org/10.1007/s00477-017-1466-0}}.
+
+\bibitem[Kay et~al.(2019)Kay, Fuller, Neumann, Eichhorn, Höhn, Morin-Rivat,
+  Champion, Linseele, Huysecom, Ozainne, Lespez, Biagetti, Madella, Salzmann,
+  and Kaplan]{Kay}
+Kay, A.U.; Fuller, D.Q.; Neumann, K.; Eichhorn, B.; Höhn, A.; Morin-Rivat, J.;
+  Champion, L.; Linseele, V.; Huysecom, E.; Ozainne, S.;  et~al.
+\newblock {Diversification, Intensification and Specialization: Changing Land
+  Use in Western Africa from 1800 BC to AD 1500}.
+\newblock \mbox{{\em J. World Prehistory} }{\bf 2019}, {\em 32},~179--228.
+\newblock {\url{https://doi.org/10.1007/s10963-019-09131-2}}.
+
+\bibitem[Lemenkova(2023)]{Lemenkova202315}
+Lemenkova, P.
+\newblock {Mapping Wetlands of Kenya Using Geographic Resources Analysis
+  Support System (GRASS GIS) with Remote Sensing Data}.
+\newblock {\em Transylv. Rev. Syst. Ecol. Res.}
+  {\bf 2023}, {\em 25},~1--18.
+\newblock {\url{https://doi.org/10.2478/trser-2023-0008}}.
+
+\bibitem[Kadri et~al.(2023)Kadri, Jebari, Augusseau, Mahdhi, Lestrelin, and
+  Berndtsson]{rs15133257}
+Kadri, N.; Jebari, S.; Augusseau, X.; Mahdhi, N.; Lestrelin, G.; Berndtsson, R.
+\newblock Analysis of Four Decades of Land Use and Land Cover Change in
+  Semiarid Tunisia Using Google Earth Engine.
+\newblock {\em Remote Sens.} {\bf 2023}, {\em 15}.
+\newblock {\url{https://doi.org/10.3390/rs15133257}}.
+
+\bibitem[Saidi et~al.(2009)Saidi, Bouri, {Ben Dhia}, and
+  Anselme]{SAIDI20091683}
+Saidi, S.; Bouri, S.; {Ben Dhia}, H.; Anselme, B.
+\newblock A GIS-based susceptibility indexing method for irrigation and
+  drinking water management planning: Application to Chebba–Mellouleche
+  Aquifer, Tunisia.
+\newblock {\em Agric. Water Manag.} {\bf 2009}, {\em 96},~1683--1690.
+\newblock {\url{https://doi.org/10.1016/j.agwat.2009.07.005}}.
+
+\bibitem[Anane et~al.(2012)Anane, Bouziri, Limam, and Jellali]{ANANE201236}
+Anane, M.; Bouziri, L.; Limam, A.; Jellali, S.
+\newblock Ranking suitable sites for irrigation with reclaimed water in the
+  Nabeul-Hammamet region (Tunisia) using GIS and AHP-multicriteria decision
+  analysis.
+\newblock {\em Resour. Conserv. Recycl.} {\bf 2012}, {\em
+  65},~36--46.
+\newblock {\url{https://doi.org/10.1016/j.resconrec.2012.05.006}}.
+
+\bibitem[Lemenkova(2022)]{Lemenkova202217}
+Lemenkova, P.
+\newblock {Mapping Climate Parameters over the Territory of Botswana Using GMT
+  and Gridded Surface Data from TerraClimate}.
+\newblock {\em ISprs Int. J.  Geo-Inf.} {\bf 2022}, {\em
+  11},~473.
+\newblock {\url{https://doi.org/10.3390/ijgi11090473}}.
+
+\bibitem[{Ben Brahim} et~al.(2021){Ben Brahim}, Boughariou, and
+  Bouri]{BENBRAHIM2021104224}
+{Ben Brahim}, F.; Boughariou, E.; Bouri, S.
+\newblock Multicriteria-analysis of deep groundwater quality using WQI and
+  fuzzy logic tool in GIS: A case study of Kebilli region, SW Tunisia.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2021}, {\em
+  180},~104224.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2021.104224}}.
+
+\bibitem[Bahri et~al.(2022)Bahri, Raclot, Barbouchi, Lagacherie, and
+  Annabi]{BAHRI2022e00561}
+Bahri, H.; Raclot, D.; Barbouchi, M.; Lagacherie, P.; Annabi, M.
+\newblock Mapping soil organic carbon stocks in Tunisian topsoils.
+\newblock {\em Geoderma Reg.} {\bf 2022}, {\em 30},~e00561.
+\newblock {\url{https://doi.org/10.1016/j.geodrs.2022.e00561}}.
+
+\bibitem[Mohamed et~al.(2023)Mohamed, Moursy, Darrag, and
+  El-Mahdy]{MOHAMED2023e01766}
+Mohamed, M.A.E.H.; Moursy, F.I.; Darrag, M.H.; El-Mahdy, M.E.S.
+\newblock Assessment of long-term trends and mapping of drought events in
+  Tunisia.
+\newblock {\em Sci. Afr.} {\bf 2023}, {\em 21},~e01766.
+\newblock {\url{https://doi.org/10.1016/j.sciaf.2023.e01766}}.
+
+\bibitem[Besser et~al.(2021)Besser, Dhaouadi, Hadji, Hamed, and
+  Jemmali]{BESSER2021104134}
+Besser, H.; Dhaouadi, L.; Hadji, R.; Hamed, Y.; Jemmali, H.
+\newblock Ecologic and economic perspectives for sustainable irrigated
+  agriculture under arid climate conditions: An analysis based on environmental
+  indicators for southern Tunisia.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2021}, {\em
+  177},~104134.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2021.104134}}.
+
+\bibitem[Hamdi et~al.(2021)Hamdi, Goïta, Karaouli, and
+  Zagrarni]{HAMDI2021102974}
+Hamdi, M.; Goïta, K.; Karaouli, F.; Zagrarni, M.F.
+\newblock Hydrodynamic groundwater modeling and hydrochemical conceptualization
+  of the mining area of Moulares Redeyef (southwestern of Tunisia): New local
+  insights.
+\newblock {\em Phys. Chem. Earth Parts A/B/C} {\bf 2021},
+  {\em 121},~102974.
+\newblock {\url{https://doi.org/10.1016/j.pce.2020.102974}}.
+
+\bibitem[{Rafaâ Trigui} et~al.(2021){Rafaâ Trigui}, Trabelsi, Zouari, and
+  Agoun]{RAFAATRIGUI2021104121}
+{Rafaâ Trigui}, M.; Trabelsi, R.; Zouari, K.; Agoun, A.
+\newblock Implication of hydrogeological and hydrodynamic setting on water
+  quality of the Complex Terminal Aquifer in Kebili (southern Tunisia): The use
+  of geochemical indicators and modelling.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2021}, {\em
+  176},~104121.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2021.104121}}.
+
+\bibitem[Navarro-Torre et~al.(2023)Navarro-Torre, Garcia-Caparrós, Nogales,
+  Abreu, Santos, Cortinhas, and Caperta]{NAVARROTORRE2023105397}
+Navarro-Torre, S.; Garcia-Caparrós, P.; Nogales, A.; Abreu, M.M.; Santos, E.;
+  Cortinhas, A.L.; Caperta, A.D.
+\newblock Sustainable agricultural management of saline soils in arid and
+  semi-arid Mediterranean regions through halophytes, microbial and soil-based
+  technologies.
+\newblock {\em Environ. Exp. Bot.} {\bf 2023}, {\em
+  212},~105397.
+\newblock {\url{https://doi.org/10.1016/j.envexpbot.2023.105397}}.
+
+\bibitem[Shoshany et~al.(1995)Shoshany, Lavee, and Kutiel]{Shoshany}
+Shoshany, M.; Lavee, H.; Kutiel, P.
+\newblock Seasonal vegetation cover changes as indicators of soil types along a
+  climatological gradient: A mutual study of environmental patterns and
+  controls using remote sensing.
+\newblock {\em Int. J. Remote Sens.} {\bf 1995}, {\em
+  16},~2137--2151.
+\newblock {\url{https://doi.org/10.1080/01431169508954547}}.
+
+\bibitem[Jendoubi et~al.(2020)Jendoubi, Hossain, Giger, Tomićević-Dubljević,
+  Ouessar, Liniger, and Speranza]{JENDOUBI2020100507}
+Jendoubi, D.; Hossain, M.S.; Giger, M.; Tomićević-Dubljević, J.; Ouessar,
+  M.; Liniger, H.; Speranza, C.I.
+\newblock Local livelihoods and land users’ perceptions of land degradation
+  in northwest Tunisia.
+\newblock {\em Environ. Dev.} {\bf 2020}, {\em 33},~100507.
+\newblock {\url{https://doi.org/10.1016/j.envdev.2020.100507}}.
+
+\bibitem[{El Ghoul} et~al.(2023){El Ghoul}, Sellami, Khlifi, and
+  Vanclooster]{ELGHOUL2023106733}
+{El Ghoul}, I.; Sellami, H.; Khlifi, S.; Vanclooster, M.
+\newblock Impact of land use land cover changes on flow uncertainty in Siliana
+  watershed of northwestern Tunisia.
+\newblock {\em Catena} {\bf 2023}, {\em 220},~106733.
+\newblock {\url{https://doi.org/10.1016/j.catena.2022.106733}}.
+
+\bibitem[Allouche et~al.(2018)Allouche, Delaître, Bousaida, and
+  Chaari]{Allouche}
+Allouche, F.K.; Delaître, E.; Bousaida, D.O.; Chaari, H.
+\newblock {Mapping South Tunisian Landscapes Using Remote Sensing and GIS
+  Applications}.
+\newblock {\em Int. J. Environ. Geoinform.} {\bf
+  2018}, {\em 5},~17--28.
+\newblock {\url{https://doi.org/10.30897/ijegeo}}.
+
+\bibitem[Ruiz et~al.(2022)Ruiz, Dematte, Safanelli, Rizzo, Silvero, Rosin, and
+  Campos]{Ruiz}
+Ruiz, L.F.C.; Dematte, J.A.M.; Safanelli, J.L.; Rizzo, R.; Silvero, N.E.Q.;
+  Rosin, N.A.; Campos, L.R.
+\newblock Obtaining high-resolution synthetic soil imagery for topsoil mapping.
+\newblock {\em Remote Sens. Lett.} {\bf 2022}, {\em 13},~107--114.
+\newblock {\url{https://doi.org/10.1080/2150704X.2021.1999524}}.
+
+\bibitem[Harris(1988)]{Ray}
+Harris, R.
+\newblock Satellite remote sensing of the contemporary Arab city.
+\newblock {\em Landsc. Res.} {\bf 1988}, {\em 13},~12--18.
+\newblock {\url{https://doi.org/10.1080/01426398808706257}}.
+
+\bibitem[Biarnès et~al.(2021)Biarnès, Bailly, Mekki, and
+  Ferchichi]{BIARNES2021103281}
+Biarnès, A.; Bailly, J.S.; Mekki, I.; Ferchichi, I.
+\newblock Land use mosaics in Mediterranean rainfed agricultural areas as an
+  indicator of collective crop successions: Insights from a land use time
+  series study conducted in Cap Bon, Tunisia.
+\newblock {\em Agric. Syst.} {\bf 2021}, {\em 194},~103281.
+\newblock {\url{https://doi.org/10.1016/j.agsy.2021.103281}}.
+
+\bibitem[Townshend et~al.(1989)Townshend, Quarmby, Millington, Drake, Reading,
+  and White]{TOWNSHEND1989177}
+Townshend, J.; Quarmby, N.; Millington, A.; Drake, N.; Reading, A.; White, K.
+\newblock Monitoring playa sediment transport systems using thematic mapper
+  data.
+\newblock {\em Adv. Space Res.} {\bf 1989}, {\em 9},~177--183.
+\newblock {\url{https://doi.org/10.1016/0273-1177(89)90483-3}}.
+
+\bibitem[Afrasinei et~al.(2018)Afrasinei, Melis, Arras, Pistis, Buttau, and
+  Ghiglieri]{Afrasinei}
+Afrasinei, G.M.; Melis, M.T.; Arras, C.; Pistis, M.; Buttau, C.; Ghiglieri, G.
+\newblock Spatiotemporal and spectral analysis of sand encroachment dynamics in
+  southern Tunisia.
+\newblock {\em Eur. J. Remote Sens.} {\bf 2018}, {\em
+  51},~352--374.
+\newblock {\url{https://doi.org/10.1080/22797254.2018.1439343}}.
+
+\bibitem[Desprats et~al.(2013)Desprats, Raclot, Rousseau, Cerdan, Garcin,
+  Le~Bissonnais, Ben~Slimane, Fouche, and Monfort-Climent]{Desprats}
+Desprats, J.; Raclot, D.; Rousseau, M.; Cerdan, O.; Garcin, M.; Le~Bissonnais,
+  Y.; Ben~Slimane, A.; Fouche, J.; Monfort-Climent, D.
+\newblock Mapping Linear Erosion Features Using High And Very High Resolution
+  Satellite Imagery.
+\newblock {\em Land Degrad. Dev.} {\bf 2013}, {\em 24},~22--32.
+\newblock {\url{https://doi.org/10.1002/ldr.1094}}.
+
+\bibitem[Amrouni et~al.(2019)Amrouni, Hzami, and Heggy]{AMROUNI201973}
+Amrouni, O.; Hzami, A.; Heggy, E.
+\newblock Photogrammetric assessment of shoreline retreat in North Africa:
+  Anthropogenic and natural drivers.
+\newblock {\em ISPRS J. Photogramm. Remote Sens.} {\bf 2019},
+  {\em 157},~73--92.
+\newblock {\url{https://doi.org/10.1016/j.isprsjprs.2019.09.001}}.
+
+\bibitem[Jaquet et~al.(1999)Jaquet, Tassan, Barale, and Sarbaji]{Jaquet}
+Jaquet, J.M.; Tassan, S.; Barale, V.; Sarbaji, M.
+\newblock Bathymetric and bottom effects on CZCS chlorophyll-like pigment
+  estimation: Data from the Kerkennah Shelf (Tunisia).
+\newblock {\em Int. J. Remote Sens.} {\bf 1999}, {\em
+  20},~1343--1362.
+\newblock {\url{https://doi.org/10.1080/014311699212777}}.
+
+\bibitem[Rampheri et~al.(2023)Rampheri, Dube, Dondofema, and
+  Dalu]{RAMPHERI2023103359}
+Rampheri, M.B.; Dube, T.; Dondofema, F.; Dalu, T.
+\newblock Progress in the remote sensing of groundwater-dependent ecosystems in
+  semi-arid environments.
+\newblock {\em Phys. Chem. Earth Parts A/B/C} {\bf 2023},
+  {\em 130},~103359.
+\newblock {\url{https://doi.org/10.1016/j.pce.2023.103359}}.
+
+\bibitem[Toujani et~al.(2020)Toujani, Achour, Turki, and Faïz]{Toujani}
+Toujani, A.; Achour, H.; Turki, S.Y.; Faïz, S.
+\newblock Estimating Forest Losses Using Spatio-temporal Pattern-based Sequence
+  Classification Approach.
+\newblock {\em Appl. Artif. Intell.} {\bf 2020}, {\em 34},~916--940.
+\newblock {\url{https://doi.org/10.1080/08839514.2020.1790247}}.
+
+\bibitem[Quarmby and Townshend(1986)]{Quarmby}
+Quarmby, N.A.; Townshend, J.R.G.
+\newblock Preliminary analysis of SPOT HRV multispectral products of an arid
+  environment.
+\newblock {\em Int. J. Remote  Sens.} {\bf 1986}, {\em
+  7},~1869--1877.
+\newblock {\url{https://doi.org/10.1080/01431168608948980}}.
+
+\bibitem[Gelebo et~al.(2022)Gelebo, Kasiviswanathan, Khare, and
+  Pingale]{Gelebo}
+Gelebo, A.H.; Kasiviswanathan, K.; Khare, D.; Pingale, S.M.
+\newblock Assessment of spatial and temporal distribution of surface water
+  balance in a data-scarce African transboundary river basin.
+\newblock {\em Hydrol. Sci. J.} {\bf 2022}, {\em 67},~1561--1581.
+\newblock {\url{https://doi.org/10.1080/02626667.2022.2094268}}.
+
+\bibitem[Benedetti et~al.(1994)Benedetti, Rossini, and Taddei]{Benedetti}
+Benedetti, R.; Rossini, P.; Taddei, R.
+\newblock Vegetation classification in the Middle Mediterranean area by
+  satellite data.
+\newblock {\em Int. J. Remote Sens.} {\bf 1994}, {\em
+  15},~583--596.
+\newblock {\url{https://doi.org/10.1080/01431169408954098}}.
+
+\bibitem[Godinho et~al.(2018)Godinho, Surovy, Sousa, and Gil]{Godinho}
+Godinho, S.; Surovy, P.; Sousa, A.; Gil, A.
+\newblock Advances in remote-sensing applications in silvo-pastoral systems.
+\newblock {\em Int. J. Remote Sens.} {\bf 2018}, {\em
+  39},~4565--4571.
+\newblock {\url{https://doi.org/10.1080/01431161.2018.1476012}}.
+
+\bibitem[Souissi et~al.(2018)Souissi, Msaddek, Zouhri, Chenini, May, and
+  Dlala]{Souissi}
+Souissi, D.; Msaddek, M.H.; Zouhri, L.; Chenini, I.; May, M.E.; Dlala, M.
+\newblock Mapping groundwater recharge potential zones in arid region using GIS
+  and Landsat approaches, southeast Tunisia.
+\newblock {\em Hydrol. Sci. J.} {\bf 2018}, {\em 63},~251--268.
+\newblock {\url{https://doi.org/10.1080/02626667.2017.1414383}}.
+
+\bibitem[Belhadj-Khedher et~al.(2018)Belhadj-Khedher, Koutsias, Karamitsou,
+  EI-Melki, Ouelhazi, Hamdi, Nouri, and Mouillot]{f9020059}
+Belhadj-Khedher, C.; Koutsias, N.; Karamitsou, A.; EI-Melki, T.; Ouelhazi, B.;
+  Hamdi, A.; Nouri, H.; Mouillot, F.
+\newblock A Revised Historical Fire Regime Analysis in Tunisia (1985–2010)
+  from a Critical Analysis of the National Fire Database and Remote Sensing.
+\newblock {\em Forests} {\bf 2018}, {\em 9}, \hl{59.}
+\newblock {\url{https://doi.org/10.3390/f9020059}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202229}
+Lemenkova, P.; Debeir, O.
+\newblock {R Libraries for Remote Sensing Data Classification by k-means
+  Clustering and NDVI Computation in Congo River Basin, DRC}.
+\newblock {\em Appl. Sci.} {\bf 2022}, {\em 12},~12554.
+\newblock {\url{https://doi.org/10.3390/app122412554}}.
+
+\bibitem[Fathalli et~al.(2020)Fathalli, Castel, and Pohl]{Fathalli}
+Fathalli, B.; Castel, T.; Pohl, B.
+\newblock {Simulated effects of land immersion on regional arid climate: A case
+  study of the pre-Saharan playa of Chott el-Jerid (south of Tunisia)}.
+\newblock {\em Theor. Appl. Climatol.} {\bf 2020}, {\em
+  140},~231--250.
+\newblock {\url{https://doi.org/10.1007/s00704-019-03083-5}}.
+
+\bibitem[Abbas et~al.(2018)Abbas, Deroin, and Bouaziz]{Abbas}
+Abbas, K.; Deroin, J.P.; Bouaziz, S.
+\newblock {Monitoring of playa evaporites as seen with optical remote sensing
+  sensors: Case of Chott El Jerid, Tunisia, from 2003 to present}.
+\newblock {\em Arab. J. Geosci.} {\bf 2018}, {\em 11},~92.
+\newblock {\url{https://doi.org/10.1007/s12517-018-3410-0}}.
+
+\bibitem[Henchiri et~al.(2020)Henchiri, Zhang, Essifi, Ouessar, Bai, and
+  Jiahua]{Henchiri}
+Henchiri, M.; Zhang, S.; Essifi, B.; Ouessar, M.; Bai, Y.; Jiahua, Z.
+\newblock Land cover change of arid environment in Tunisia based on analysis of
+  Landsat images.
+\newblock {\em Afr. J. Ecol.} {\bf 2020}, {\em 58},~746--756.
+\newblock {\url{https://doi.org/10.1111/aje.12761}}.
+
+\bibitem[Berthon and Aubry(1970)]{berthon1970saumures}
+Berthon, R.; Aubry, A.
+\newblock Les saumures naturelles du sud Tunisien.
+\newblock {\em Rev. Chim. Miner.} {\bf 1970}, {\em 7},~231.
+
+\bibitem[M’nif(2001)]{m2001valorisation}
+M’nif, A.
+\newblock Valorisation des saumures du sud tunisien.
+\newblock {\em Habilit. Fac. Sc. Tunis} {\bf 2001}.
+
+\bibitem[Gautier(1916)]{Gautier}
+Gautier, E.F.
+\newblock Le Chott Tigri.
+\newblock {\em Ann. Géogr.} {\bf 1916}, {\em 25},~181--189.
+\newblock {\url{https://doi.org/10.3406/geo.1916.8807}}.
+
+\bibitem[Ali and {Abd Ellah}(2023)]{ALI20231}
+Ali, M.M.; {Abd Ellah}, R.G.
+\newblock Chapter 1 - History and formation of African Lakes. In {\em Lakes of
+  Africa}; El-Sheekh, M.; Elsaied, H.E., Eds.; Elsevier:  \hl{Amsterdam, The Netherlands,} %MDPI: We added the location of publisher. Please confirm.
+ 2023; pp. 1--31.
+\newblock {\url{https://doi.org/10.1016/B978-0-323-95527-0.00015-4}}.
+
+\bibitem[Mwirichia and Orwa(2023)]{MWIRICHIA2023269}
+Mwirichia, R.; Orwa, P.
+\newblock Chapter 9 - Diversity of extremophiles in African brine lakes. In
+  {\em Lakes of Africa}; El-Sheekh, M.; Elsaied, H.E., Eds.; Elsevier:  \hl{Amsterdam, The Netherlands,} %MDPI: We added the location of publisher. Please confirm.
+  2023;
+  pp. 269--287.
+\newblock {\url{https://doi.org/10.1016/B978-0-323-95527-0.00004-X}}.
+
+\bibitem[Blackwelder(1931)]{Blackwelder140}
+Blackwelder, E.
+\newblock The lowering of playas by deflation.
+\newblock {\em Am. J. Sci.} {\bf 1931}, {\em s5-21},~140--144.
+\newblock {\url{https://doi.org/10.2475/ajs.s5-21.122.140}}.
+
+\bibitem[Goudie and Wells(1995)]{GOUDIE19951}
+Goudie, A.; Wells, G.
+\newblock The nature, distribution and formation of pans in arid zones.
+\newblock {\em Earth-Sci. Rev.} {\bf 1995}, {\em 38},~1--69.
+\newblock {\url{https://doi.org/10.1016/0012-8252(94)00066-6}}.
+
+\bibitem[Abbes and Tlig(1991)]{Abbes}
+Abbes, A.; Tlig, S.
+\newblock Tectonique pr\'{e}coce et s\'{e}dimentation de la s\'{e}rie
+  cr\'{e}tac\'{e}e dans le Bassin des Chotts (Tunisie du Sud).
+\newblock {\em Geol. Mediterr.} {\bf 1991}, {\em
+  18},~149--161.
+\newblock {\url{https://doi.org/10.3406/geolm.1991.1459}}.
+
+\bibitem[Louhaichi and Tlig(1993)]{Louhaichi}
+Louhaichi, M.A.; Tlig, S.
+\newblock Tectonique syns\'{e}dimentaire des séries cr\'{e}tac\'{e}es
+  post-barremiennes au Nord-Est de la Chaine des Chotts (Tunisie
+  m\'{e}ridionale).
+\newblock {\em Geol. Mediterr.} {\bf 1993}, {\em 20},~53--74.
+\newblock {\url{https://doi.org/10.3406/geolm.1993.1485}}.
+
+\bibitem[Ballais(1972)]{Ballais}
+Ballais, J.L.
+\newblock La Dépression de la Sebkhet en Noual (Tunisie). Etude
+  Géomorphologique.
+\newblock Ph.D. Thesis, Université de Paris 1, Paris, France,  1972.
+
+\bibitem[Barbieri et~al.(2006)Barbieri, Stivaletta, Marinangeli, and
+  Ori]{BARBIERI2006726}
+Barbieri, R.; Stivaletta, N.; Marinangeli, L.; Ori, G.G.
+\newblock Microbial signatures in sabkha evaporite deposits of Chott el Gharsa
+  (Tunisia) and their astrobiological implications.
+\newblock {\em Planet. Space Sci.} {\bf 2006}, {\em 54},~726--736.
+\newblock {\url{https://doi.org/10.1016/j.pss.2006.04.003}}.
+
+\bibitem[Swezey(1996)]{SWEZEY1996335}
+Swezey, C.
+\newblock Structural controls on Quaternary depocentres within the Chotts
+  Trough region of southern Tunisia.
+\newblock {\em J. Afr. Earth Sci.} {\bf 1996}, {\em
+  22},~335--347.
+\newblock {\url{https://doi.org/10.1016/0899-5362(96)00012-7}}.
+
+\bibitem[Coque(1955)]{Coque}
+Coque, R.
+\newblock Notes morphologiques sur les grands Chotts tunisiens.
+\newblock {\em Bull.  L'association de Geogr. Fr.} {\bf 1955},
+  {\em 32},~174--185.
+\newblock {\url{https://doi.org/10.3406/bagf.1955.7492}}.
+
+\bibitem[Hammi et~al.(2003)Hammi, Musso, M'nif, and Rokbani]{HAMMI2003215}
+Hammi, H.; Musso, J.; M'nif, A.; Rokbani, R.
+\newblock Tunisian salt lakes evaporation studied by the DPAO method based on
+  solubility phase diagrams.
+\newblock {\em Desalination} {\bf 2003}, {\em 158},~215--220.
+\newblock \hl{Desalination and the Environment: Fresh Water for All.} %MDPI: Please check if this part is necessary, can it be deleted?
+  {\url{https://doi.org/10.1016/S0011-9164(03)00454-5}}.
+
+\bibitem[Rodríguez-Caballero et~al.(2017)Rodríguez-Caballero, Cantón,
+  Moussa, and Solé-Benet]{RODRIGUEZCABALLERO2017146}
+Rodríguez-Caballero, E.; Cantón, Y.; Moussa, M.; Solé-Benet, A.
+\newblock Irrigated land expansion since 1985 in Southern Tunisia.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2017}, {\em
+  129},~146--152.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2016.12.019}}.
+
+\bibitem[Stevenson and Battarbee(1991)]{STEVENSON1991275}
+Stevenson, A.C.; Battarbee, R.W.
+\newblock Palaeoecological and documentary records of recent environmental
+  change in Garaet El Ichkeul: A seasonally Saline Lake in NW Tunisia.
+\newblock {\em Biol. Conserv.} {\bf 1991}, {\em 58},~275--295.
+\newblock {\url{https://doi.org/10.1016/0006-3207(91)90096-R}}.
+
+\bibitem[Bryant et~al.(1994)Bryant, Sellwood, Millington, and
+  Drake]{BRYANT1994269}
+Bryant, R.G.; Sellwood, B.W.; Millington, A.C.; Drake, N.A.
+\newblock Marine-like potash evaporite formation on a continental playa: Case
+  study from Chott el Djerid, southern Tunisia.
+\newblock {\em Sediment. Geol.} {\bf 1994}, {\em 90},~269--291.
+\newblock {\url{https://doi.org/10.1016/0037-0738(94)90043-4}}.
+
+\bibitem[Sahbani et~al.(2022)Sahbani, Béjaoui, Benabdallah, Toujani, Fathalli,
+  Zaaboub, Aouissi, Kassouk, Hamdi, Mbarek, Missaoui, Basti, Blake, and
+  Norouzi]{SAHBANI2022102288}
+Sahbani, S.; Béjaoui, B.; Benabdallah, S.; Toujani, R.; Fathalli, A.; Zaaboub,
+  N.; Aouissi, J.; Kassouk, Z.; Hamdi, N.; Mbarek, N.B.;  et~al.
+\newblock Systematic review of a RAMSAR wetland and UNESCO biosphere reserve in
+  a climate change hotspot (Ichkeul Lake, Tunisia).
+\newblock {\em J. Sea Res.} {\bf 2022}, {\em 190},~102288.
+\newblock {\url{https://doi.org/10.1016/j.seares.2022.102288}}.
+
+\bibitem[Nigam and Thomas(2020)]{NIGAM2020201}
+Nigam, S.; Thomas, N.P.
+\newblock The Sahara Desert Hydroclimate and Expanse: Natural Variability and
+  Climate Change. In {\em Encyclopedia of the World's Biomes}; Goldstein, M.I.;
+  DellaSala, D.A., Eds.; Elsevier: Oxford, UK, 2020; pp. 201--212.
+\newblock {\url{https://doi.org/10.1016/B978-0-12-409548-9.12034-2}}.
+
+\bibitem[Neji et~al.(2018)Neji, Serbaji, Hardy, and Chaieb]{Neji}
+Neji, M.; Serbaji, M.M.; Hardy, O.; Chaieb, M.
+\newblock Floristic diversity and vegetation patterns along disturbance
+  gradient in arid coasts in southern Mediterranean: Case of the Gulf of
+  Gabès, southern Tunisia.
+\newblock {\em Arid. Land Res. Manag.} {\bf 2018}, {\em
+  32},~291--315.
+\newblock {\url{https://doi.org/10.1080/15324982.2018.1431332}}.
+
+\bibitem[Baduel and Baduel(1984)]{Baduel}
+Baduel, P.R.; Baduel, A.F.
+\newblock Une oasis continentale du Sud-Tunisien.
+\newblock {\em Rev. Des Mondes Musulmans Mediterr.} {\bf 1984},
+  {\em 38},~153--170.
+\newblock {\url{https://doi.org/10.3406/remmm.1984.2051}}.
+
+\bibitem[Raddadi and Podwojewski(2022)]{RADDADI2022104806}
+Raddadi, A.; Podwojewski, P.
+\newblock Spring mounds of the Nefzaoua oases in Tunisia: Irreversible
+  degradation of exceptional geomorphic structures.
+\newblock {\em J. Arid. Environ.} {\bf 2022}, {\em 205},~104806.
+\newblock {\url{https://doi.org/10.1016/j.jaridenv.2022.104806}}.
+
+\bibitem[Kamel(2013)]{Kamel}
+Kamel, S.
+\newblock {Salinisation origin and hydrogeochemical behaviour of the Djerid
+  oasis water table aquifer (southern Tunisia)}.
+\newblock {\em Arab. J. Geosci.} {\bf 2013}, {\em 6},~2103--2117.
+\newblock {\url{https://doi.org/10.1007/s12517-011-0502-5}}.
+
+\bibitem[Neifar et~al.(2019)Neifar, Chouchane, Najjari, {El Hidri}, Mahjoubi,
+  Ghedira, Naili, Soufi, Raddadi, Sghaier, Ouzari, Masmoudi, and
+  Cherif]{NEIFAR20191802}
+Neifar, M.; Chouchane, H.; Najjari, A.; {El Hidri}, D.; Mahjoubi, M.; Ghedira,
+  K.; Naili, F.; Soufi, L.; Raddadi, N.; Sghaier, H.;  et~al.
+\newblock Genome analysis provides insights into crude oil degradation and
+  biosurfactant production by extremely halotolerant Halomonas desertis G11
+  isolated from Chott El-Djerid salt-lake in Tunisian desert.
+\newblock {\em Genomics} {\bf 2019}, {\em 111},~1802--1814.
+\newblock {\url{https://doi.org/10.1016/j.ygeno.2018.12.003}}.
+
+\bibitem[Hanafi and Jauffret(2008)]{HANAFI2008557}
+Hanafi, A.; Jauffret, S.
+\newblock Are long-term vegetation dynamics useful in monitoring and assessing
+  desertification processes in the arid steppe, southern Tunisia.
+\newblock {\em J. Arid. Environ.} {\bf 2008}, {\em 72},~557--572.
+\newblock {\url{https://doi.org/10.1016/j.jaridenv.2007.07.003}}.
+
+\bibitem[Pausata et~al.(2020)Pausata, Gaetani, Messori, Berg, {Maia de Souza},
+  Sage, and deMenocal]{PAUSATA2020235}
+Pausata, F.S.; Gaetani, M.; Messori, G.; Berg, A.; {Maia de Souza}, D.; Sage,
+  R.F.; deMenocal, P.B.
+\newblock The Greening of the Sahara: Past Changes and Future Implications.
+\newblock {\em One Earth} {\bf 2020}, {\em 2},~235--250.
+\newblock {\url{https://doi.org/10.1016/j.oneear.2020.03.002}}.
+
+\bibitem[Lemenkova(2023)]{Lemenkova202313}
+Lemenkova, P.
+\newblock {A GRASS GIS Scripting Framework for Monitoring Changes in the
+  Ephemeral Salt Lakes of Chotts Melrhir and Merouane, Algeria}.
+\newblock {\em Appl. Syst. Innov.} {\bf 2023}, {\em 6},~61.
+\newblock {\url{https://doi.org/10.3390/asi6040061}}.
+
+\bibitem[Oswald and Harris(2023)]{OSWALD2023369}
+Oswald, J.; Harris, S.
+\newblock Chapter 19 - Desertification. In {\em Biological and Environmental
+  Hazards, Risks, and Disasters}, 2nd Ed.; Hazards
+  and Disasters Series; Elsevier: Boston, MA, USA, 2023; pp. 369--393.
+\newblock {\url{https://doi.org/10.1016/B978-0-12-820509-9.00023-X}}.
+
+\bibitem[D’Odorico et~al.(2013)D’Odorico, Bhattachan, Davis, Ravi, and
+  Runyan]{DODORICO2013326}
+D’Odorico, P.; Bhattachan, A.; Davis, K.F.; Ravi, S.; Runyan, C.W.
+\newblock Global desertification: Drivers and feedbacks.
+\newblock {\em Adv. Water Resour.} {\bf 2013}, {\em 51},~326--344.
+\newblock  \hl{35th Year Anniversary Issue. } %MDPI: Please check if this part is necessary, can it be deleted?
+  {\url{https://doi.org/10.1016/j.advwatres.2012.01.013}}.
+
+\bibitem[Wessel et~al.(2019)Wessel, Luis, Uieda, Scharroo, Wobbe, Smith, and
+  Tian]{Wessel}
+Wessel, P.; Luis, J.F.; Uieda, L.; Scharroo, R.; Wobbe, F.; Smith, W.H.F.;
+  Tian, D.
+\newblock The Generic Mapping Tools Version 6.
+\newblock {\em Geochem. Geophys. Geosystems} {\bf 2019}, {\em
+  20},~5556--5564.
+\newblock {\url{https://doi.org/10.1029/2019GC008515}}.
+
+\bibitem[Lemenkova(2022{\natexlab{a}})]{Lemenkova202212}
+Lemenkova, P.
+\newblock {Handling Dataset with Geophysical and Geological Variables on the
+  Bolivian Andes by the GMT Scripts}.
+\newblock {\em Data} {\bf 2022}, {\em 7},~74.
+\newblock {\url{https://doi.org/10.3390/data7060074}}.
+
+\bibitem[Lemenkova(2022{\natexlab{b}})]{Lemenkova202206}
+Lemenkova, P.
+\newblock {Tanzania Craton, Serengeti Plain and Eastern Rift Valley: Mapping of
+  geospatial data by scripting techniques}.
+\newblock {\em Est. J. Earth Sci.} {\bf 2022}, {\em
+  71},~61--79.
+\newblock {\url{https://doi.org/10.3176/earth.2022.05}}.
+
+\bibitem[Lemenkova(2022{\natexlab{c}})]{Lemenkova202203}
+Lemenkova, P.
+\newblock {Console-Based Mapping of Mongolia Using GMT Cartographic Scripting
+  Toolset for Processing TerraClimate Data}.
+\newblock {\em Geosciences} {\bf 2022}, {\em 12},~1--36.
+\newblock {\url{https://doi.org/10.3390/geosciences12030140}}.
+
+\bibitem[Louhaichi et~al.(2021)Louhaichi, Gamoun, Hassan, and
+  Abdallah]{plants10102031}
+Louhaichi, M.; Gamoun, M.; Hassan, S.; Abdallah, M.A.B.
+\newblock Characterizing Biomass Yield and Nutritional Value of Selected
+  Indigenous Range Species from Arid Tunisia.
+\newblock {\em Plants} {\bf 2021}, {\em 10}, \hl{2031.}
+\newblock {\url{https://doi.org/10.3390/plants10102031}}.
+
+\bibitem[{Food and Agriculture Organization (FAO)}(2023)]{FAO}
+{Food and Agriculture Organization (FAO)}.
+  Systèmes d'Utilisation des Terres en Tunisie.
+  Online,  2023.
+  \hl{Land Use Systems in Tunisia. Monitoring Pilot Programme in Zaghouan
+  and Medenine.} %MDPI: Please provide more information about the type of the article, such as book (please provide the name of the publisher and location of it), online resource (please provide the URL of the website and the date it was accessed (day, month, year)), or journal article (please provide the name of the journal, the year and volume it published, and the page number).
+
+
+\bibitem[Touhami et~al.(2023)Touhami, Rzigui, Zribi, Ennajah, Dhahri, Aouinti,
+  Elaieb, Fkiri, Ghazghazi, Khorchani, Candelier, Khaldi, and Khouja]{Touhami}
+Touhami, I.; Rzigui, T.; Zribi, L.; Ennajah, A.; Dhahri, S.; Aouinti, H.;
+  Elaieb, M.T.; Fkiri, S.; Ghazghazi, H.; Khorchani, A.;  et~al.
+\newblock Climate change-induced ecosystem disturbance: A review on
+  sclerophyllous and semi-deciduous forests in Tunisia.
+\newblock {\em Plant Biol.} {\bf 2023}, {\em 25},~481--497.
+\newblock {\url{https://doi.org/https://doi.org/10.1111/plb.13524}}.
+
+\bibitem[Khelifa et~al.(2017)Khelifa, Hermassi, Strohmeier, Zucca, Ziadat,
+  Boufaroua, and Habaieb]{Khelifa}
+Khelifa, W.B.; Hermassi, T.; Strohmeier, S.; Zucca, C.; Ziadat, F.; Boufaroua,
+  M.; Habaieb, H.
+\newblock Parameterization of the Effect of Bench Terraces on Runoff and
+  Sediment Yield by Swat Modeling in a Small Semi-arid Watershed in Northern
+  Tunisia.
+\newblock {\em Land Degrad. Dev.} {\bf 2017}, {\em
+  28},~1568--1578.
+\newblock {\url{https://doi.org/https://doi.org/10.1002/ldr.2685}}.
+
+\bibitem[Hammami and Ferchichi()]{Hammami}
+Hammami, O.; Ferchichi, A.
+\newblock Vulnerability of pastoral ecosystems in northwestern Tunisia to
+  climate change.
+\newblock {\em Land Degrad. Dev.}, {\em 34}, \hl{4680--4689.}
+\newblock {\url{https://doi.org/https://doi.org/10.1002/ldr.4801}}.
+
+\bibitem[Bounouh et~al.(2021)Bounouh, Essid, Tarquis, and Farah]{Bounouh}
+Bounouh, O.; Essid, H.; Tarquis, A.M.; Farah, I.R.
+\newblock Phenology as accuracy metrics for vegetation index forecasting over
+  Tunisian forest and cereal cover types.
+\newblock {\em Int. J. Remote Sens.} {\bf 2021}, {\em
+  42},~4644--4671.
+\newblock {\url{https://doi.org/10.1080/01431161.2021.1899331}}.
+
+\bibitem[Park et~al.(2011)Park, Lee, Woo, Yoo, Kwak, Stiti, Khaldi, Zhen, and
+  Kwon]{Park}
+Park, T.; Lee, W.K.; Woo, S.Y.; Yoo, S.; Kwak, D.A.; Stiti, B.; Khaldi, A.;
+  Zhen, X.; Kwon, T.H.
+\newblock Assessment of land-cover change using GIS and remotely-sensed data: A
+  case study in Ain Snoussi area of northern Tunisia.
+\newblock {\em For. Sci. Technol.} {\bf 2011}, {\em 7},~75--81.
+\newblock {\url{https://doi.org/10.1080/21580103.2011.573951}}.
+
+\bibitem[Mezned et~al.(2018)Mezned, Dkhala, and Abdeljaouad]{Mezned}
+Mezned, N.; Dkhala, B.; Abdeljaouad, S.
+\newblock Multitemporal and multisensory Landsat ETM+ and OLI 8 data for mine
+  waste change detection in northern Tunisia.
+\newblock {\em J. Spat. Sci.} {\bf 2018}, {\em 63},~135--153.
+\newblock {\url{https://doi.org/10.1080/14498596.2017.1345666}}.
+
+\bibitem[Bayati and Danesh-Yazdi(2021)]{BAYATI2021126032}
+Bayati, M.; Danesh-Yazdi, M.
+\newblock Mapping the spatiotemporal variability of salinity in the hypersaline
+  Lake Urmia using Sentinel-2 and Landsat-8 imagery.
+\newblock {\em J. Hydrol.} {\bf 2021}, {\em 595},~126032.
+\newblock {\url{https://doi.org/10.1016/j.jhydrol.2021.126032}}.
+
+\bibitem[Sheng et~al.(2016)Sheng, Song, Wang, Lyons, Knox, Cox, and
+  Gao]{SHENG2016129}
+Sheng, Y.; Song, C.; Wang, J.; Lyons, E.A.; Knox, B.R.; Cox, J.S.; Gao, F.
+\newblock Representative lake water extent mapping at continental scales using
+  multi-temporal Landsat-8 imagery.
+\newblock {\em Remote Sens. Environ.} {\bf 2016}, {\em 185},~129--141.
+\newblock \hl{Landsat 8 Science Results.} %MDPI: Please check if this part is necessary, can it be deleted?
+  {\url{https://doi.org/10.1016/j.rse.2015.12.041}}.
+
+\bibitem[Schröder et~al.(2022)Schröder, Hassanzadeh, Darehshouri, Tajrishy,
+  and Schulz]{SCHRODER20221710}
+Schröder, T.; Hassanzadeh, E.; Darehshouri, S.; Tajrishy, M.; Schulz, S.
+\newblock Satellite based lake bed elevation model of Lake Urmia using time
+  series of Landsat imagery.
+\newblock {\em J. Great Lakes Res.} {\bf 2022}, {\em
+  48},~1710--1717.
+\newblock {\url{https://doi.org/10.1016/j.jglr.2022.08.016}}.
+
+\end{thebibliography}
+\PublishersNote{}
+%\nocite{*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{adjustwidth}
+\end{document}
