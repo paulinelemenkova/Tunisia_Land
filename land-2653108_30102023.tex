@@ -275,8 +275,6 @@ Hence, the images were corrected and added into the GRASS environment using {the
 
 { In this way, the advantages of the automation achieved through the implemented algorithms of GRASS GIS save time when processing a series of Landsat images, reduce data mistake and upscale or downscale the tasks to various regions, accordingly.}
 
-The metadata of the images were checked using relevant modules of the GRASS GIS. In particular, the techniques of image processing in GRASS GIS include the auxiliary functions of 'g.list rast' and 'r.info' acting on imported raster bands and showing the identified parameters of images as attributes and a given set of identifiers of {the }technical specifications of the multispectral images: resolution, minimal and maximal values, and the coordinate system. After {the }image preprocessing, the 'i.group' module was used to group the bands before the classification of the Landsat {8-9 OLI-TIRS }images. This approach partitions the image using the embedded algorithm of discriminating the pixels on the images that represent various land cover types in the target area using their spectral reflectances. Afterwards, they were clustered using the k-means algorithm embedded in the GRASS GIS, which was implemented by the 'i.cluster' module. {Such sequential use of modules is beneficial for creating an automated workflow of image processing, whereas the straightforward traditional method would take more time and effort, which is a fail in the automation aspect. }
-
 \vspace{4pt}
 \begin{figure}[H]
 \centering
@@ -318,6 +316,8 @@ The metadata of the images were checked using relevant modules of the GRASS GIS.
 \caption{Landsat %MDPI: Figure 4 is not after the first citation, please check and modify. % Author's reply: yes, corrected, the first citation of Figure 4 in in line 224, then the Figure is in line 280.
  images of the Gulf of Gabès region (southern segment) showing the increase in salt (bright cyan colour) from the winter to summer months in sabkhas Sebkhet en Noual (Sfax Governorate): (\textbf{a}): 28 February 2017; (\textbf{b}): 1 April 2017; (\textbf{c}): 6 July 2017; (\textbf{d}): 21 February 2023; (\textbf{e}): 10 April 2023; (\textbf{f}):~15 July 2023.}\label{fig04}
 \end{figure}
+
+The metadata of the images were checked using relevant modules of the GRASS GIS. In particular, the techniques of image processing in GRASS GIS include the auxiliary functions of 'g.list rast' and 'r.info' acting on imported raster bands and showing the identified parameters of images as attributes and a given set of identifiers of {the }technical specifications of the multispectral images: resolution, minimal and maximal values, and the coordinate system. After {the }image preprocessing, the 'i.group' module was used to group the bands before the classification of the Landsat {8-9 OLI-TIRS }images. This approach partitions the image using the embedded algorithm of discriminating the pixels on the images that represent various land cover types in the target area using their spectral reflectances. Afterwards, they were clustered using the k-means algorithm embedded in the GRASS GIS, which was implemented by the 'i.cluster' module. {Such sequential use of modules is beneficial for creating an automated workflow of image processing, whereas the straightforward traditional method would take more time and effort, which is a fail in the automation aspect. }
 
 %----------- subsection ----------->
 \subsubsection{Data Clustering}
